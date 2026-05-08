@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Successful Future</title>
+  <meta name="description" content="Book a free 45-minute consultation with Successful Future.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/pages/contact.css">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header" role="banner">
+  <div class="container">
+    <div class="header-inner">
+      <a href="about.html" class="wordmark--logo" aria-label="Успешно Бъдеще — начало">
+        <img src="assets/logo.png" alt="" class="logo-img">
+        <span class="logo-name" data-en="Successful Future" data-bg="Успешно Бъдеще">Successful Future</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="about.html">About</a>
+        <a href="blog/index.html">Resources</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <span class="flag-bg" aria-hidden="true">
+          <span style="background:#FFFFFF"></span>
+          <span style="background:#00966E"></span>
+          <span style="background:#D62612"></span>
+        </span>
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button data-toggle="lang" data-lang="en" aria-pressed="true">EN</button>
+          <button data-toggle="lang" data-lang="bg" aria-pressed="false">БГ</button>
+        </div>
+        <a href="contact.html" class="btn btn--primary btn--sm">Book a call</a>
+        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1h18M1 7h18M1 13h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
+    <a href="about.html">About</a>
+    <a href="blog/index.html">Resources</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ─── SECTION 1: PAGE HEADER ────────────────────────────────── -->
+  <section class="section" aria-labelledby="contact-heading">
+    <div class="container" style="max-width:640px;">
+      <span class="section-label" id="contact-heading">Contact</span>
+      <span class="eyebrow">&nbsp;</span>
+      <h1 class="h1" style="margin-bottom:var(--space-3);">
+        <span class="placeholder-block" style="height:1.05em;width:80%;display:block;margin-bottom:0.15em;border-radius:8px;"></span>
+        <span class="placeholder-block" style="height:1.05em;width:55%;display:block;border-radius:8px;"></span>
+      </h1>
+      <p class="lede">
+        <span class="placeholder-block" style="height:0.9em;width:100%;display:block;margin-bottom:7px;border-radius:4px;"></span>
+        <span class="placeholder-block" style="height:0.9em;width:75%;display:block;border-radius:4px;"></span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 2: FORM + DETAILS ─────────────────────────────── -->
+  <section class="section section--alt" aria-labelledby="form-heading">
+    <div class="container">
+      <span class="section-label" id="form-heading">Booking form</span>
+      <div class="contact-layout">
+
+        <!-- Form -->
+        <div>
+          <form class="contact-form" action="#" method="POST" novalidate>
+            <!-- Honeypot -->
+            <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off">
+
+            <div class="form-group">
+              <label>I am a</label>
+              <div class="radio-group" role="group" aria-label="Role">
+                <label><input type="radio" name="role" value="student" required> Student</label>
+                <label><input type="radio" name="role" value="parent"> Parent</label>
+                <label><input type="radio" name="role" value="other"> Other</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="fullname">Full name <span aria-hidden="true" style="color:var(--color-clay);">*</span></label>
+              <input type="text" id="fullname" name="fullname" placeholder="Your full name" required autocomplete="name">
+            </div>
+
+            <div class="form-group">
+              <label for="grade">Student's current grade <span aria-hidden="true" style="color:var(--color-clay);">*</span></label>
+              <select id="grade" name="grade" required>
+                <option value="" disabled selected>Select grade</option>
+                <option value="8">8th grade</option>
+                <option value="9">9th grade</option>
+                <option value="10">10th grade</option>
+                <option value="11">11th grade</option>
+                <option value="12">12th grade</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email address <span aria-hidden="true" style="color:var(--color-clay);">*</span></label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone number <span style="font-weight:400;color:var(--color-muted);">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="+359 …" autocomplete="tel">
+            </div>
+
+            <div class="form-group">
+              <label>Preferred contact method</label>
+              <div class="radio-group" role="group" aria-label="Preferred contact">
+                <label><input type="radio" name="contact_method" value="email"> Email</label>
+                <label><input type="radio" name="contact_method" value="phone"> Phone</label>
+                <label><input type="radio" name="contact_method" value="whatsapp"> WhatsApp</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Tell us about your situation <span style="font-weight:400;color:var(--color-muted);">(optional)</span></label>
+              <textarea id="message" name="message" placeholder="What's your student's situation? Any specific questions?" maxlength="500" rows="5"></textarea>
+              <div class="char-count" aria-live="polite" id="char-count">0 / 500</div>
+            </div>
+
+            <div aria-live="polite" id="form-errors" style="color:var(--color-clay);font-size:13px;"></div>
+
+            <button type="submit" class="btn btn--primary btn--lg">Send my enquiry</button>
+          </form>
+        </div>
+
+        <!-- Contact details -->
+        <div class="contact-details">
+          <div>
+            <h2 class="h3" style="margin-bottom:var(--space-4);">
+              <span class="placeholder-block" style="height:0.9em;width:70%;display:block;border-radius:4px;"></span>
+            </h2>
+          </div>
+
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 1C5.69 1 3 3.69 3 7c0 4.25 6 10 6 10s6-5.75 6-10c0-3.31-2.69-6-6-6z"/>
+                <circle cx="9" cy="7" r="2"/>
+              </svg>
+            </div>
+            <div>
+              <div style="font-weight:600;font-size:14px;color:var(--color-forest);">Office</div>
+              <div style="font-size:14px;color:var(--color-muted);">
+                <span class="placeholder-block" style="height:0.8em;width:160px;display:block;margin-bottom:4px;border-radius:3px;"></span>
+                <span class="placeholder-block" style="height:0.8em;width:120px;display:block;border-radius:3px;"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="3" width="16" height="12" rx="2"/>
+                <path d="M1 5l8 6 8-6"/>
+              </svg>
+            </div>
+            <div>
+              <div style="font-weight:600;font-size:14px;color:var(--color-forest);">Email</div>
+              <a href="mailto:info@uspeshno-budeshte.com" style="font-size:14px;color:var(--color-clay);">info@uspeshno-budeshte.com</a>
+            </div>
+          </div>
+
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="9" r="7"/>
+                <path d="M9 5v4l3 2"/>
+              </svg>
+            </div>
+            <div>
+              <div style="font-weight:600;font-size:14px;color:var(--color-forest);">Hours</div>
+              <div style="font-size:14px;color:var(--color-muted);">Mon–Fri, 9:00–18:00 EET</div>
+              <div style="font-size:13px;color:var(--color-muted);margin-top:2px;">We reply within 1 business day.</div>
+            </div>
+          </div>
+
+          <div class="map-placeholder" aria-label="Map placeholder">
+            <span style="font-size:13px;color:var(--color-muted);">Map</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="wordmark--logo" aria-label="Успешно Бъдеще — начало"><img src="assets/logo.png" alt="Успешно Бъдеще" class="logo-img"></a>
+        <p>Sofia → United States<br>Education advisory since 2014.</p>
+      </div>
+      <div class="footer-col"><h4>Pages</h4><ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog/index.html">Resources</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul>
+        <li><a href="mailto:info@uspeshno-budeshte.com">info@uspeshno-budeshte.com</a></li>
+        <li>Sofia, Bulgaria</li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Successful Future. All rights reserved.</span>
+      <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts/i18n.js" defer></script>
+<script src="scripts/nav.js" defer></script>
+<script defer>
+  window.addEventListener('DOMContentLoaded', () => {
+    const textarea = document.getElementById('message');
+    const counter = document.getElementById('char-count');
+    if (textarea && counter) {
+      textarea.addEventListener('input', () => {
+        counter.textContent = textarea.value.length + ' / 500';
+      });
+    }
+
+    const form = document.querySelector('.contact-form');
+    if (form) {
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const errors = document.getElementById('form-errors');
+        const email = form.querySelector('#email');
+        const name  = form.querySelector('#fullname');
+        const role  = form.querySelector('input[name="role"]:checked');
+        const grade = form.querySelector('#grade');
+        const msgs  = [];
+        if (!role)                          msgs.push('Please select your role.');
+        if (!name.value.trim())             msgs.push('Please enter your name.');
+        if (!grade.value)                   msgs.push('Please select a grade.');
+        if (!email.value || !email.validity.valid) msgs.push('Please enter a valid email.');
+        errors.textContent = msgs.join(' ');
+        if (msgs.length === 0) {
+          errors.textContent = '';
+          // TODO: submit to Formspree / Netlify Forms
+        }
+      });
+    }
+  });
+</script>
+</body>
+</html>

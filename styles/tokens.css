@@ -1,0 +1,70 @@
+/* Design tokens — aligned to Успешно Бъдеще brand identity */
+:root {
+  /* ── Core brand palette ─────────────────────────────────────── */
+  /* Navy — dominant, from logo mark and wordmark */
+  --color-navy:        #182845;  /* primary brand navy */
+  --color-navy-mid:    #243362;  /* medium navy for accents */
+  --color-navy-deep:   #0E1928;  /* footer, darkest backgrounds */
+
+  /* Bulgarian flag accent colors */
+  --color-red:         #D62612;  /* Bulgarian red — CTA, highlights */
+  --color-red-soft:    #E84030;  /* lighter red for hover */
+  --color-green:       #00966E;  /* Bulgarian green — eyebrows, chips */
+  --color-green-soft:  #00A87A;  /* lighter green */
+
+  /* Neutrals */
+  --color-cream:       #F5F3EE;  /* page background — clean off-white */
+  --color-cream-soft:  #FFFFFF;  /* card background — pure white */
+  --color-taupe:       #DDD9D0;  /* soft chip backgrounds */
+  --color-ink:         #182845;  /* body text — same as navy */
+  --color-muted:       #5A6478;  /* secondary text */
+  --color-rule:        rgba(24,40,69,0.13);  /* hairline dividers */
+
+  /* ── Compatibility aliases (used across components) ─────────── */
+  /* These map the Direction-C variable names to the new palette   */
+  --color-forest:      var(--color-navy);
+  --color-forest-deep: var(--color-navy-deep);
+  --color-clay:        var(--color-red);
+  --color-clay-soft:   var(--color-red-soft);
+
+  /* ── Typography ──────────────────────────────────────────────── */
+  --font-display: "Source Serif 4", Georgia, serif;
+  --font-body:    "Manrope", -apple-system, system-ui, sans-serif;
+
+  /* ── Type scale ──────────────────────────────────────────────── */
+  --fs-hero:   clamp(44px, 5.5vw, 76px);
+  --fs-h2:     clamp(32px, 4vw, 54px);
+  --fs-h3:     clamp(18px, 2vw, 22px);
+  --fs-body:   15px;
+  --fs-lede:   18px;
+  --fs-small:  13px;
+  --fs-chip:   12px;
+
+  /* ── Spacing — 8pt grid ─────────────────────────────────────── */
+  --space-1:  8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-7: 96px;
+  --space-8: 128px;
+
+  /* ── Layout ──────────────────────────────────────────────────── */
+  --container:      1200px;
+  --container-wide: 1280px;
+  --gutter:         clamp(24px, 4vw, 64px);
+
+  /* ── Radii ───────────────────────────────────────────────────── */
+  --radius-card:   16px;
+  --radius-btn:    8px;    /* squared-off — matches the logo's formal feel */
+  --radius-chip:   999px;
+
+  /* ── Shadows (navy-toned) ─────────────────────────────────────── */
+  --shadow-card:    0 2px 12px rgba(24,40,69,0.08), 0 1px 3px rgba(24,40,69,0.05);
+  --shadow-card-lg: 0 8px 32px rgba(24,40,69,0.13), 0 2px 8px rgba(24,40,69,0.07);
+  --shadow-polaroid: 0 12px 32px rgba(24,40,69,0.15);
+
+  /* ── Transitions ─────────────────────────────────────────────── */
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}

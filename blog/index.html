@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resources — Successful Future</title>
+  <meta name="description" content="Guides, dispatches, and resources from Successful Future.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <style>
+    /* Blog-specific */
+    .filter-bar {
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-5);
+    }
+    .filter-btn {
+      padding: 7px 18px;
+      border-radius: 999px;
+      border: 1.5px solid var(--color-rule);
+      background: transparent;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-muted);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--color-forest);
+      border-color: var(--color-forest);
+      color: #fff;
+    }
+    .blog-hero-card {
+      background: var(--color-cream-soft);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-card-lg);
+      display: grid;
+      gap: 0;
+      margin-bottom: var(--space-6);
+    }
+    @media (min-width: 768px) {
+      .blog-hero-card { grid-template-columns: 1fr 1fr; }
+    }
+    .blog-hero-card__img {
+      background: var(--color-taupe);
+      min-height: 280px;
+    }
+    .blog-hero-card__body {
+      padding: var(--space-5) var(--space-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      justify-content: center;
+    }
+    .blog-grid {
+      display: grid;
+      gap: var(--space-4);
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header" role="banner">
+  <div class="container">
+    <div class="header-inner">
+      <a href="../about.html" class="wordmark--logo" aria-label="Успешно Бъдеще — начало">
+        <img src="../assets/logo.png" alt="" class="logo-img">
+        <span class="logo-name" data-en="Successful Future" data-bg="Успешно Бъдеще">Successful Future</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="../about.html">About</a>
+        <a href="index.html" class="active">Resources</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <span class="flag-bg" aria-hidden="true">
+          <span style="background:#FFFFFF"></span>
+          <span style="background:#00966E"></span>
+          <span style="background:#D62612"></span>
+        </span>
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button data-toggle="lang" data-lang="en" aria-pressed="true">EN</button>
+          <button data-toggle="lang" data-lang="bg" aria-pressed="false">БГ</button>
+        </div>
+        <a href="../contact.html" class="btn btn--primary btn--sm">Book a call</a>
+        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1h18M1 7h18M1 13h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
+    <a href="../about.html">About</a>
+    <a href="index.html">Resources</a>
+    <a href="../contact.html">Contact</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ─── SECTION 1: PAGE HEADER ────────────────────────────────── -->
+  <section class="section" aria-labelledby="blog-heading">
+    <div class="container" style="max-width:680px;">
+      <span class="section-label" id="blog-heading">Resources</span>
+      <span class="eyebrow">&nbsp;</span>
+      <h1 class="h1" style="margin-bottom:var(--space-3);">
+        <span class="placeholder-block" style="height:1.05em;width:80%;display:block;border-radius:8px;"></span>
+      </h1>
+      <p class="lede">
+        <span class="placeholder-block" style="height:0.9em;width:100%;display:block;margin-bottom:7px;border-radius:4px;"></span>
+        <span class="placeholder-block" style="height:0.9em;width:65%;display:block;border-radius:4px;"></span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 2: ARTICLE LISTING ───────────────────────────── -->
+  <section class="section section--alt" aria-labelledby="articles-heading">
+    <div class="container">
+      <span class="section-label" id="articles-heading">All articles</span>
+
+      <!-- Filter bar -->
+      <div class="filter-bar" role="group" aria-label="Filter by category">
+        <button class="filter-btn active" data-category="all">All</button>
+        <button class="filter-btn" data-category="finance">Finance</button>
+        <button class="filter-btn" data-category="testing">Testing</button>
+        <button class="filter-btn" data-category="visa">Visa</button>
+        <button class="filter-btn" data-category="essays">Essays</button>
+        <button class="filter-btn" data-category="stories">Stories</button>
+      </div>
+
+      <!-- Featured hero card -->
+      <a href="#" class="blog-hero-card" style="text-decoration:none;color:inherit;">
+        <div class="blog-hero-card__img"></div>
+        <div class="blog-hero-card__body">
+          <div style="display:flex;gap:var(--space-2);align-items:center;">
+            <span class="chip chip--clay">Finance</span>
+            <span style="font-size:12px;color:var(--color-muted);">8 min read · May 2026</span>
+          </div>
+          <h2 class="h2" style="font-size:clamp(22px,3vw,36px);">
+            <span class="placeholder-block" style="height:0.95em;width:90%;display:block;margin-bottom:8px;border-radius:6px;"></span>
+            <span class="placeholder-block" style="height:0.95em;width:70%;display:block;border-radius:6px;"></span>
+          </h2>
+          <p style="font-size:15px;color:var(--color-muted);">
+            <span class="placeholder-block" style="height:0.8em;width:100%;display:block;margin-bottom:5px;border-radius:3px;"></span>
+            <span class="placeholder-block" style="height:0.8em;width:85%;display:block;border-radius:3px;"></span>
+          </p>
+          <span class="btn btn--ghost btn--sm" style="width:fit-content;">Read →</span>
+        </div>
+      </a>
+
+      <!-- Card grid -->
+      <div class="blog-grid">
+        <a href="#" class="blog-card">
+          <div class="blog-card__img"></div>
+          <div class="blog-card__body">
+            <div class="blog-card__meta"><span class="chip chip--clay">Essays</span><span>6 min</span></div>
+            <h3 class="h3" style="font-size:18px;">
+              <span class="placeholder-block" style="height:0.9em;width:90%;display:block;margin-bottom:5px;border-radius:4px;"></span>
+              <span class="placeholder-block" style="height:0.9em;width:65%;display:block;border-radius:4px;"></span>
+            </h3>
+          </div>
+        </a>
+        <a href="#" class="blog-card">
+          <div class="blog-card__img"></div>
+          <div class="blog-card__body">
+            <div class="blog-card__meta"><span class="chip chip--clay">Visa</span><span>4 min</span></div>
+            <h3 class="h3" style="font-size:18px;">
+              <span class="placeholder-block" style="height:0.9em;width:80%;display:block;margin-bottom:5px;border-radius:4px;"></span>
+              <span class="placeholder-block" style="height:0.9em;width:70%;display:block;border-radius:4px;"></span>
+            </h3>
+          </div>
+        </a>
+        <a href="#" class="blog-card">
+          <div class="blog-card__img"></div>
+          <div class="blog-card__body">
+            <div class="blog-card__meta"><span class="chip chip--clay">Testing</span><span>7 min</span></div>
+            <h3 class="h3" style="font-size:18px;">
+              <span class="placeholder-block" style="height:0.9em;width:85%;display:block;margin-bottom:5px;border-radius:4px;"></span>
+              <span class="placeholder-block" style="height:0.9em;width:60%;display:block;border-radius:4px;"></span>
+            </h3>
+          </div>
+        </a>
+        <a href="#" class="blog-card">
+          <div class="blog-card__img"></div>
+          <div class="blog-card__body">
+            <div class="blog-card__meta"><span class="chip chip--clay">Stories</span><span>5 min</span></div>
+            <h3 class="h3" style="font-size:18px;">
+              <span class="placeholder-block" style="height:0.9em;width:75%;display:block;margin-bottom:5px;border-radius:4px;"></span>
+              <span class="placeholder-block" style="height:0.9em;width:80%;display:block;border-radius:4px;"></span>
+            </h3>
+          </div>
+        </a>
+        <a href="#" class="blog-card">
+          <div class="blog-card__img"></div>
+          <div class="blog-card__body">
+            <div class="blog-card__meta"><span class="chip chip--clay">Finance</span><span>6 min</span></div>
+            <h3 class="h3" style="font-size:18px;">
+              <span class="placeholder-block" style="height:0.9em;width:88%;display:block;margin-bottom:5px;border-radius:4px;"></span>
+              <span class="placeholder-block" style="height:0.9em;width:55%;display:block;border-radius:4px;"></span>
+            </h3>
+          </div>
+        </a>
+        <a href="#" class="blog-card">
+          <div class="blog-card__img"></div>
+          <div class="blog-card__body">
+            <div class="blog-card__meta"><span class="chip chip--clay">Essays</span><span>9 min</span></div>
+            <h3 class="h3" style="font-size:18px;">
+              <span class="placeholder-block" style="height:0.9em;width:70%;display:block;margin-bottom:5px;border-radius:4px;"></span>
+              <span class="placeholder-block" style="height:0.9em;width:85%;display:block;border-radius:4px;"></span>
+            </h3>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../about.html" class="wordmark--logo" aria-label="Успешно Бъдеще — начало">
+          <img src="../assets/logo.png" alt="" class="logo-img">
+          <span class="logo-name" data-en="Successful Future" data-bg="Успешно Бъдеще">Successful Future</span>
+        </a>
+        <p>Sofia → United States<br>Education advisory since 2014.</p>
+      </div>
+      <div class="footer-col"><h4>Pages</h4><ul>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="index.html">Resources</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul>
+        <li><a href="mailto:info@uspeshno-budeshte.com">info@uspeshno-budeshte.com</a></li>
+        <li>Sofia, Bulgaria</li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Successful Future. All rights reserved.</span>
+      <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../scripts/i18n.js" defer></script>
+<script src="../scripts/nav.js" defer></script>
+<script defer>
+  window.addEventListener('DOMContentLoaded', () => {
+    const btns = document.querySelectorAll('.filter-btn');
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  });
+</script>
+</body>
+</html>

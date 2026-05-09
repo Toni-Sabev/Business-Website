@@ -59,7 +59,7 @@
 
         <!-- Form -->
         <div>
-          <form class="contact-form" action="#" method="POST" novalidate>
+          <form class="contact-form" action="https://formspree.io/f/maqvlwzr" method="POST" novalidate>
             <!-- Honeypot -->
             <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off">
 
@@ -228,7 +228,7 @@
 
     const form = document.querySelector('.contact-form');
     if (form) {
-      form.addEventListener('submit', e => {
+      form.addEventListener('submit', async e => {
         e.preventDefault();
         const errors = document.getElementById('form-errors');
         const email = form.querySelector('#email');
@@ -236,14 +236,39 @@
         const role  = form.querySelector('input[name="role"]:checked');
         const grade = form.querySelector('#grade');
         const msgs  = [];
-        if (!role)                          msgs.push('Please select your role.');
-        if (!name.value.trim())             msgs.push('Please enter your name.');
-        if (!grade.value)                   msgs.push('Please select a grade.');
+        if (!role)                               msgs.push('Please select your role.');
+        if (!name.value.trim())                  msgs.push('Please enter your name.');
+        if (!grade.value)                        msgs.push('Please select a grade.');
         if (!email.value || !email.validity.valid) msgs.push('Please enter a valid email.');
         errors.textContent = msgs.join(' ');
-        if (msgs.length === 0) {
-          errors.textContent = '';
-          // TODO: submit to Formspree / Netlify Forms
+        if (msgs.length > 0) return;
+
+        const btn = form.querySelector('[type="submit"]');
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+
+        try {
+          const res = await fetch('https://formspree.io/f/maqvlwzr', {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            form.innerHTML = `
+              <div style="padding: var(--space-5) 0; text-align: center;">
+                <div style="font-size: 32px; margin-bottom: var(--space-3);">✓</div>
+                <p style="font-size: 17px; font-weight: 600; color: var(--color-navy); margin-bottom: var(--space-2);">Message sent!</p>
+                <p style="font-size: 14px; color: var(--color-muted);">We'll be in touch within one business day.</p>
+              </div>`;
+          } else {
+            errors.textContent = 'Something went wrong. Please email us at info@uspeshno-budeshte.com';
+            btn.disabled = false;
+            btn.textContent = 'Send my enquiry';
+          }
+        } catch {
+          errors.textContent = 'Network error. Please email us at info@uspeshno-budeshte.com';
+          btn.disabled = false;
+          btn.textContent = 'Send my enquiry';
         }
       });
     }

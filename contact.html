@@ -25,7 +25,7 @@
         <span class="logo-name" data-en="Successful Future" data-bg="Успешно Бъдеще">Successful Future</span>
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="about.html">About</a>        <a href="contact.html" class="active">Contact</a>
+        <a href="about.html" data-en="About" data-bg="За нас">За нас</a>        <a href="contact.html" class="active" data-en="Contact" data-bg="Контакт">Контакт</a>
       </nav>
       <div class="header-actions">
         <span class="flag-bg" aria-hidden="true">
@@ -37,7 +37,7 @@
           <button data-toggle="lang" data-lang="en" aria-pressed="false">EN</button>
           <button data-toggle="lang" data-lang="bg" aria-pressed="true">БГ</button>
         </div>
-        <a href="contact.html" class="btn btn--primary btn--sm">Book a call</a>
+        <a href="contact.html" class="btn btn--primary btn--sm" data-en="Book a call" data-bg="Запишете час">Запишете час</a>
         <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
           <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1h18M1 7h18M1 13h18"/></svg>
         </button>
@@ -45,7 +45,7 @@
     </div>
   </div>
   <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
-    <a href="about.html">About</a>    <a href="contact.html">Contact</a>
+    <a href="about.html" data-en="About" data-bg="За нас">За нас</a>    <a href="contact.html" data-en="Contact" data-bg="Контакт">Контакт</a>
   </nav>
 </header>
 
@@ -54,7 +54,7 @@
   <!-- ─── SECTION 1: PAGE HEADER ────────────────────────────────── -->
   <section class="section" aria-labelledby="contact-heading">
     <div class="container" style="max-width:640px;">
-      <span class="section-label" id="contact-heading">Contact</span>
+      <span class="section-label" id="contact-heading" data-en="Contact" data-bg="Контакт">Контакт</span>
       <span class="eyebrow">&nbsp;</span>
       <h1 class="h1" style="margin-bottom:var(--space-3);">
         <span class="placeholder-block" style="height:1.05em;width:80%;display:block;margin-bottom:0.15em;border-radius:8px;"></span>
@@ -70,7 +70,7 @@
   <!-- ─── SECTION 2: FORM + DETAILS ─────────────────────────────── -->
   <section class="section section--alt" aria-labelledby="form-heading">
     <div class="container">
-      <span class="section-label" id="form-heading">Booking form</span>
+      <span class="section-label" id="form-heading" data-en="Booking form" data-bg="Форма за запитване">Форма за запитване</span>
       <div class="contact-layout">
 
         <!-- Form -->
@@ -80,60 +80,60 @@
             <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off">
 
             <div class="form-group">
-              <label>I am a</label>
+              <label data-en="I am a" data-bg="Аз съм">Аз съм</label>
               <div class="radio-group" role="group" aria-label="Role">
-                <label><input type="radio" name="role" value="student" required> Student</label>
-                <label><input type="radio" name="role" value="parent"> Parent</label>
-                <label><input type="radio" name="role" value="other"> Other</label>
+                <label><input type="radio" name="role" value="student" required> <span data-en="Student" data-bg="Студент">Студент</span></label>
+                <label><input type="radio" name="role" value="parent"> <span data-en="Parent" data-bg="Родител">Родител</span></label>
+                <label><input type="radio" name="role" value="other"> <span data-en="Other" data-bg="Друго">Друго</span></label>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="fullname">Full name <span aria-hidden="true" style="color:var(--color-clay);">*</span></label>
+              <label for="fullname"><span data-en="Full name" data-bg="Три имена">Три имена</span> <span aria-hidden="true" style="color:var(--color-clay);">*</span></label>
               <input type="text" id="fullname" name="fullname" placeholder="Your full name" required autocomplete="name">
             </div>
 
             <div class="form-group">
-              <label for="grade">Student's current grade <span aria-hidden="true" style="color:var(--color-clay);">*</span></label>
+              <label for="grade"><span data-en="Student's current grade" data-bg="Клас на ученика">Клас на ученика</span> <span aria-hidden="true" style="color:var(--color-clay);">*</span></label>
               <select id="grade" name="grade" required>
-                <option value="" disabled selected>Select grade</option>
-                <option value="8">8th grade</option>
-                <option value="9">9th grade</option>
-                <option value="10">10th grade</option>
-                <option value="11">11th grade</option>
-                <option value="12">12th grade</option>
-                <option value="other">Other</option>
+                <option value="" disabled selected data-en="Select grade" data-bg="Изберете клас">Изберете клас</option>
+                <option value="8" data-en="8th grade" data-bg="8-ми клас">8-ми клас</option>
+                <option value="9" data-en="9th grade" data-bg="9-ти клас">9-ти клас</option>
+                <option value="10" data-en="10th grade" data-bg="10-ти клас">10-ти клас</option>
+                <option value="11" data-en="11th grade" data-bg="11-ти клас">11-ти клас</option>
+                <option value="12" data-en="12th grade" data-bg="12-ти клас">12-ти клас</option>
+                <option value="other" data-en="Other" data-bg="Друго">Друго</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="email">Email address <span aria-hidden="true" style="color:var(--color-clay);">*</span></label>
+              <label for="email"><span data-en="Email address" data-bg="Имейл адрес">Имейл адрес</span> <span aria-hidden="true" style="color:var(--color-clay);">*</span></label>
               <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
             </div>
 
             <div class="form-group">
-              <label for="phone">Phone number <span style="font-weight:400;color:var(--color-muted);">(optional)</span></label>
+              <label for="phone"><span data-en="Phone number" data-bg="Телефонен номер">Телефонен номер</span> <span style="font-weight:400;color:var(--color-muted);" data-en="(optional)" data-bg="(по избор)">(по избор)</span></label>
               <input type="tel" id="phone" name="phone" placeholder="+359 …" autocomplete="tel">
             </div>
 
             <div class="form-group">
-              <label>Preferred contact method</label>
+              <label data-en="Preferred contact method" data-bg="Предпочитан начин на контакт">Предпочитан начин на контакт</label>
               <div class="radio-group" role="group" aria-label="Preferred contact">
-                <label><input type="radio" name="contact_method" value="email"> Email</label>
-                <label><input type="radio" name="contact_method" value="phone"> Phone</label>
+                <label><input type="radio" name="contact_method" value="email"> <span data-en="Email" data-bg="Имейл">Имейл</span></label>
+                <label><input type="radio" name="contact_method" value="phone"> <span data-en="Phone" data-bg="Телефон">Телефон</span></label>
                 <label><input type="radio" name="contact_method" value="whatsapp"> WhatsApp</label>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="message">Tell us about your situation <span style="font-weight:400;color:var(--color-muted);">(optional)</span></label>
+              <label for="message"><span data-en="Tell us about your situation" data-bg="Разкажете за ситуацията">Разкажете за ситуацията</span> <span style="font-weight:400;color:var(--color-muted);" data-en="(optional)" data-bg="(по избор)">(по избор)</span></label>
               <textarea id="message" name="message" placeholder="What's your student's situation? Any specific questions?" maxlength="500" rows="5"></textarea>
               <div class="char-count" aria-live="polite" id="char-count">0 / 500</div>
             </div>
 
             <div aria-live="polite" id="form-errors" style="color:var(--color-clay);font-size:13px;"></div>
 
-            <button type="submit" class="btn btn--primary btn--lg">Send my enquiry</button>
+            <button type="submit" class="btn btn--primary btn--lg" data-en="Send my enquiry" data-bg="Изпратете запитване">Изпратете запитване</button>
           </form>
         </div>
 
@@ -153,7 +153,7 @@
               </svg>
             </div>
             <div>
-              <div style="font-weight:600;font-size:14px;color:var(--color-forest);">Office</div>
+              <div style="font-weight:600;font-size:14px;color:var(--color-forest);" data-en="Office" data-bg="Офис">Офис</div>
               <div style="font-size:14px;color:var(--color-muted);">
                 <span class="placeholder-block" style="height:0.8em;width:160px;display:block;margin-bottom:4px;border-radius:3px;"></span>
                 <span class="placeholder-block" style="height:0.8em;width:120px;display:block;border-radius:3px;"></span>
@@ -169,7 +169,7 @@
               </svg>
             </div>
             <div>
-              <div style="font-weight:600;font-size:14px;color:var(--color-forest);">Email</div>
+              <div style="font-weight:600;font-size:14px;color:var(--color-forest);" data-en="Email" data-bg="Имейл">Имейл</div>
               <a href="mailto:info@uspeshno-budeshte.com" style="font-size:14px;color:var(--color-clay);">info@uspeshno-budeshte.com</a>
             </div>
           </div>
@@ -182,9 +182,9 @@
               </svg>
             </div>
             <div>
-              <div style="font-weight:600;font-size:14px;color:var(--color-forest);">Hours</div>
-              <div style="font-size:14px;color:var(--color-muted);">Mon–Fri, 9:00–18:00 EET</div>
-              <div style="font-size:13px;color:var(--color-muted);margin-top:2px;">We reply within 1 business day.</div>
+              <div style="font-weight:600;font-size:14px;color:var(--color-forest);" data-en="Hours" data-bg="Работно време">Работно време</div>
+              <div style="font-size:14px;color:var(--color-muted);" data-en="Mon–Fri, 9:00–18:00 EET" data-bg="Пон–Пет, 9:00–18:00 ЕИВ">Пон–Пет, 9:00–18:00 ЕИВ</div>
+              <div style="font-size:13px;color:var(--color-muted);margin-top:2px;" data-en="We reply within 1 business day." data-bg="Отговаряме до 1 работен ден.">Отговаряме до 1 работен ден.</div>
             </div>
           </div>
 
@@ -204,19 +204,19 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="index.html" class="wordmark--logo" aria-label="Успешно Бъдеще — начало"><img src="assets/logo.png" alt="Успешно Бъдеще" class="logo-img"></a>
-        <p>Sofia → United States<br>Education advisory since 2014.</p>
+        <p data-en="Sofia → United States<br>Education advisory since 2014." data-bg="София → Съединените щати<br>Образователен консултант от 2014 г.">София → Съединените щати<br>Образователен консултант от 2014 г.</p>
       </div>
-      <div class="footer-col"><h4>Pages</h4><ul>
-        <li><a href="about.html">About</a></li>        <li><a href="contact.html">Contact</a></li>
+      <div class="footer-col"><h4 data-en="Pages" data-bg="Страници">Страници</h4><ul>
+        <li><a href="about.html" data-en="About" data-bg="За нас">За нас</a></li>        <li><a href="contact.html" data-en="Contact" data-bg="Контакт">Контакт</a></li>
       </ul></div>
-      <div class="footer-col"><h4>Contact</h4><ul>
+      <div class="footer-col"><h4 data-en="Contact" data-bg="Контакт">Контакт</h4><ul>
         <li><a href="mailto:info@uspeshno-budeshte.com">info@uspeshno-budeshte.com</a></li>
-        <li>Sofia, Bulgaria</li>
+        <li><span data-en="Sofia, Bulgaria" data-bg="София, България">София, България</span></li>
       </ul></div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Successful Future. All rights reserved.</span>
-      <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+      <span data-en="© 2026 Successful Future. All rights reserved." data-bg="© 2026 Успешно Бъдеще. Всички права запазени.">© 2026 Успешно Бъдеще. Всички права запазени.</span>
+      <div class="footer-bottom-links"><a href="#" data-en="Privacy" data-bg="Поверителност">Поверителност</a><a href="#" data-en="Terms" data-bg="Условия">Условия</a></div>
     </div>
   </div>
 </footer>

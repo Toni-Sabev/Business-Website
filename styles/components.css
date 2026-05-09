@@ -895,9 +895,9 @@ a.wordmark--logo {
 /* ─── Service card (About page) ─────────────────────────────────── */
 .service-item {
   display: flex;
-  gap: var(--space-3);
-  align-items: flex-start;
-  padding: var(--space-3) var(--space-4);
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
   background: var(--color-cream-soft);
   border-radius: var(--radius-card);
   border: 1px solid var(--color-rule);
@@ -911,24 +911,23 @@ a.wordmark--logo {
 .service-item__icon {
   width: 44px;
   height: 44px;
-  min-width: 44px;
   border-radius: 10px;
   background: rgba(24,40,69,0.07);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 2px;
+  margin-bottom: var(--space-1);
 }
 .service-item__content h3 {
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--color-navy);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 .service-item__content p {
   font-size: 13.5px;
-  line-height: 1.60;
+  line-height: 1.65;
   color: var(--color-muted);
 }
 

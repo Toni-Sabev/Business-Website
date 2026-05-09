@@ -12,8 +12,7 @@ function setLang(lang) {
   });
 }
 
-const initial = localStorage.getItem(KEY) ||
-  (navigator.language?.startsWith('bg') ? 'bg' : 'en');
+const initial = localStorage.getItem(KEY) || 'bg';
 
 window.addEventListener('DOMContentLoaded', () => {
   setLang(initial);

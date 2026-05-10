@@ -27,20 +27,205 @@
       max-width: 720px;
     }
 
-    .services-list {
+    .packages-list {
       display: grid;
       gap: var(--space-3);
       grid-template-columns: 1fr;
       margin-top: var(--space-5);
+      align-items: start;
     }
-    @media (min-width: 640px) {
-      .services-list { grid-template-columns: 1fr 1fr; }
+    @media (min-width: 860px) {
+      .packages-list { grid-template-columns: repeat(3, 1fr); }
     }
-    @media (min-width: 900px) {
-      .services-list { grid-template-columns: repeat(3, 1fr); }
+
+    /* ── Flip card shell ───────────────────────────────────── */
+    .package-card {
+      min-height: 380px;
+      perspective: 1000px;
+      border-radius: var(--radius-card);
+      cursor: pointer;
     }
-    @media (min-width: 1100px) {
-      .services-list { grid-template-columns: repeat(5, 1fr); gap: 16px; }
+
+    .package-card__inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+
+    /* desktop hover */
+    @media (hover: hover) {
+      .package-card:not(.package-card--soon):hover .package-card__inner {
+        transform: rotateY(180deg);
+      }
+      .package-card:not(.package-card--soon):hover ~ .package-card__chips {
+        opacity: 1;
+      }
+    }
+
+    /* touch tap — toggled via JS */
+    .package-card.is-flipped .package-card__inner {
+      transform: rotateY(180deg);
+    }
+
+    /* ── Shared face styles ────────────────────────────────── */
+    .package-card__front,
+    .package-card__back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: var(--radius-card);
+      background: var(--color-cream-soft);
+      border: 1px solid var(--color-rule);
+      padding: var(--space-4);
+      box-sizing: border-box;
+    }
+
+    /* ── Front face ────────────────────────────────────────── */
+    .package-card__front {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+    }
+
+    .package-card__front--bronze {
+      background: url('assets/package-hope-bg.png') center / cover no-repeat;
+      border: none;
+      justify-content: flex-end;
+      align-items: flex-start;
+      padding: var(--space-3);
+    }
+
+    .package-card__badge--bronze {
+      color: #fff;
+      background: rgba(0,0,0,0.28);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+
+    .package-card__logo {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      mix-blend-mode: multiply;
+    }
+
+    .package-card__logo--mystery {
+      filter: blur(6px);
+      opacity: 0.75;
+    }
+
+    /* ── Back face ─────────────────────────────────────────── */
+    .package-card__back {
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .package-card__badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: var(--radius-chip);
+    }
+    .package-card__badge--green { color: var(--color-green); background: rgba(0,150,110,0.10); }
+    .package-card__badge--navy  { color: var(--color-navy);  background: rgba(24,40,69,0.08); }
+    .package-card__badge--red   { color: var(--color-red);   background: rgba(214,38,18,0.10); }
+
+    .package-card__tagline {
+      font-size: 13px;
+      color: var(--color-muted);
+      line-height: 1.55;
+    }
+
+    .package-card__features-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin: 0 0 4px;
+    }
+
+    .package-card__features {
+      list-style: disc;
+      padding-left: 18px;
+      margin: var(--space-1) 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex: 1;
+    }
+    .package-card__features li {
+      font-size: 13px;
+      color: var(--color-ink);
+      line-height: 1.5;
+    }
+    .package-card__features li::marker { color: var(--color-navy); }
+
+    .package-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .package-card__chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      opacity: 0;
+      transition: opacity 0.2s ease 0.35s;
+    }
+
+    .package-wrap:hover .package-card__chips,
+    .package-card.is-flipped ~ .package-card__chips {
+      opacity: 1;
+    }
+
+    @media (max-width: 859px) {
+      .package-card__logo { width: 100px; height: 100px; }
+      .package-card, .package-card__inner { min-height: 320px; }
+    }
+
+    .package-card__chip {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--color-green);
+      background: rgba(0,150,110,0.10);
+      padding: 2px 8px;
+      border-radius: var(--radius-chip);
+    }
+    .package-card__chip--navy {
+      color: var(--color-navy-mid);
+      background: rgba(24,40,69,0.08);
+    }
+
+    .package-card--soon {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .package-card__coming-soon {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-top: auto;
     }
 
     /* Stat sidebar */
@@ -128,8 +313,8 @@
         flex-direction: row;
       }
       .founders-grid .founder-card__photo {
-        width: 240px;
-        min-width: 240px;
+        width: 280px;
+        min-width: 280px;
         aspect-ratio: unset;
         align-self: stretch;
         min-height: unset;
@@ -197,6 +382,7 @@
 
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="about.html" class="active" data-en="About" data-bg="За нас">За нас</a>
+        <a href="resources.html" data-en="Resources" data-bg="Ресурси">Ресурси</a>
         <a href="contact.html" data-en="Contact" data-bg="Контакт">Контакт</a>
       </nav>
 
@@ -220,6 +406,7 @@
   </div>
   <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
     <a href="about.html" data-en="About" data-bg="За нас">За нас</a>
+    <a href="resources.html" data-en="Resources" data-bg="Ресурси">Ресурси</a>
     <a href="contact.html" data-en="Contact" data-bg="Контакт">Контакт</a>
   </nav>
 </header>
@@ -239,7 +426,7 @@
         <div class="about-intro__text">
           <span class="eyebrow" data-en="What We Do" data-bg="Какво правим">Какво правим</span>
           <h1 id="about-heading" class="h1" style="margin: var(--space-3) 0 var(--space-4);"
-              data-en="From Bulgaria to the United States - the full picture."
+              data-en="From Bulgaria to the United States - the full plan."
               data-bg="От България до Америка - цялостна подготовка.">
             From Bulgaria to a US university — and everything in between.
           </h1>
@@ -251,98 +438,136 @@
           </p>
 
           <p style="font-size: 15px; line-height: 1.70; color: var(--color-muted); margin-bottom: var(--space-2);"
-             data-en="What we cover:"
-             data-bg="Какво обхващаме:">
-            What we cover:
+             data-en="Our packages:"
+             data-bg="Нашите пакети:">
+            Нашите пакети:
           </p>
         </div><!-- /about-intro__text -->
 
-          <!-- Five service areas -->
-          <div class="services-list">
+          <!-- Three packages -->
+          <div class="packages-list">
 
-            <div class="service-item">
-              <div class="service-item__icon" aria-hidden="true">
-                <svg width="25" height="25" viewBox="0 0 20 20" fill="none" stroke="var(--color-navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M10 2l1.8 5.4H17l-4.6 3.3 1.8 5.4L10 13l-4.2 3.1 1.8-5.4L3 7.4h5.2L10 2z"/>
-                </svg>
+            <!-- Package 1: Hope / Надежда -->
+            <div class="package-wrap">
+              <div class="package-card">
+                <div class="package-card__inner">
+                  <div class="package-card__front">
+                    <img src="assets/package-hope.png" alt="" class="package-card__logo" aria-hidden="true">
+                    <span class="package-card__badge package-card__badge--green"
+                          data-en="Hope" data-bg="Надежда">Надежда</span>
+                  </div>
+                  <div class="package-card__back">
+                    <p class="package-card__tagline"
+                       data-en="The first step towards a US university."
+                       data-bg="Първата стъпка към американски университет.">
+                      Първата стъпка към американски университет.
+                    </p>
+                    <p class="package-card__features-label"
+                       data-en="Services:" data-bg="Услуги:">Услуги:</p>
+                    <ul class="package-card__features">
+                      <li data-en="Documentation requirements, admission criteria, and application process overview"
+                          data-bg="Изисквания за документация, критерии за прием и преглед на процеса на кандидатстване">
+                        Изисквания за документация, критерии за прием и преглед на процеса на кандидатстване
+                      </li>
+                      <li data-en="University research, profile building, and direct outreach"
+                          data-bg="Проучване на университети, изграждане на профил и пряка комуникация">
+                        Проучване на университети, изграждане на профил и пряка комуникация
+                      </li>
+                      <li data-en="Cost analysis, budget planning, and logistics coordination (parents)"
+                          data-bg="Анализ на разходите, финансово планиране и логистична координация (родители)">
+                        Анализ на разходите, финансово планиране и логистична координация (родители)
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-              <div class="service-item__content">
-                <h3 data-en="University Selection" data-bg="Избор на университет">University Selection</h3>
-                <p data-en="Matching each student to schools that fit their academic profile, ambitions, and family budget."
-                   data-bg="Съвместяваме всеки студент с училища, подходящи за академичния му профил, амбиции и семеен бюджет.">
-                  Matching each student to schools that fit their academic profile, ambitions, and family budget.
-                </p>
+              <div class="package-card__chips">
+                <span class="package-card__chip"
+                      data-en="Ages: 15–17" data-bg="Възраст: 15–17 г.">Възраст: 15–17 г.</span>
+                <span class="package-card__chip"
+                      data-en="9–24 Month Process" data-bg="9–24 месеца процес">9–24 месеца процес</span>
               </div>
             </div>
 
-            <div class="service-item">
-              <div class="service-item__icon" aria-hidden="true">
-                <svg width="25" height="25" viewBox="0 0 20 20" fill="none" stroke="var(--color-navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="5" width="16" height="12" rx="2"/>
-                  <path d="M6 5V3a2 2 0 0 1 4 0v2M10 5V3a2 2 0 0 1 4 0v2"/>
-                  <path d="M6 10h8M6 14h5"/>
-                </svg>
+            <!-- Package 2: Direction / Насока -->
+            <div class="package-wrap">
+              <div class="package-card">
+                <div class="package-card__inner">
+                  <div class="package-card__front">
+                    <img src="assets/package-direction.png" alt="" class="package-card__logo" aria-hidden="true">
+                    <span class="package-card__badge package-card__badge--navy"
+                          data-en="Direction" data-bg="Насока">Насока</span>
+                  </div>
+                  <div class="package-card__back">
+                    <p class="package-card__tagline"
+                       data-en="Everything in Hope, plus professional guidance throughout your studies."
+                       data-bg="Всичко от Надежда + насока през целия студентски престой.">
+                      Всичко от Надежда + насока през целия студентски престой.
+                    </p>
+                    <p class="package-card__features-label"
+                       data-en="Additional services:" data-bg="Допълнителни услуги:">Допълнителни услуги:</p>
+                    <ul class="package-card__features">
+                      <li data-en="Transport, accommodation, and arrival support"
+                          data-bg="Транспорт, настаняване и адаптация при пристигане">
+                        Транспорт, настаняване и адаптация при пристигане
+                      </li>
+                      <li data-en="Guidance on major selection and professional development"
+                          data-bg="Насока за избор на специалност и професионално развитие">
+                        Насока за избор на специалност и професионално развитие
+                      </li>
+                      <li data-en="Professional guidance during studies — taxes, health insurance, documentation"
+                          data-bg="Насока по време на следването — данъци, здравни осигуровки, документация">
+                        Насока по време на следването — данъци, здравни осигуровки, документация
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-              <div class="service-item__content">
-                <h3 data-en="Budgeting & Financial Planning" data-bg="Бюджетиране и финансово планиране">Budgeting &amp; Financial Planning</h3>
-                <p data-en="Realistic cost mapping, scholarship strategy, and financial aid — no surprises."
-                   data-bg="Реалистично картографиране на разходите, стратегия за стипендии и финансова помощ — без изненади.">
-                  Realistic cost mapping, scholarship strategy, and financial aid — no surprises.
-                </p>
-              </div>
-            </div>
-
-            <div class="service-item">
-              <div class="service-item__icon" aria-hidden="true">
-                <svg width="25" height="25" viewBox="0 0 20 20" fill="none" stroke="var(--color-navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 17V9a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v8"/>
-                  <path d="M2 17h16M8 8V5a2 2 0 0 1 4 0v3"/>
-                  <circle cx="10" cy="13" r="1.5"/>
-                </svg>
-              </div>
-              <div class="service-item__content">
-                <h3 data-en="Major & Specialization Guidance" data-bg="Насоки за специалност">Major &amp; Specialization Guidance</h3>
-                <p data-en="Helping students pick a field that aligns with their strengths and the realities of the US job market."
-                   data-bg="Помагаме на студентите да изберат специалност, съответстваща на силните им страни и реалностите на американския пазар на труда.">
-                  Helping students pick a field that aligns with their strengths and the realities of the US job market.
-                </p>
-              </div>
-            </div>
-
-            <div class="service-item">
-              <div class="service-item__icon" aria-hidden="true">
-                <svg width="25" height="25" viewBox="0 0 20 20" fill="none" stroke="var(--color-navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 10l7-7 7 7v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-8z"/>
-                  <path d="M8 18v-6h4v6"/>
-                </svg>
-              </div>
-              <div class="service-item__content">
-                <h3 data-en="Housing" data-bg="Жилище">Housing</h3>
-                <p data-en="On-campus, off-campus, and the full logistics of moving abroad."
-                   data-bg="В кампуса, извън кампуса и цялата логистика по преместването в чужбина.">
-                  On-campus, off-campus, and the full logistics of moving abroad.
-                </p>
+              <div class="package-card__chips">
+                <span class="package-card__chip package-card__chip--navy"
+                      data-en="Ages: 15–22" data-bg="Възраст: 15–22 г.">Възраст: 15–22 г.</span>
+                <span class="package-card__chip package-card__chip--navy"
+                      data-en="3–5 Year Process" data-bg="Процес 3–5 години">Процес 3–5 години</span>
               </div>
             </div>
 
-            <div class="service-item">
-              <div class="service-item__icon" aria-hidden="true">
-                <svg width="25" height="25" viewBox="0 0 20 20" fill="none" stroke="var(--color-navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="10" cy="6" r="3"/>
-                  <path d="M2 18c0-4 3.6-7 8-7s8 3 8 7"/>
-                  <path d="M14 13l2 2 3-3"/>
-                </svg>
-              </div>
-              <div class="service-item__content">
-                <h3 data-en="In-School Consulting" data-bg="Консултиране в университета">In-School Consulting</h3>
-                <p data-en="Ongoing support throughout the academic year: course selection, internships, career planning, and adjusting to life in the US."
-                   data-bg="Непрекъсната подкрепа през академичната година: избор на курсове, стажове, кариерно планиране и адаптация към живота в САЩ.">
-                  Ongoing support throughout the academic year: course selection, internships, career planning, and adjusting to life in the US.
-                </p>
+            <!-- Package 3: The Success / Успехът — Coming Soon -->
+            <div class="package-wrap">
+            <div class="package-card package-card--soon">
+              <div class="package-card__inner">
+                <div class="package-card__front">
+                  <img src="assets/package-success.png" alt="" class="package-card__logo package-card__logo--mystery" aria-hidden="true">
+                  <span class="package-card__badge package-card__badge--red"
+                        data-en="The Success" data-bg="Успехът">Успехът</span>
+                  <span class="package-card__coming-soon"
+                        data-en="Coming soon" data-bg="Очаквайте">Очаквайте</span>
+                </div>
+                <div class="package-card__back">
+                  <p class="package-card__tagline"
+                     data-en="Everything in Hope and Direction, plus full career preparation."
+                     data-bg="Всичко от Надежда и Насока + подготовка за работната сфера.">
+                    Всичко от Надежда и Насока + подготовка за работната сфера.
+                  </p>
+                  <ul class="package-card__features">
+                    <li data-en="Professional life preparation — internships and corporate etiquette"
+                        data-bg="Подготовка за професионалния живот — стажове и корпоративен етикет">
+                      Подготовка за професионалния живот — стажове и корпоративен етикет
+                    </li>
+                    <li data-en="CV, interview, and career development support"
+                        data-bg="Подпомагане със CV-та, интервюта и кариерно развитие">
+                      Подпомагане със CV-та, интервюта и кариерно развитие
+                    </li>
+                    <li data-en="Guidance on postgraduate studies, certifications, and next steps"
+                        data-bg="Насока за магистратура, сертификати и следващи стъпки">
+                      Насока за магистратура, сертификати и следващи стъпки
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
+            </div><!-- /package-wrap -->
 
-          </div><!-- /services-list -->
+          </div><!-- /packages-list -->
 
         <!-- /about-intro -->
 
@@ -364,9 +589,9 @@
           Three people who made the journey.
         </h2>
         <p class="lede"
-           data-en="Every service we offer is one we personally navigated. That's not a sales line — it's why we started this."
-           data-bg="Всяка услуга, която предлагаме, е такава, която сами сме преминали. Това не е рекламна фраза — именно затова го стартирахме.">
-          Every service we offer is one we personally navigated. That's not a sales line — it's why we started this.
+           data-en="Every service we offer is one we personally navigated."
+           data-bg="Всяка услуга, която предлагаме, е такава, която сами сме преминали.">
+          Every service we offer is one we personally navigated.
         </p>
       </div>
 
@@ -387,7 +612,7 @@
         <!-- ── SIMEON SABEV ─────────────────────────────────── -->
         <article class="founder-card" aria-labelledby="simeon-name">
           <div class="founder-card__photo">
-            <img src="assets/founders/simeon.jpg" alt="Simeon Sabev" loading="lazy" style="object-position: center top;">
+            <img src="assets/founders/simeon-ud.jpg" alt="Simeon Sabev at University of Delaware" loading="lazy" style="object-position: center 18%; transform: scale(1.08); transform-origin: center 18%;">
             <img src="assets/founders/simeon-2.webp" alt="Simeon Sabev swimming butterfly" loading="lazy" style="object-position: center 30%;">
           </div>
           <div class="founder-card__body">
@@ -407,16 +632,16 @@
             </div>
 
             <p class="founder-card__bio"
-               data-en="Simeon has been an academic and athletic asset to numerous organizations. His journey began at the High School of Mathematics and Natural Sciences, where he developed a rigorous foundation in mathematics. A distinguished former national athlete, he has proven his success outside of academia with multiple national titles and medals from the Balkan Junior Championships. Simeon possesses exceptional depth in applied mathematics and financial instruments. He specializes in the analysis, verification, and processing of a variety of financial databases and currently serves as a Financial Data Analyst at MSCI."
-               data-bg="Симеон е бил академичен и спортен актив за множество организации. Пътят му започва в Природоматематическата гимназия, където изгражда задълбочена основа в математиката. Като изявен бивш национален спортист, той доказва успеха си извън академичните среди с множество национални титли и медали от Балканското юношеско първенство. Симеон притежава изключителна дълбочина в приложната математика и финансовите инструменти. Специализира в анализа, верификацията и обработката на разнообразни финансови бази данни и в момента заема позицията на Financial Data Analyst в MSCI.">
-              Simeon has been an academic and athletic asset to numerous organizations. His journey began at the High School of Mathematics and Natural Sciences, where he developed a rigorous foundation in mathematics. A distinguished former national athlete, he has proven his success outside of academia with multiple national titles and medals from the Balkan Junior Championships. Simeon possesses exceptional depth in applied mathematics and financial instruments. He specializes in the analysis, verification, and processing of a variety of financial databases and currently serves as a Financial Data Analyst at MSCI.
+               data-en="Simeon has been an academic and athletic asset to numerous organizations. His journey began at the High School of Mathematics and Natural Sciences, where he developed a rigorous foundation in mathematics. A distinguished former national athlete, he has proven his success outside of academia with multiple national titles and medals from the Balkan Games. Simeon possesses exceptional depth in applied mathematics and financial fundamentals. He specializes in the analysis, verification, and processing of a variety of financial databases and currently serves as a Financial Data Analyst at MSCI."
+               data-bg="Симеон е бил академичен и спортен актив за множество организации. Пътят му започва в Математическата гимназия, Велико Търново, където изгражда задълбочена основа в математиката. Като изявен бивш национален спортист, той доказва успеха си извън академичните среди с множество национални титли и медали от Балканските игри. Симеон притежава изключителна дълбочина в приложната математика и финансовите фундаменти. Специализира в анализа, верификацията и обработката на разнообразни финансови бази данни и в момента заема позицията на Financial Data Analyst в MSCI.">
+              Simeon has been an academic and athletic asset to numerous organizations. His journey began at the High School of Mathematics and Natural Sciences, where he developed a rigorous foundation in mathematics. A distinguished former national athlete, he has proven his success outside of academia with multiple national titles and medals from the Balkan Games. Simeon possesses exceptional depth in applied mathematics and financial fundamentals. He specializes in the analysis, verification, and processing of a variety of financial databases and currently serves as a Financial Data Analyst at MSCI.
             </p>
 
             <ul class="founder-card__achievements" aria-label="Accomplishments">
               <li data-en="BA — University of Delaware, Mathematics &amp; Economics"
                   data-bg="Бакалавър — University of Delaware, Математика &amp; Икономика">BA — University of Delaware, Mathematics &amp; Economics</li>
-              <li data-en="Graduate student — Missouri State University, MBA (STEM Designation)"
-                  data-bg="Магистрант — Мисури Стейт Юнивърсити, MBA (STEM специализация)">Graduate student — Missouri State University, MBA (STEM Designation)</li>
+              <li data-en="Master's student — Missouri State University, MBA (STEM Designation)"
+                  data-bg="Магистрант — Мисури Стейт Юнивърсити, MBA (STEM специализация)">Master's student — Missouri State University, MBA (STEM Designation)</li>
               <li data-en="CFA Level 1" data-bg="CFA Ниво 1">CFA Level 1</li>
               <li data-en="Financial Data Analyst, MSCI (Morgan Stanley Capital International)"
                   data-bg="Финансов анализатор на данни, MSCI (Morgan Stanley Capital International)">Financial Data Analyst, MSCI (Morgan Stanley Capital International)</li>
@@ -424,10 +649,12 @@
                   data-bg="Многократен носител на All-CAA отличие — индивидуални и щафетни дисциплини">Multi-time All-CAA honoree — individual &amp; relay events</li>
               <li data-en="Academic All-District"
                   data-bg="Academic All-District (академично отличие)">Academic All-District</li>
-              <li data-en="Multi-time Bulgarian National Championship medalist — butterfly"
-                  data-bg="Многократен медалист от Държавното първенство на България — пеперуда">Multi-time Bulgarian National Championship medalist — butterfly</li>
+              <li data-en="Multi-time Bulgarian National Championship medalist"
+                  data-bg="Многократен медалист от Държавното първенство на България">Multi-time Bulgarian National Championship medalist</li>
               <li data-en="Former member — Bulgarian Swimming Federation national team"
                   data-bg="Бивш член — националния отбор на Федерацията по плуване на България">Former member — Bulgarian Swimming Federation national team</li>
+              <li data-en="Math tutor — Mathematical Sciences Learning Laboratory (MSLL), 2 years"
+                  data-bg="Преподавател по математика — Mathematical Sciences Learning Laboratory (MSLL), 2 години">Math tutor — Mathematical Sciences Learning Laboratory (MSLL), 2 years</li>
             </ul>
 
             <div class="founder-card__actions">
@@ -449,7 +676,7 @@
         <article class="founder-card" aria-labelledby="kaloyan-name">
           <div class="founder-card__photo">
             <img src="assets/founders/kaloyan.jpg" alt="Kaloyan Levterov" loading="lazy" style="object-position: center top;">
-            <img src="assets/founders/kaloyan-2.jpg" alt="Kaloyan Levterov at Tokyo 2020 Olympics" loading="lazy" style="object-position: center 40%;">
+            <img src="assets/founders/kaloyan-2.jpg" alt="Kaloyan Levterov at Tokyo 2020 Olympics" loading="lazy" style="object-position: 35% 40%;">
           </div>
           <div class="founder-card__body">
 
@@ -467,9 +694,9 @@
             </div>
 
             <p class="founder-card__bio"
-               data-en="Kaloyan Levterov has been a dominant force in the development of Bulgarian swimming. At age 17, he qualified for the 2020 Tokyo Olympic Games, and at 18, he claimed the bronze medal at the European Junior Championships in Rome, Italy. After securing multiple medals, finals, and accolades alongside the fastest swimmers on the planet, Kaloyan had to make strategic adjustments to advance his career. His initial commitment to Texas A&amp;M University was marked by growth and early success. After his first year, Kaloyan made a deliberate move to the University of Delaware, where the three founders graduated and developed professionally. Currently, Kaloyan is building a career in data analysis and global business management, joining Simeon as a Financial Data Analyst at MSCI."
-               data-bg="Калоян Левтеров е доминираща фигура в развитието на българското плуване. На 17 години той се квалифицира за Олимпийските игри в Токио 2020, а на 18 завоюва бронзовия медал на Европейското юношеско първенство в Рим, Италия. След множество медали, финали и отличия сред най-бързите плувци на планетата, Калоян трябваше да направи стратегически корекции в развитието на кариерата си. Началният му ангажимент с Texas A&amp;M University беше белязан от растеж и ранен успех. След първата си година Калоян взе целенасочено решение да се прехвърли в University of Delaware, където тримата основатели завършиха и се развиха професионално. В момента Калоян изгражда кариера в анализа на данни и глобалния бизнес мениджмънт, присъединявайки се към Симеон като Financial Data Analyst в MSCI.">
-              Kaloyan Levterov has been a dominant force in the development of Bulgarian swimming. At age 17, he qualified for the 2020 Tokyo Olympic Games, and at 18, he claimed the bronze medal at the European Junior Championships in Rome, Italy. After securing multiple medals, finals, and accolades alongside the fastest swimmers on the planet, Kaloyan had to make strategic adjustments to advance his career. His initial commitment to Texas A&amp;M University was marked by growth and early success. After his first year, Kaloyan made a deliberate move to the University of Delaware, where the three founders graduated and developed professionally. Currently, Kaloyan is building a career in data analysis and global business management, joining Simeon as a Financial Data Analyst at MSCI.
+               data-en="Kaloyan Levterov has been a dominant force in the development of Bulgarian swimming. At age 17, he qualified for the 2020 Tokyo Olympic Games, and at 18, he claimed the bronze medal at the European Junior Championships in Rome, Italy. After securing multiple medals, finals, and accolades alongside the fastest swimmers on the planet, Kaloyan had to make a strategic decision to advance his career. His initial commitment to Texas A&amp;M University was marked by growth and early success. After his first year, Kaloyan made a deliberate move to the University of Delaware, where the three founders graduated and developed professionally. Currently, Kaloyan is building a career in data analysis and global business management, joining Simeon as a Financial Data Analyst at MSCI."
+               data-bg="Калоян Левтеров е доминираща фигура в развитието на българското плуване. На 17 години той се класира за Олимпийските игри в Токио 2020, а на 18 завоюва бронзовия медал на Европейското юношеско първенство в Рим, Италия. След множество медали, финали и отличия сред най-бързите плувци на планетата, Калоян трябваше да направи стратегическо решение за развитието на кариерата си. Първоначално Калоян стартира в Texas A&amp;M University — път, белязан от растеж и ранен успех. След първата си година Калоян взе целенасочено решение да се прехвърли в University of Delaware, където тримата основатели завършиха и се развиха професионално. В момента Калоян изгражда кариера в анализа на данни и глобалния бизнес мениджмънт, присъединявайки се към Симеон като Financial Data Analyst в MSCI.">
+              Kaloyan Levterov has been a dominant force in the development of Bulgarian swimming. At age 17, he qualified for the 2020 Tokyo Olympic Games, and at 18, he claimed the bronze medal at the European Junior Championships in Rome, Italy. After securing multiple medals, finals, and accolades alongside the fastest swimmers on the planet, Kaloyan had to make a strategic decision to advance his career. His initial commitment to Texas A&amp;M University was marked by growth and early success. After his first year, Kaloyan made a deliberate move to the University of Delaware, where the three founders graduated and developed professionally. Currently, Kaloyan is building a career in data analysis and global business management, joining Simeon as a Financial Data Analyst at MSCI.
             </p>
 
             <ul class="founder-card__achievements" aria-label="Accomplishments">
@@ -528,9 +755,9 @@
             </div>
 
             <p class="founder-card__bio"
-               data-en="Tonislav followed in his brother's footsteps at the High School of Mathematics in Veliko Tarnovo, before joining him at the University of Delaware. During his time there, Tonislav advanced his athletic career, qualifying for the NCAA Championships and becoming a semi-finalist at the Men's European Swimming Championships in Rome, Italy. In his academic pursuits, he built expertise at the intersection of technology and finance, studying Management Information Systems with a Finance concentration. He currently works as a Data Analyst at Bloomberg, where he specialises in the automated processing of large volumes of data."
-               data-bg="Тонислав следва стъпките на брат си в Математическата гимназия във Велико Търново, преди да се присъедини към него в University of Delaware. По време на престоя си там Тонислав развива спортната си кариера — квалифицира се за Националното университетско първенство на NCAA и става полуфиналист на Европейското първенство по плуване за мъже в Рим, Италия. В академичен план той изгражда експертиза на пресечната точка между технологиите и финансите, специализирайки в Информационни системи с концентрация по финанси. В момента работи като анализатор на данни в Bloomberg, където се фокусира върху автоматизираната обработка на големи обеми от данни.">
-              Tonislav followed in his brother's footsteps at the High School of Mathematics in Veliko Tarnovo, before joining him at the University of Delaware. During his time there, Tonislav advanced his athletic career, qualifying for the NCAA Championships and becoming a semi-finalist at the Men's European Swimming Championships in Rome, Italy. In his academic pursuits, he built expertise at the intersection of technology and finance, studying Management Information Systems with a Finance concentration. He currently works as a Data Analyst at Bloomberg, where he specialises in the automated processing of large volumes of data.
+               data-en="Tonislav Sabev graduated from the Mathematics High School in Veliko Tarnovo, before continuing his education at the University of Delaware in the United States. During his time there, Tonislav competed at a high level in swimming, qualifying for the NCAA National University Championships and reaching the semi-finals at the Men's European Championships in Rome. Alongside his athletic achievements, he built a strong academic foundation in technology and finance, specialising in Information Systems with a concentration in Finance. Today, Tonislav works as a Data Analyst at Bloomberg, where he focuses on the automated processing and analysis of large volumes of data."
+               data-bg="Тонислав Събев завършва Математическата гимназия във Велико Търново, след което продължава образованието си в University of Delaware в САЩ. По време на престоя си там Тонислав се състезава на високо ниво в плуването, като се класира за Националното университетско първенство на NCAA и достига полуфинал на Европейското първенство за мъже в Рим. Освен спортните си успехи, той изгражда и силна академична основа в областта на технологиите и финансите, специализирайки в Информационни системи с концентрация във финанси. Днес Тонислав работи като анализатор на данни в Bloomberg, където се фокусира върху автоматизирана обработка и анализ на големи обеми от информация.">
+              Tonislav Sabev graduated from the Mathematics High School in Veliko Tarnovo, before continuing his education at the University of Delaware in the United States. During his time there, Tonislav competed at a high level in swimming, qualifying for the NCAA National University Championships and reaching the semi-finals at the Men's European Championships in Rome. Alongside his athletic achievements, he built a strong academic foundation in technology and finance, specialising in Information Systems with a concentration in Finance. Today, Tonislav works as a Data Analyst at Bloomberg, where he focuses on the automated processing and analysis of large volumes of data.
             </p>
 
             <ul class="founder-card__achievements" aria-label="Accomplishments">
@@ -626,7 +853,7 @@
         <h4 data-en="Pages" data-bg="Страници">Страници</h4>
         <ul>
           <li><a href="about.html" data-en="About" data-bg="За нас">За нас</a></li>
-          <li></li>
+          <li><a href="resources.html" data-en="Resources" data-bg="Ресурси">Ресурси</a></li>
           <li><a href="contact.html" data-en="Contact" data-bg="Контакт">Контакт</a></li>
         </ul>
       </div>
@@ -653,5 +880,16 @@
 
 <script src="scripts/i18n.js" defer></script>
 <script src="scripts/nav.js" defer></script>
+<script>
+  document.querySelectorAll('.package-card:not(.package-card--soon)').forEach(card => {
+    card.addEventListener('click', () => {
+      const isFlipped = card.classList.toggle('is-flipped');
+      document.querySelectorAll('.package-card').forEach(other => {
+        if (other !== card) other.classList.remove('is-flipped');
+      });
+      if (!isFlipped) card.classList.remove('is-flipped');
+    });
+  });
+</script>
 </body>
 </html>

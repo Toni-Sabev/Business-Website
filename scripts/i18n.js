@@ -22,6 +22,12 @@ function setLang(lang) {
     }
   });
 
+  // Full content blocks: data-lang-content="en" / data-lang-content="bg"
+  // Use on large prose sections where attribute-level i18n would be impractical.
+  document.querySelectorAll('[data-lang-content]').forEach(el => {
+    el.hidden = el.dataset.langContent !== lang;
+  });
+
   document.querySelectorAll('[data-toggle="lang"]').forEach(b => {
     b.setAttribute('aria-pressed', String(b.dataset.lang === lang));
   });

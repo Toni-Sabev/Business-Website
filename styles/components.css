@@ -243,18 +243,15 @@ a.wordmark--logo {
 
 /* Bulgarian flag */
 .flag-bg {
-  display: inline-flex;
-  gap: 1px;
-  align-items: center;
+  display: inline-block;
+  width: 18px;
+  height: 13px;
   border-radius: 2px;
-  overflow: hidden;
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.15);
+  background: linear-gradient(to right, #FFFFFF 33.33%, #00966E 33.33% 66.66%, #D62612 66.66%);
   flex-shrink: 0;
 }
 .flag-bg span {
-  display: block;
-  width: 6px;
-  height: 13px;
+  display: none;
 }
 
 /* Mobile menu toggle */

@@ -736,10 +736,13 @@ a.wordmark--logo {
   background: var(--color-navy);
   color: #fff;
   border-radius: var(--radius-card);
-  padding: var(--space-7) var(--space-6);
+  padding: var(--space-5) var(--space-3);
   position: relative;
   overflow: hidden;
   text-align: center;
+}
+@media (min-width: 640px) {
+  .cta-section { padding: var(--space-7) var(--space-6); }
 }
 .cta-section .h2 { color: #fff; }
 .cta-section .lede { color: rgba(255,255,255,0.65); }

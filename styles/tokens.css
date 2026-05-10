@@ -53,7 +53,7 @@
   /* ── Layout ──────────────────────────────────────────────────── */
   --container:      1200px;
   --container-wide: 1280px;
-  --gutter:         clamp(24px, 4vw, 64px);
+  --gutter:         clamp(16px, 4vw, 64px);
 
   /* ── Radii ───────────────────────────────────────────────────── */
   --radius-card:   16px;

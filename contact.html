@@ -74,7 +74,11 @@
 
             <div class="form-group">
               <label for="fullname"><span data-en="Full name" data-bg="Три имена">Три имена</span> <span aria-hidden="true" style="color:var(--color-clay);">*</span></label>
-              <input type="text" id="fullname" name="fullname" placeholder="Your full name" required autocomplete="name">
+              <input type="text" id="fullname" name="fullname"
+                     placeholder="Your full name"
+                     data-placeholder-en="Your full name"
+                     data-placeholder-bg="Вашите три имена"
+                     required autocomplete="name">
             </div>
 
             <div class="form-group">
@@ -92,7 +96,11 @@
 
             <div class="form-group">
               <label for="email"><span data-en="Email address" data-bg="Имейл адрес">Имейл адрес</span> <span aria-hidden="true" style="color:var(--color-clay);">*</span></label>
-              <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
+              <input type="email" id="email" name="email"
+                     placeholder="you@example.com"
+                     data-placeholder-en="you@example.com"
+                     data-placeholder-bg="вие@example.com"
+                     required autocomplete="email">
             </div>
 
             <div class="form-group">
@@ -111,7 +119,11 @@
 
             <div class="form-group">
               <label for="message"><span data-en="Tell us about your situation" data-bg="Разкажете за ситуацията">Разкажете за ситуацията</span> <span style="font-weight:400;color:var(--color-muted);" data-en="(optional)" data-bg="(по избор)">(по избор)</span></label>
-              <textarea id="message" name="message" placeholder="What's your student's situation? Any specific questions?" maxlength="500" rows="5"></textarea>
+              <textarea id="message" name="message"
+                        placeholder="What's your student's situation? Any specific questions?"
+                        data-placeholder-en="What's your student's situation? Any specific questions?"
+                        data-placeholder-bg="Опишете ситуацията на вашето дете. Имате ли конкретни въпроси?"
+                        maxlength="500" rows="5"></textarea>
               <div class="char-count" aria-live="polite" id="char-count">0 / 500</div>
             </div>
 
@@ -217,9 +229,36 @@
 <script src="scripts/i18n.js" defer></script>
 <script src="scripts/nav.js" defer></script>
 <script defer>
+  const FORM_STRINGS = {
+    en: {
+      roleRequired:   'Please select your role.',
+      nameRequired:   'Please enter your name.',
+      gradeRequired:  'Please select a grade.',
+      emailRequired:  'Please enter a valid email.',
+      sending:        'Sending…',
+      submitLabel:    'Send my enquiry',
+      successTitle:   'Message sent!',
+      successBody:    "We'll be in touch within one business day.",
+      errorGeneral:   'Something went wrong. Please email us at info@uspeshno-budeshte.com',
+      errorNetwork:   'Network error. Please email us at info@uspeshno-budeshte.com',
+    },
+    bg: {
+      roleRequired:   'Моля, изберете роля.',
+      nameRequired:   'Моля, въведете вашето име.',
+      gradeRequired:  'Моля, изберете клас.',
+      emailRequired:  'Моля, въведете валиден имейл адрес.',
+      sending:        'Изпращане…',
+      submitLabel:    'Изпратете запитване',
+      successTitle:   'Съобщението е изпратено!',
+      successBody:    'Ще се свържем с вас до един работен ден.',
+      errorGeneral:   'Нещо се обърка. Моля, пишете ни на info@uspeshno-budeshte.com',
+      errorNetwork:   'Мрежова грешка. Моля, пишете ни на info@uspeshno-budeshte.com',
+    },
+  };
+
   window.addEventListener('DOMContentLoaded', () => {
     const textarea = document.getElementById('message');
-    const counter = document.getElementById('char-count');
+    const counter  = document.getElementById('char-count');
     if (textarea && counter) {
       textarea.addEventListener('input', () => {
         counter.textContent = textarea.value.length + ' / 500';
@@ -230,22 +269,24 @@
     if (form) {
       form.addEventListener('submit', async e => {
         e.preventDefault();
+        const lang   = localStorage.getItem('sf-lang') || 'bg';
+        const t      = FORM_STRINGS[lang] || FORM_STRINGS.bg;
         const errors = document.getElementById('form-errors');
-        const email = form.querySelector('#email');
-        const name  = form.querySelector('#fullname');
-        const role  = form.querySelector('input[name="role"]:checked');
-        const grade = form.querySelector('#grade');
-        const msgs  = [];
-        if (!role)                               msgs.push('Please select your role.');
-        if (!name.value.trim())                  msgs.push('Please enter your name.');
-        if (!grade.value)                        msgs.push('Please select a grade.');
-        if (!email.value || !email.validity.valid) msgs.push('Please enter a valid email.');
+        const email  = form.querySelector('#email');
+        const name   = form.querySelector('#fullname');
+        const role   = form.querySelector('input[name="role"]:checked');
+        const grade  = form.querySelector('#grade');
+        const msgs   = [];
+        if (!role)                                msgs.push(t.roleRequired);
+        if (!name.value.trim())                   msgs.push(t.nameRequired);
+        if (!grade.value)                         msgs.push(t.gradeRequired);
+        if (!email.value || !email.validity.valid) msgs.push(t.emailRequired);
         errors.textContent = msgs.join(' ');
         if (msgs.length > 0) return;
 
         const btn = form.querySelector('[type="submit"]');
         btn.disabled = true;
-        btn.textContent = 'Sending…';
+        btn.textContent = t.sending;
 
         try {
           const res = await fetch('https://formspree.io/f/maqvlwzr', {
@@ -257,18 +298,18 @@
             form.innerHTML = `
               <div style="padding: var(--space-5) 0; text-align: center;">
                 <div style="font-size: 32px; margin-bottom: var(--space-3);">✓</div>
-                <p style="font-size: 17px; font-weight: 600; color: var(--color-navy); margin-bottom: var(--space-2);">Message sent!</p>
-                <p style="font-size: 14px; color: var(--color-muted);">We'll be in touch within one business day.</p>
+                <p style="font-size: 17px; font-weight: 600; color: var(--color-navy); margin-bottom: var(--space-2);">${t.successTitle}</p>
+                <p style="font-size: 14px; color: var(--color-muted);">${t.successBody}</p>
               </div>`;
           } else {
-            errors.textContent = 'Something went wrong. Please email us at info@uspeshno-budeshte.com';
+            errors.textContent = t.errorGeneral;
             btn.disabled = false;
-            btn.textContent = 'Send my enquiry';
+            btn.textContent = t.submitLabel;
           }
         } catch {
-          errors.textContent = 'Network error. Please email us at info@uspeshno-budeshte.com';
+          errors.textContent = t.errorNetwork;
           btn.disabled = false;
-          btn.textContent = 'Send my enquiry';
+          btn.textContent = t.submitLabel;
         }
       });
     }

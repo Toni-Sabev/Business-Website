@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://uspeshno-budeshte.org/sitemap.xml

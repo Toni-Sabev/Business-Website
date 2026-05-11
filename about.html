@@ -345,6 +345,64 @@
       background: rgba(24,40,69,0.08);
       color: var(--color-navy);
     }
+
+    /* ── CTA flip ─────────────────────────────────────────────── */
+    .cta-flip {
+      perspective: 1200px;
+      cursor: pointer;
+    }
+    .cta-flip__inner {
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+    @media (hover: hover) {
+      .cta-flip:hover .cta-flip__inner { transform: rotateY(180deg); }
+    }
+    .cta-flip.is-flipped .cta-flip__inner { transform: rotateY(180deg); }
+    .cta-flip__front,
+    .cta-flip__back {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .cta-flip__back {
+      position: absolute;
+      inset: 0;
+      transform: rotateY(180deg);
+    }
+    .cta-flip__front,
+    .cta-flip__back {
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-5) var(--space-4) !important;
+    }
+    .cta-back__list {
+      list-style: none;
+      margin: var(--space-3) auto var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+      max-width: 420px;
+    }
+    .cta-back__list li {
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+    .cta-back__list li::before {
+      content: '✓';
+      color: var(--color-green);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
   </style>
 
   <!-- Structured data -->
@@ -799,32 +857,60 @@
   <!-- ─── FINAL CTA ──────────────────────────────────────────────── -->
   <section class="section" aria-labelledby="about-cta">
     <div class="container">
-      <div class="cta-section">
-        <svg class="cta-ornament" viewBox="0 0 480 480" fill="none" aria-hidden="true">
-          <circle cx="240" cy="240" r="60"  stroke="white" stroke-width="1.5"/>
-          <circle cx="240" cy="240" r="110" stroke="white" stroke-width="1.5"/>
-          <circle cx="240" cy="240" r="160" stroke="white" stroke-width="1.5"/>
-          <circle cx="240" cy="240" r="210" stroke="white" stroke-width="1.5"/>
-        </svg>
-        <span class="eyebrow" id="about-cta" style="color:rgba(255,255,255,0.45); justify-content:center; margin-bottom:var(--space-3);"
-              data-en="Ready to start?" data-bg="Готови ли сте да започнете?">
-          Ready to start?
-        </span>
-        <h2 class="h2" style="margin-bottom:var(--space-3);"
-            data-en="Book a free 45-minute consultation."
-            data-bg="Запазете безплатна 45-минутна консултация.">
-          Book a free 45-minute consultation.
-        </h2>
-        <p class="lede"
-           data-en="We reply within one business day."
-           data-bg="Отговаряме в рамките на един работен ден.">
-          We reply within one business day.
-        </p>
-        <div class="cta-actions">
-          <a href="contact.html" class="btn btn--primary btn--lg"
-             data-en="Get in touch" data-bg="Свържете се с нас">
-            Get in touch
-          </a>
+      <div class="cta-flip" id="cta-flip-block">
+        <div class="cta-flip__inner">
+
+          <!-- FRONT -->
+          <div class="cta-section cta-flip__front">
+            <svg class="cta-ornament" viewBox="0 0 480 480" fill="none" aria-hidden="true">
+              <circle cx="240" cy="240" r="60"  stroke="white" stroke-width="1.5"/>
+              <circle cx="240" cy="240" r="110" stroke="white" stroke-width="1.5"/>
+              <circle cx="240" cy="240" r="160" stroke="white" stroke-width="1.5"/>
+              <circle cx="240" cy="240" r="210" stroke="white" stroke-width="1.5"/>
+            </svg>
+            <h2 class="h2" id="about-cta" style="margin-bottom:var(--space-5);"
+                data-en="Ready to start?"
+                data-bg="Готови ли сте да започнете?">
+              Ready to start?
+            </h2>
+            <div class="cta-actions">
+              <a href="contact.html" class="btn btn--primary btn--lg"
+                 data-en="Get in touch" data-bg="Свържете се с нас">
+                Get in touch
+              </a>
+            </div>
+          </div>
+
+          <!-- BACK -->
+          <div class="cta-section cta-flip__back">
+            <svg class="cta-ornament" viewBox="0 0 480 480" fill="none" aria-hidden="true">
+              <circle cx="240" cy="240" r="60"  stroke="white" stroke-width="1.5"/>
+              <circle cx="240" cy="240" r="110" stroke="white" stroke-width="1.5"/>
+              <circle cx="240" cy="240" r="160" stroke="white" stroke-width="1.5"/>
+              <circle cx="240" cy="240" r="210" stroke="white" stroke-width="1.5"/>
+            </svg>
+            <span class="eyebrow" style="color:rgba(255,255,255,0.45); justify-content:center; margin-bottom:var(--space-3);"
+                  data-en="The free call" data-bg="Безплатната консултация">
+              The free call
+            </span>
+            <ul class="cta-back__list">
+              <li data-en="We review your academic and athletic profile"
+                  data-bg="Разглеждаме академичния и спортния ви профил">Разглеждаме академичния и спортния ви профил</li>
+              <li data-en="We map out a realistic timeline together"
+                  data-bg="Изграждаме реалистичен план заедно">Изграждаме реалистичен план заедно</li>
+              <li data-en="You leave with a clear, concrete next step"
+                  data-bg="Излизате с ясна и конкретна следваща стъпка">Излизате с ясна и конкретна следваща стъпка</li>
+              <li data-en="No obligation, no pressure"
+                  data-bg="Без ангажимент, без натиск">Без ангажимент, без натиск</li>
+            </ul>
+            <div class="cta-actions">
+              <a href="contact.html" class="btn btn--primary btn--lg"
+                 data-en="Book now" data-bg="Запишете се">
+                Book now
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -891,6 +977,11 @@
       if (!isFlipped) card.classList.remove('is-flipped');
     });
   });
+
+  const ctaFlip = document.getElementById('cta-flip-block');
+  if (ctaFlip) {
+    ctaFlip.addEventListener('click', () => ctaFlip.classList.toggle('is-flipped'));
+  }
 </script>
 </body>
 </html>

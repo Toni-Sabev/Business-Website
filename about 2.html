@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About — Успешно Бъдеще</title>
+  <meta name="description" content="We help Bulgarian student-athletes get from Bulgaria to US universities. Meet the three founders who completed that journey themselves.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="About — Успешно Бъдеще">
+  <meta property="og:description" content="We help Bulgarian student-athletes get from Bulgaria to US universities. Three founders who did it themselves.">
+  <meta property="og:url"         content="https://uspeshnobadesce.bg/about.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/components.css">
+
+  <style>
+    /* ── About page layout ─────────────────────────────────── */
+    .about-intro__text {
+      max-width: 720px;
+    }
+
+    .services-list {
+      display: grid;
+      gap: var(--space-3);
+      grid-template-columns: 1fr;
+      margin-top: var(--space-5);
+    }
+    @media (min-width: 640px) {
+      .services-list { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 900px) {
+      .services-list { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (min-width: 1100px) {
+      .services-list { grid-template-columns: repeat(5, 1fr); gap: 16px; }
+    }
+
+    .holistic-block {
+      background: var(--color-navy);
+      border-radius: var(--radius-card);
+      padding: var(--space-5) var(--space-5);
+      color: #fff;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-4);
+      margin-top: var(--space-5);
+    }
+    .holistic-block__icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+    .holistic-block p {
+      font-size: 15px;
+      line-height: 1.70;
+      color: rgba(255,255,255,0.80);
+    }
+    .holistic-block p strong { color: #fff; }
+
+    /* Stat sidebar */
+    .stats-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .stat-box {
+      background: var(--color-cream-soft);
+      border: 1px solid var(--color-rule);
+      border-radius: var(--radius-card);
+      padding: var(--space-4);
+      text-align: center;
+      box-shadow: var(--shadow-card);
+    }
+    .stat-box__number {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 42px;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--color-navy);
+      margin-bottom: 6px;
+    }
+    .stat-box__label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+    .stat-box--green .stat-box__number { color: var(--color-green); }
+    .stat-box--red   .stat-box__number { color: var(--color-red); }
+
+    /* Flag divider */
+    .flag-divider {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin: var(--space-6) 0;
+    }
+    .flag-divider__line { flex: 1; height: 1px; background: var(--color-rule); }
+    .flag-divider__bars {
+      display: flex;
+      gap: 3px;
+      align-items: center;
+    }
+    .flag-divider__bars span {
+      display: block;
+      width: 24px;
+      height: 5px;
+      border-radius: 99px;
+    }
+
+    /* Team section — sequential vertical stack */
+    .founders-grid {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+      max-width: 860px;
+    }
+    /* Two-photo stacked layout */
+    .founder-card__photo {
+      display: flex;
+      flex-direction: column;
+      aspect-ratio: unset;
+      min-height: 340px;
+    }
+    .founder-card__photo img {
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      position: static;
+    }
+    .founder-card__photo img + img {
+      border-top: 2px solid rgba(255,255,255,0.4);
+    }
+    @media (min-width: 640px) {
+      .founders-grid .founder-card {
+        flex-direction: row;
+      }
+      .founders-grid .founder-card__photo {
+        width: 240px;
+        min-width: 240px;
+        aspect-ratio: unset;
+        align-self: stretch;
+        min-height: unset;
+      }
+    }
+
+    /* Credential badge */
+    .credential {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(0,150,110,0.10);
+      color: var(--color-green);
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+    .credential--red {
+      background: rgba(214,38,18,0.10);
+      color: var(--color-red);
+    }
+    .credential--navy {
+      background: rgba(24,40,69,0.08);
+      color: var(--color-navy);
+    }
+  </style>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Успешно Бъдеще",
+    "alternateName": "Uspeshno Badeshte",
+    "url": "https://uspeshnobadesce.bg",
+    "description": "Bulgarian student-athlete education advisory — university selection, financial planning, and end-to-end support for students applying to US universities.",
+    "foundingDate": "2014",
+    "address": { "@type": "PostalAddress", "addressLocality": "Sofia", "addressCountry": "BG" },
+    "member": [
+      { "@type": "Person", "name": "Simeon Sabev", "jobTitle": "Co-Founder", "sameAs": "https://www.linkedin.com/in/simeon-sabev/" },
+      { "@type": "Person", "name": "Kaloyan Levterov", "jobTitle": "Co-Founder", "sameAs": "https://www.linkedin.com/in/kaloyan-levterov/" },
+      { "@type": "Person", "name": "Tonislav Sabev", "jobTitle": "Co-Founder", "sameAs": "https://www.linkedin.com/in/tonislav-penchev-sabev/" }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- ═══ HEADER ═══════════════════════════════════════════════════════ -->
+<header class="site-header" role="banner">
+  <div class="container">
+    <div class="header-inner">
+
+      <a href="about.html" class="wordmark--logo" aria-label="Успешно Бъдеще — начало">
+        <img src="assets/logo.png" alt="" class="logo-img">
+        <span class="logo-name" data-en="Successful Future" data-bg="Успешно Бъдеще">Successful Future</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="about.html" class="active" data-en="About" data-bg="За нас">За нас</a>
+        <a href="contact.html" data-en="Contact" data-bg="Контакт">Контакт</a>
+      </nav>
+
+      <div class="header-actions">
+        <span class="flag-bg" aria-label="Bulgaria" aria-hidden="true">
+          <span style="background:#FFFFFF"></span>
+          <span style="background:#00966E"></span>
+          <span style="background:#D62612"></span>
+        </span>
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button data-toggle="lang" data-lang="en" aria-pressed="false">EN</button>
+          <button data-toggle="lang" data-lang="bg" aria-pressed="true">БГ</button>
+        </div>
+        <a href="contact.html" class="btn btn--primary btn--sm" data-en="Book a call" data-bg="Запишете час">Запишете час</a>
+        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg width="20" height="15" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1h18M1 7h18M1 13h18"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
+    <a href="about.html" data-en="About" data-bg="За нас">За нас</a>
+    <a href="contact.html" data-en="Contact" data-bg="Контакт">Контакт</a>
+  </nav>
+</header>
+
+<!-- ═══ MAIN ═══════════════════════════════════════════════════════ -->
+<main id="main">
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 1 — WHAT WE DO                                       -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <section class="section" id="what-we-do" aria-labelledby="about-heading">
+    <div class="container">
+
+      <div class="about-intro">
+
+        <!-- Intro text -->
+        <div class="about-intro__text">
+          <span class="eyebrow" data-en="What We Do" data-bg="Какво правим">Какво правим</span>
+          <h1 id="about-heading" class="h1" style="margin: var(--space-3) 0 var(--space-4);"
+              data-en="From Bulgaria to the United States - the full picture."
+              data-bg="От България до Америка - цялостна подготовка.">
+            From Bulgaria to a US university — and everything in between.
+          </h1>
+
+          <p class="lede" style="margin-bottom: var(--space-4);"
+             data-en="We didn't just study in the USA; we experienced the difficulties of moving, clashing with bureaucracy, and building a successful career. We will be the mentors we dreamed of having—by your side and your family's from university admission to finding an apartment, budgeting, choosing a major, and preparing for the real world."
+             data-bg="Ние не просто учихме в САЩ; ние преживяхме трудностите на преместването, сблъсъка с бюрокрацията и изграждането на успешна кариера. Ние ще бъдем менторите, които мечтаехме да имаме - до вас и вашето семейство от приема в университета до намирането на квартира, бюджетирането и подготвка за истинския свят.">
+            We help Bulgarian students get from Bulgaria to universities in the United States. From the first conversation to graduation day, we work as long-term educational and developmental consultants — not a one-time application service.
+          </p>
+
+          <p style="font-size: 15px; line-height: 1.70; color: var(--color-muted); margin-bottom: var(--space-2);"
+             data-en="What we cover:"
+             data-bg="Какво обхващаме:">
+            What we cover:
+          </p>
+        </div><!-- /about-intro__text -->
+
+          <!-- Five service areas -->
+          <div class="services-list">
+
+            <div class="service-item">
+              <div class="service-item__icon" aria-hidden="true">
+                <svg width="25" height="25" viewBox="0 0 20 20" fill="none" stroke="var(--color-navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10 2l1.8 5.4H17l-4.6 3.3 1.8 5.4L10 13l-4.2 3.1 1.8-5.4L3 7.4h5.2L10 2z"/>
+                </svg>
+              </div>
+              <div class="service-item__content">
+                <h3 data-en="University Selection" data-bg="Избор на университет">University Selection</h3>
+                <p data-en="Matching each student to schools that fit their academic profile, ambitions, and family budget."
+                   data-bg="Съвместяваме всеки студент с университети, подходящи за академичния му профил, амбиции и семеен бюджет.">
+                  Matching each student to schools that fit their academic profile, ambitions, and family budget.
+                </p>
+              </div>
+            </div>
+
+            <div class="service-item">
+              <div class="service-item__icon" aria-hidden="true">
+                <svg width="25" height="25" viewBox="0 0 20 20" fill="none" stroke="var(--color-navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="5" width="16" height="12" rx="2"/>
+                  <path d="M6 5V3a2 2 0 0 1 4 0v2M10 5V3a2 2 0 0 1 4 0v2"/>
+                  <path d="M6 10h8M6 14h5"/>
+                </svg>
+              </div>
+              <div class="service-item__content">
+                <h3 data-en="Budgeting & Financial Planning" data-bg="Бюджетиране и финансово планиране">Budgeting &amp; Financial Planning</h3>
+                <p data-en="Realistic cost mapping, scholarship strategy, and financial aid — no surprises."
+                   data-bg="Реалистично картографиране на разходите, стратегия за стипендии и финансова помощ — без изненади.">
+                  Realistic cost mapping, scholarship strategy, and financial aid — no surprises.
+                </p>
+              </div>
+            </div>
+
+            <div class="service-item">
+              <div class="service-item__icon" aria-hidden="true">
+                <svg width="25" height="25" viewBox="0 0 20 20" fill="none" stroke="var(--color-navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 17V9a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v8"/>
+                  <path d="M2 17h16M8 8V5a2 2 0 0 1 4 0v3"/>
+                  <circle cx="10" cy="13" r="1.5"/>
+                </svg>
+              </div>
+              <div class="service-item__content">
+                <h3 data-en="Major & Specialization Guidance" data-bg="Насоки за специалност">Major &amp; Specialization Guidance</h3>
+                <p data-en="Helping students pick a field that aligns with their strengths and the realities of the US job market."
+                   data-bg="Помагаме на студентите да изберат специалност, съответстваща на силните им страни и реалностите на американския пазар на труда.">
+                  Helping students pick a field that aligns with their strengths and the realities of the US job market.
+                </p>
+              </div>
+            </div>
+
+            <div class="service-item">
+              <div class="service-item__icon" aria-hidden="true">
+                <svg width="25" height="25" viewBox="0 0 20 20" fill="none" stroke="var(--color-navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 10l7-7 7 7v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-8z"/>
+                  <path d="M8 18v-6h4v6"/>
+                </svg>
+              </div>
+              <div class="service-item__content">
+                <h3 data-en="Housing" data-bg="Жилище">Housing</h3>
+                <p data-en="On-campus, off-campus, and the full logistics of moving abroad."
+                   data-bg="В кампуса, извън кампуса и цялата логистика по преместването в чужбина.">
+                  On-campus, off-campus, and the full logistics of moving abroad.
+                </p>
+              </div>
+            </div>
+
+            <div class="service-item">
+              <div class="service-item__icon" aria-hidden="true">
+                <svg width="25" height="25" viewBox="0 0 20 20" fill="none" stroke="var(--color-navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="10" cy="6" r="3"/>
+                  <path d="M2 18c0-4 3.6-7 8-7s8 3 8 7"/>
+                  <path d="M14 13l2 2 3-3"/>
+                </svg>
+              </div>
+              <div class="service-item__content">
+                <h3 data-en="In-School Consulting" data-bg="Консултиране в университета">In-School Consulting</h3>
+                <p data-en="Ongoing support throughout the academic year: course selection, internships, career planning, and adjusting to life in the US."
+                   data-bg="Непрекъсната подкрепа през академичната година: избор на курсове, стажове, кариерно планиране и адаптация към живота в САЩ.">
+                  Ongoing support throughout the academic year: course selection, internships, career planning, and adjusting to life in the US.
+                </p>
+              </div>
+            </div>
+
+          </div><!-- /services-list -->
+
+          <!-- Holistic approach callout -->
+          <div class="holistic-block" role="note">
+            <div class="holistic-block__icon" aria-hidden="true">
+              <svg width="25" height="25" viewBox="0 0 22 22" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="9"/>
+                <path d="M11 7v4l3 3"/>
+              </svg>
+            </div>
+            <p data-en="We take a &lt;strong&gt;holistic approach&lt;/strong&gt; to each student. Parents are trusting us with their child's most formative years, and we treat that responsibility accordingly."
+               data-bg="Подхождаме &lt;strong&gt;холистично&lt;/strong&gt; към всеки студент. Родителите ни поверяват най-формиращите години на детето си и ние третираме тази отговорност по подходящ начин.">
+              We take a <strong>holistic approach</strong> to each student. Parents are trusting us with their child's most formative years, and we treat that responsibility accordingly.
+            </p>
+          </div>
+
+        <!-- /about-intro -->
+
+      </div><!-- /about-intro -->
+    </div><!-- /container -->
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 2 — OUR TEAM                                         -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <section class="section section--alt" id="team" aria-labelledby="team-heading">
+    <div class="container">
+
+      <div class="section-head" style="max-width:640px;">
+        <span class="eyebrow" data-en="The Founders" data-bg="Основателите">The Founders</span>
+        <h2 id="team-heading" class="h2" style="margin: var(--space-2) 0 var(--space-3);"
+            data-en="Three people who made the journey."
+            data-bg="Трима, преминали по този път.">
+          Three people who made the journey.
+        </h2>
+        <p class="lede"
+           data-en="Every service we offer is one we personally navigated. That's not a sales line — it's why we started this."
+           data-bg="Всяка услуга, която предлагаме, е такава, която сами сме преминали. Това не е рекламна фраза — именно затова го стартирахме.">
+          Every service we offer is one we personally navigated. That's not a sales line — it's why we started this.
+        </p>
+      </div>
+
+      <!-- Flag divider -->
+      <div class="flag-divider" aria-hidden="true">
+        <div class="flag-divider__line"></div>
+        <div class="flag-divider__bars">
+          <span style="background:#fff; border:1px solid #ddd;"></span>
+          <span style="background:#00966E;"></span>
+          <span style="background:#D62612;"></span>
+        </div>
+        <div class="flag-divider__line"></div>
+      </div>
+
+      <!-- Three founder cards -->
+      <div class="founders-grid">
+
+        <!-- ── SIMEON SABEV ─────────────────────────────────── -->
+        <article class="founder-card" aria-labelledby="simeon-name">
+          <div class="founder-card__photo">
+            <img src="assets/founders/simeon.jpg" alt="Simeon Sabev" loading="lazy" style="object-position: center top;">
+            <img src="assets/founders/simeon-2.webp" alt="Simeon Sabev swimming butterfly" loading="lazy" style="object-position: center 30%;">
+          </div>
+          <div class="founder-card__body">
+
+            <div>
+              <div class="founder-card__role"
+                   data-en="Co-Founder" data-bg="Съосновател">Co-Founder</div>
+              <h3 class="founder-card__name" id="simeon-name">Simeon Sabev</h3>
+              <div style="display:flex; flex-wrap:wrap; gap:4px; margin-top: var(--space-2);">
+                <span class="credential"
+                      data-en="BA, Mathematics & Economics" data-bg="Бакалавър по Математика &amp; Икономика">Bachelor of Science in Management of Information Systems and Finance</span>
+                <span class="credential"
+                      data-en="MBA" data-bg="MBA">MBA</span>
+                      <span class="credential">CFA L1</span>
+                <span class="credential"
+                      data-en="Financial Data Analyst · MSCI" data-bg="Финансов анализатор · MSCI">Financial Data Analyst · MSCI</span>
+                <span class="credential"
+                      data-en="Former Division I / National Athlete" data-bg="Бивш атлет в Дивизия I / Национален Отбор">Former NCAA Division I Athlete</span>
+                
+              </div>
+            </div>
+
+            <p class="founder-card__bio"
+               data-en="Simeon has been an academic and athletic asset to numerous organizations. His journey began at the High School of Mathematics and Natural Sciences, where he developed a rigorous foundation in mathematics. A distinguished former national athlete, he has proven his success outside of academia with multiple national titles and medals from the Balkan Junior Championships. Simeon possesses exceptional depth in applied mathematics and financial fundamentals. He specializes in the analysis, verification, and processing of different types of financial databases and currently serves as a Financial Data Analyst at MSCI."
+               data-bg="Симеон е ценен академичен и атлетичен кадър за редица организации. Пътят му започва в Математическата гимназия Велико Търново, където изгражда солидната си основа в областта на математиката. Като изявен бивш национален състезател, той е доказал своите успехи и извън академичната сфера, печелейки множество национални титли и медали от Балканските игри. Симеон притежава изключителна експертиза в приложната математика и финансовите фундаменти. Той специализира в анализа, верификацията и обработката на различни видове финансови бази данни и в момента заема длъжността Финансов анализатор на данни в MSCI.">
+              Simeon has exceptional depth in applied mathematics and financial instruments. He specializes in the analysis, verification, and processing of complex financial databases and currently works as a Financial Data Analyst at MSCI.
+            </p>
+
+            <ul class="founder-card__achievements" aria-label="Accomplishments">
+              <li data-en="BA — University of Delaware, Mathematics &amp; Economics"
+                  data-bg="Бакалавър — Университет на Делауеър, Математика &amp; Икономика">BA — University of Delaware, Mathematics &amp; Economics</li>
+              <li data-en="Graduate student — Missouri State University, MBA (STEM Designation)"
+                  data-bg="Магистрант — Мисури Стейт Юнивърсити, MBA (STEM специализация)">Graduate student — Missouri State University, MBA (STEM Designation)</li>
+              <li data-en="CFA Level 1" data-bg="CFA Ниво 1">CFA Level 1</li>
+              <li data-en="Financial Data Analyst, MSCI (Morgan Stanley Capital International)"
+                  data-bg="Финансов анализатор на данни, MSCI (Morgan Stanley Capital International)">Financial Data Analyst, MSCI (Morgan Stanley Capital International)</li>
+              <li data-en="Multi-time All-CAA honoree — individual &amp; relay events"
+                  data-bg="Многократен носител на All-CAA отличие — индивидуални и щафетни дисциплини">Multi-time All-CAA honoree — individual &amp; relay events</li>
+              <li data-en="Academic All-District"
+                  data-bg="Academic All-District (академично отличие)">Academic All-District</li>
+              <li data-en="Multi-time Bulgarian National Championships medalist"
+                  data-bg="Многократен медалист от Държавни Първенства на България">Multi-time Bulgarian National Championship medalist — butterfly</li>
+              <li data-en="Former member — Bulgarian Swimming Federation national team"
+                  data-bg="Бивш член — национален отбор на България">Former member — Bulgarian Swimming Federation national team</li>
+            </ul>
+
+            <div class="founder-card__actions">
+              <a href="https://www.linkedin.com/in/simeon-sabev/?originalSubdomain=bg"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--ghost btn--sm"
+                 aria-label="Simeon Sabev on LinkedIn">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
+                  <path d="M2.2 4.7H0V14h2.2V4.7zM1.1 3.4A1.35 1.35 0 1 0 1.1.7a1.35 1.35 0 0 0 0 2.7zM5 4.7H2.8V14H5V9.1c0-2.4 3.1-2.6 3.1 0V14H10.4V8.5C10.4 4.1 7 4.3 5 6.7V4.7z"/>
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- ── KALOYAN LEVTEROV ──────────────────────────────── -->
+        <article class="founder-card" aria-labelledby="kaloyan-name">
+          <div class="founder-card__photo">
+            <img src="assets/founders/kaloyan.jpg" alt="Kaloyan Levterov" loading="lazy" style="object-position: center top;">
+            <img src="assets/founders/kaloyan-2.jpg" alt="Kaloyan Levterov at Tokyo 2020 Olympics" loading="lazy" style="object-position: center 40%;">
+          </div>
+          <div class="founder-card__body">
+
+            <div>
+              <div class="founder-card__role"
+                   data-en="Co-Founder" data-bg="Съосновател">Co-Founder</div>
+              <h3 class="founder-card__name" id="kaloyan-name">Kaloyan Levterov</h3>
+              <div style="display:flex; flex-wrap:wrap; gap:4px; margin-top: var(--space-2);">
+                <span class="credential"
+                      data-en="Olympian · Tokyo 2020" data-bg="Олимпиец · Токио 2020">Olympian · Tokyo 2020</span>
+                <span class="credential"
+                      data-en="National Record Holder" data-bg="Рекордьор на страната">National Record Holder</span>
+                <span class="credential"
+                      data-en="Financial Data Analyst · MSCI" data-bg="Финансов анализатор · MSCI">Financial Data Analyst · MSCI</span>
+              </div>
+            </div>
+
+            <p class="founder-card__bio"
+               data-en="A former Olympian and one of the most decorated figures in Bulgarian competitive swimming. Kaloyan is building a career in data analysis and global business management, joining Simeon as a Financial Data Analyst at MSCI."
+               data-bg="Бивш олимпиец и един от най-отличилите се представители на България в плуването. Калоян изгражда кариера в анализа на данни и глобалния бизнес мениджмънт, присъединявайки се към Симеон като Financial Data Analyst в MSCI.">
+              A former Olympian and one of the most decorated figures in Bulgarian competitive swimming. Kaloyan is building a career in data analysis and global business management, joining Simeon as a Financial Data Analyst at MSCI.
+            </p>
+
+            <ul class="founder-card__achievements" aria-label="Accomplishments">
+              <li data-en="BS — Global Enterprise Management"
+                  data-bg="Бакалавър — Глобален корпоративен мениджмънт">BS — Global Enterprise Management</li>
+              <li data-en="Olympian — represented Bulgaria at Tokyo 2020 Summer Olympics, 100m &amp; 200m backstroke"
+                  data-bg="Олимпиец — представи България на Летните олимпийски игри Токио 2020, 100м и 200м гръб">Olympian — represented Bulgaria at Tokyo 2020 Summer Olympics, 100m &amp; 200m backstroke</li>
+              <li data-en="Multi-time National Record Holder"
+                  data-bg="Многократен рекордьор на страната">Multi-time National Record Holder</li>
+              <li data-en="Bronze medalist — LEN European Junior Championships (Rome 2021)"
+                  data-bg="Бронзов медалист — Европейско юношеско първенство (Рим 2021)">Bronze medalist — LEN European Junior Championships (Rome 2021)</li>
+              <li data-en="Multi-time All-CAA honoree — individual &amp; relay events"
+                  data-bg="Многократен носител на All-CAA отличие — индивидуални и щафетни дисциплини">Multi-time All-CAA honoree — individual &amp; relay events</li>
+              <li data-en="Multi-time European Men's Finalist"
+                  data-bg="Многократен финалист на Европейското мъжко първенство">Multi-time European Men's Finalist</li>
+              <li data-en="3 World Championships · 7 European Championships represented Bulgaria"
+                  data-bg="3 Световни първенства · 7 Европейски първенства като представител на България">3 World Championships · 7 European Championships represented Bulgaria</li>
+              <li data-en="Financial Data Analyst, MSCI (Morgan Stanley Capital International)"
+                  data-bg="Финансов анализатор на данни, MSCI (Morgan Stanley Capital International)">Financial Data Analyst, MSCI (Morgan Stanley Capital International)</li>
+            </ul>
+
+            <div class="founder-card__actions">
+              <a href="https://www.linkedin.com/in/kaloyan-levterov/"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--ghost btn--sm"
+                 aria-label="Kaloyan Levterov on LinkedIn">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
+                  <path d="M2.2 4.7H0V14h2.2V4.7zM1.1 3.4A1.35 1.35 0 1 0 1.1.7a1.35 1.35 0 0 0 0 2.7zM5 4.7H2.8V14H5V9.1c0-2.4 3.1-2.6 3.1 0V14H10.4V8.5C10.4 4.1 7 4.3 5 6.7V4.7z"/>
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- ── TONISLAV SABEV ────────────────────────────────── -->
+        <article class="founder-card" aria-labelledby="toni-name">
+          <div class="founder-card__photo">
+            <img src="assets/founders/toni.jpg" alt="Tonislav Sabev" loading="lazy" style="object-position: 35% top;">
+            <img src="assets/founders/toni-2.jpg" alt="Tonislav Sabev celebrating a race" loading="lazy" style="object-position: center 35%;">
+          </div>
+          <div class="founder-card__body">
+
+            <div>
+              <div class="founder-card__role"
+                   data-en="Co-Founder" data-bg="Съосновател">Co-Founder</div>
+              <h3 class="founder-card__name" id="toni-name">Tonislav Sabev</h3>
+              <div style="display:flex; flex-wrap:wrap; gap:4px; margin-top: var(--space-2);">
+                <span class="credential"
+                      data-en="National Record Holder" data-bg="Рекордьор на страната">National Record Holder</span>
+                <span class="credential"
+                      data-en="NCAA Qualifier" data-bg="NCAA квалификант">NCAA Qualifier</span>
+                <span class="credential"
+                      data-en="Data Analyst · Bloomberg" data-bg="Анализатор на данни · Bloomberg">Data Analyst · Bloomberg</span>
+              </div>
+            </div>
+
+            <p class="founder-card__bio"
+               data-en="Current national record holder in the 50m breaststroke. Quantitative financial professional with technical depth in data, automation, and machine learning."
+               data-bg="Настоящ рекордьор на страната на 50м бруст. Финансов специалист с количествен профил и технически опит в данни, автоматизация и машинно обучение.">
+              Current national record holder in the 50m breaststroke. Quantitative financial professional with technical depth in data, automation, and machine learning.
+            </p>
+
+            <ul class="founder-card__achievements" aria-label="Accomplishments">
+              <li data-en="BS — Finance &amp; Management Information Systems"
+                  data-bg="Бакалавър — Финанси &amp; Информационни системи">BS — Finance &amp; Management Information Systems</li>
+              <li data-en="National Record Holder — 50m breaststroke"
+                  data-bg="Рекордьор на страната — 50м бруст">National Record Holder — 50m breaststroke</li>
+              <li data-en="First swimmer in University of Delaware history to compete at the NCAA Championships"
+                  data-bg="Първият плувец в историята на Университета на Делауеър, участвал в Националното университетско първенство на NCAA">First swimmer in University of Delaware history to compete at the NCAA Championships</li>
+              <li data-en="Multi-time All-CAA honoree — individual &amp; relay events"
+                  data-bg="Многократен носител на All-CAA отличие — индивидуални и щафетни дисциплини">Multi-time All-CAA honoree — individual &amp; relay events</li>
+              <li data-en="2 World Championships · 3 European Championships represented Bulgaria"
+                  data-bg="2 Световни първенства · 3 Европейски първенства като представител на България">2 World Championships · 3 European Championships represented Bulgaria</li>
+              <li data-en="Data Analyst, Bloomberg"
+                  data-bg="Анализатор на данни, Bloomberg">Data Analyst, Bloomberg</li>
+            </ul>
+
+            <div class="founder-card__actions">
+              <a href="https://www.linkedin.com/in/tonislav-penchev-sabev/"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--ghost btn--sm"
+                 aria-label="Tonislav Sabev on LinkedIn">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
+                  <path d="M2.2 4.7H0V14h2.2V4.7zM1.1 3.4A1.35 1.35 0 1 0 1.1.7a1.35 1.35 0 0 0 0 2.7zM5 4.7H2.8V14H5V9.1c0-2.4 3.1-2.6 3.1 0V14H10.4V8.5C10.4 4.1 7 4.3 5 6.7V4.7z"/>
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+
+          </div>
+        </article>
+
+      </div><!-- /founders-grid -->
+
+    </div><!-- /container -->
+  </section>
+
+  <!-- ─── FINAL CTA ──────────────────────────────────────────────── -->
+  <section class="section" aria-labelledby="about-cta">
+    <div class="container">
+      <div class="cta-section">
+        <svg class="cta-ornament" viewBox="0 0 480 480" fill="none" aria-hidden="true">
+          <circle cx="240" cy="240" r="60"  stroke="white" stroke-width="1.5"/>
+          <circle cx="240" cy="240" r="110" stroke="white" stroke-width="1.5"/>
+          <circle cx="240" cy="240" r="160" stroke="white" stroke-width="1.5"/>
+          <circle cx="240" cy="240" r="210" stroke="white" stroke-width="1.5"/>
+        </svg>
+        <span class="eyebrow" id="about-cta" style="color:rgba(255,255,255,0.45); justify-content:center; margin-bottom:var(--space-3);"
+              data-en="Ready to start?" data-bg="Готови ли сте да започнете?">
+          Ready to start?
+        </span>
+        <h2 class="h2" style="margin-bottom:var(--space-3);"
+            data-en="Book a free 45-minute consultation."
+            data-bg="Запазете безплатна 45-минутна консултация.">
+          Book a free 45-minute consultation.
+        </h2>
+        <p class="lede"
+           data-en="We reply within one business day."
+           data-bg="Отговаряме в рамките на един работен ден.">
+          We reply within one business day.
+        </p>
+        <div class="cta-actions">
+          <a href="contact.html" class="btn btn--primary btn--lg"
+             data-en="Get in touch" data-bg="Свържете се с нас">
+            Get in touch
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ FOOTER ═══════════════════════════════════════════════════════ -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <a href="index.html" class="wordmark">Успешно<span>&nbsp;Бъдеще</span></a>
+        <p data-en="We guide athletes.<br>We build futures." data-bg="Насочваме спортисти.<br>Изграждаме бъдеще.">Насочваме спортисти.<br>Изграждаме бъдеще.</p>
+        <div class="footer-flag" aria-label="Bulgaria — United States">
+          <div class="footer-flag-bar">
+            <span style="background:#fff; border:1px solid rgba(255,255,255,0.2);"></span>
+            <span style="background:#00966E;"></span>
+            <span style="background:#D62612;"></span>
+          </div>
+          <span data-en="EU → United States" data-bg="ЕС → Съединените щати">ЕС → Съединените щати</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 data-en="Pages" data-bg="Страници">Страници</h4>
+        <ul>
+          <li><a href="about.html" data-en="About" data-bg="За нас">За нас</a></li>
+          <li></li>
+          <li><a href="contact.html" data-en="Contact" data-bg="Контакт">Контакт</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 data-en="Contact" data-bg="Контакт">Контакт</h4>
+        <ul>
+          <li><a href="mailto:info@uspeshno-budeshte.com">info@uspeshno-budeshte.com</a></li>
+          <li><span data-en="Sofia, Bulgaria" data-bg="София, България">София, България</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span data-en="© 2026 Successful Future. All rights reserved." data-bg="© 2026 Успешно Бъдеще. Всички права запазени.">© 2026 Успешно Бъдеще. Всички права запазени.</span>
+      <div class="footer-bottom-links">
+        <a href="#" data-en="Privacy" data-bg="Поверителност">Поверителност</a>
+        <a href="#" data-en="Terms" data-bg="Условия">Условия</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts/i18n.js" defer></script>
+<script src="scripts/nav.js" defer></script>
+</body>
+</html>

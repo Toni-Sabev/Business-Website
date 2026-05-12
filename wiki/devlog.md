@@ -2,9 +2,9 @@
 
 ---
 
-## Current State (2026-05-11)
+## Current State (2026-05-12)
 
-**Version**: 1.4 — four-page site + articles + Compass AI assistant, bilingual, form live  
+**Version**: 1.7 — home page fully revised, all copy updated, flags hero photo  
 **Deployed**: GitHub Pages — `https://toni-sabev.github.io/Business-Website/`  
 **Form**: Formspree `xrejonok` → `info@uspeshno-budeshte.com`  
 **AI Worker**: Cloudflare Workers — `https://ub-chat-proxy.rapid-poetry-d971.workers.dev`  
@@ -12,7 +12,8 @@
 **Repo**: `https://github.com/Toni-Sabev/Business-Website`
 
 ### Pages live
-- `about.html` — landing page, packages, founder cards, CTA flip block
+- `index.html` — home page: flags hero photo, trust strip, packages (flip cards), who-we-are stats, Compass feature, resources teaser, CTA flip block
+- `about.html` — founders section (3 cards) + navy CTA flip block
 - `contact.html` — form + sidebar, Formspree wired
 - `resources.html` — article list with chips
 - `compass.html` — Compass AI assistant (full-page chat)
@@ -23,20 +24,22 @@
 ### What's complete
 - Full EN/BG toggle across every page and article
 - Compass AI assistant — Gemini 2.5 Flash, session conversation history (last 3 turns), lead-generation system prompt
-- Compass logo (owl) with 3D rotateY spin on page load + hover; locked to one spin at a time
+- Compass logo in chat preview avatar
 - Cloudflare Worker proxy — CORS locked to GitHub Pages origin
 - Cloudflare Web Analytics token wired on all pages
-- STEM article with hero image and 3D service flip block
-- NCAA article
-- CTA flip block on About page
-- Formspree updated to new endpoint `xrejonok`
-- Nav updated across all pages to include Compass link
+- Home page hero: BG/US flags photo with left-edge fade on desktop, landscape crop on mobile
+- Packages: 3D flip cards on home page; about.html has founders + CTA flip only
+- Footer: "EU → United States" / "ЕС → Съединените щати" across all pages
+- All home page copy updated (hero, packages, who-we-are, compass section)
+- CTA flip block on home page and about page
 
 ### Known open items
 - Mobile header tight on phones < 400px
 - Form success message English-only (doesn't switch with lang toggle)
-- `pricing.html`, `team.html`, `index.html` — unused legacy files
+- `pricing.html`, `team.html` — unused legacy files
 - Worker CORS currently set to `'*'` for local testing — lock to `https://toni-sabev.github.io` before final deploy
+- **Compass AI** — needs end-to-end testing; system prompt context and topic boundaries should be tightened
+- **Resources page** — needs at least one new article brainstormed and written
 
 ---
 
@@ -74,6 +77,12 @@
 ---
 
 ## Session Log
+
+### 2026-05-12 — Home page + nav fix + packages reorganisation
+- Built `index.html` as full production home page (hero, trust strip, packages, who-we-are, Compass feature, resources teaser, CTA band)
+- Fixed nav continuity bug: all pages had logo pointing to `about.html` with no Home link — updated all 7 pages to point logo to `index.html` and added Home as first nav link
+- Moved flip-card packages from `about.html` to `index.html` — `about.html` now contains only founders + navy CTA block
+- Replaced old static `.packages` grid on home page with the 3D flip-card design (Hope / Direction / The Success)
 
 ### 2026-05-11 — Compass AI assistant + content polish session
 

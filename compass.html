@@ -373,7 +373,7 @@
   // Suggestion chips
   suggestionsEl.querySelectorAll('.compass-suggestion').forEach(btn => {
     btn.addEventListener('click', () => {
-      const lang = document.documentElement.getAttribute('data-lang') || 'bg';
+      const lang = document.documentElement.lang || 'bg';
       inputEl.value = btn.getAttribute('data-' + lang) || btn.textContent;
       inputEl.dispatchEvent(new Event('input'));
       send();
@@ -430,10 +430,10 @@
 
   // Sync placeholder with language toggle
   function updatePlaceholder() {
-    const lang = document.documentElement.getAttribute('data-lang') || 'bg';
+    const lang = document.documentElement.lang || 'bg';
     inputEl.placeholder = inputEl.getAttribute('data-placeholder-' + lang) || inputEl.placeholder;
   }
-  new MutationObserver(updatePlaceholder).observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
+  new MutationObserver(updatePlaceholder).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
   updatePlaceholder();
 
   const conversationHistory = [];

@@ -2,6 +2,44 @@
 
 ---
 
+## Current State (2026-05-11)
+
+**Version**: 1.4 — four-page site + articles + Compass AI assistant, bilingual, form live  
+**Deployed**: GitHub Pages — `https://toni-sabev.github.io/Business-Website/`  
+**Form**: Formspree `xrejonok` → `info@uspeshno-budeshte.com`  
+**AI Worker**: Cloudflare Workers — `https://ub-chat-proxy.rapid-poetry-d971.workers.dev`  
+**AI Model**: Gemini 2.5 Flash via Google AI Studio API  
+**Repo**: `https://github.com/Toni-Sabev/Business-Website`
+
+### Pages live
+- `about.html` — landing page, packages, founder cards, CTA flip block
+- `contact.html` — form + sidebar, Formspree wired
+- `resources.html` — article list with chips
+- `athina.html` — Compass AI assistant (full-page chat)
+- `articles/employment-international-athlete.html`
+- `articles/stem-international-athlete.html`
+- `articles/ncaa-international-athlete-guide.html`
+
+### What's complete
+- Full EN/BG toggle across every page and article
+- Compass AI assistant — Gemini 2.5 Flash, session conversation history (last 3 turns), lead-generation system prompt
+- Compass logo (owl) with 3D rotateY spin on page load + hover; locked to one spin at a time
+- Cloudflare Worker proxy — CORS locked to GitHub Pages origin
+- Cloudflare Web Analytics token wired on all pages
+- STEM article with hero image and 3D service flip block
+- NCAA article
+- CTA flip block on About page
+- Formspree updated to new endpoint `xrejonok`
+- Nav updated across all pages to include Compass link
+
+### Known open items
+- Mobile header tight on phones < 400px
+- Form success message English-only (doesn't switch with lang toggle)
+- `pricing.html`, `team.html`, `index.html` — unused legacy files
+- Worker CORS currently set to `'*'` for local testing — lock to `https://toni-sabev.github.io` before final deploy
+
+---
+
 ## Current State (2026-05-10)
 
 **Version**: 1.2 — three-page site (About, Resources, Contact) + employment article, bilingual, form live  
@@ -36,6 +74,38 @@
 ---
 
 ## Session Log
+
+### 2026-05-11 — Compass AI assistant + content polish session
+
+**Compass (AI chatbot)**
+- New full-page `athina.html` — chat UI with message bubbles, typing dots, suggestion chips, auto-growing textarea
+- Cloudflare Worker (`worker/athina.js`) proxies requests to Gemini 2.5 Flash
+- Session conversation history: last 3 turns (6 messages) sent with each request
+- System prompt: lead-generation focused — gives overview, withholds specifics, drives to consultation; warm/human tone; varies CTA phrasing
+- Assistant named Compass / Компас (male); owl logo with 3D rotateY spin on load + hover
+- Spin locks during animation — can only re-trigger after previous spin completes
+- EN/BG bilingual: name, intro text, chips, disclaimer, suggestion chips
+- Disclaimer pill moved below input bar
+- Intro text narrowed to `max-width: 420px`
+
+**Bugs fixed**
+- Gemini API returning `…`: caused by `thinkingConfig` placed outside `generationConfig` — removed; `maxOutputTokens` raised to 800
+- CORS blocking local testing: `ALLOWED_ORIGIN` set back to `'*'` temporarily (to be locked before deploy)
+- `contact.html` missing Compass link in desktop nav — added
+- All pages had `data-en="Athina — Assistant"` — corrected to `data-en="Compass"` across all 7 files
+- API key invalid on first deploy: user re-saved secret in Cloudflare dashboard
+
+**Articles**
+- STEM article: bilingual content, hero image, 3D service flip block at bottom
+- NCAA article added
+- All article nav links updated to include Compass
+
+**Other**
+- Cloudflare Web Analytics beacon added to all pages
+- Formspree endpoint updated to `xrejonok`
+- About page CTA flip block added (front: "Ready to start?", back: free call details + bullets)
+
+---
 
 ### 2026-05-10 — Content polish + new features session
 

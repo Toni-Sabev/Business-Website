@@ -15,7 +15,7 @@
 - `about.html` — landing page, packages, founder cards, CTA flip block
 - `contact.html` — form + sidebar, Formspree wired
 - `resources.html` — article list with chips
-- `athina.html` — Compass AI assistant (full-page chat)
+- `compass.html` — Compass AI assistant (full-page chat)
 - `articles/employment-international-athlete.html`
 - `articles/stem-international-athlete.html`
 - `articles/ncaa-international-athlete-guide.html`
@@ -78,8 +78,8 @@
 ### 2026-05-11 — Compass AI assistant + content polish session
 
 **Compass (AI chatbot)**
-- New full-page `athina.html` — chat UI with message bubbles, typing dots, suggestion chips, auto-growing textarea
-- Cloudflare Worker (`worker/athina.js`) proxies requests to Gemini 2.5 Flash
+- New full-page `compass.html` — chat UI with message bubbles, typing dots, suggestion chips, auto-growing textarea
+- Cloudflare Worker (`worker/compass.js`) proxies requests to Gemini 2.5 Flash
 - Session conversation history: last 3 turns (6 messages) sent with each request
 - System prompt: lead-generation focused — gives overview, withholds specifics, drives to consultation; warm/human tone; varies CTA phrasing
 - Assistant named Compass / Компас (male); owl logo with 3D rotateY spin on load + hover

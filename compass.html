@@ -18,7 +18,7 @@
       margin: 0;
     }
 
-    .athina-page {
+    .compass-page {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -26,12 +26,12 @@
     }
 
     /* ── Hero intro ──────────────────────────────── */
-    .athina-intro {
+    .compass-intro {
       text-align: center;
       padding: var(--space-4) var(--space-4) var(--space-3);
       flex-shrink: 0;
     }
-    .athina-intro__avatar {
+    .compass-intro__avatar {
       width: 130px;
       height: 130px;
       display: inline-flex;
@@ -41,35 +41,35 @@
       cursor: pointer;
       perspective: 400px;
     }
-    .athina-intro__avatar img {
+    .compass-intro__avatar img {
       width: 130px;
       height: 130px;
       object-fit: cover;
       border-radius: 50%;
       display: block;
     }
-    .athina-intro__avatar.is-spinning img {
-      animation: athina-logo-spin 2.6s cubic-bezier(0.0, 0.0, 0.15, 1) forwards;
+    .compass-intro__avatar.is-spinning img {
+      animation: compass-logo-spin 2.6s cubic-bezier(0.0, 0.0, 0.15, 1) forwards;
     }
-    @keyframes athina-logo-spin {
+    @keyframes compass-logo-spin {
       from { transform: rotateY(0deg); }
       to   { transform: rotateY(1080deg); }
     }
-    .athina-intro__name {
+    .compass-intro__name {
       font-family: var(--font-display);
       font-size: clamp(28px, 4vw, 40px);
       font-weight: 600;
       color: var(--color-navy);
       margin: 0 0 var(--space-2);
     }
-    .athina-intro__sub {
+    .compass-intro__sub {
       font-size: 15px;
       color: var(--color-muted);
       margin: 0 auto var(--space-3);
       line-height: 1.5;
       max-width: 420px;
     }
-    .athina-intro__disclaimer {
+    .compass-intro__disclaimer {
       font-size: 11px;
       color: var(--color-muted);
       background: var(--color-taupe);
@@ -79,7 +79,7 @@
     }
 
     /* ── Chat area ───────────────────────────────── */
-    .athina-chat {
+    .compass-chat {
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -90,7 +90,7 @@
       box-sizing: border-box;
     }
 
-    .athina-messages {
+    .compass-messages {
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -100,7 +100,7 @@
       min-height: 0;
     }
 
-    .athina-bubble {
+    .compass-bubble {
       max-width: 78%;
       padding: 12px 16px;
       border-radius: 14px;
@@ -108,54 +108,54 @@
       line-height: 1.6;
       word-break: break-word;
     }
-    .athina-bubble--bot {
+    .compass-bubble--bot {
       background: #fff;
       border: 1px solid var(--color-rule);
       color: var(--color-navy);
       align-self: flex-start;
       border-bottom-left-radius: 4px;
     }
-    .athina-bubble--user {
+    .compass-bubble--user {
       background: var(--color-navy);
       color: #fff;
       align-self: flex-end;
       border-bottom-right-radius: 4px;
     }
-    .athina-bubble--typing {
+    .compass-bubble--typing {
       background: #fff;
       border: 1px solid var(--color-rule);
       align-self: flex-start;
       border-bottom-left-radius: 4px;
       padding: 14px 18px;
     }
-    .athina-dots {
+    .compass-dots {
       display: flex;
       gap: 5px;
       align-items: center;
     }
-    .athina-dots span {
+    .compass-dots span {
       width: 7px;
       height: 7px;
       border-radius: 50%;
       background: var(--color-muted);
-      animation: athinaDot 1.2s infinite ease-in-out;
+      animation: compassDot 1.2s infinite ease-in-out;
     }
-    .athina-dots span:nth-child(2) { animation-delay: 0.2s; }
-    .athina-dots span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes athinaDot {
+    .compass-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .compass-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes compassDot {
       0%, 80%, 100% { transform: scale(0.65); opacity: 0.35; }
       40% { transform: scale(1); opacity: 1; }
     }
 
     /* ── Suggested questions ─────────────────────── */
-    .athina-suggestions {
+    .compass-suggestions {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       padding-bottom: var(--space-3);
       flex-shrink: 0;
     }
-    .athina-suggestion {
+    .compass-suggestion {
       font-size: 13px;
       color: var(--color-navy);
       background: #fff;
@@ -166,20 +166,20 @@
       transition: border-color 0.15s, background 0.15s;
       white-space: nowrap;
     }
-    .athina-suggestion:hover {
+    .compass-suggestion:hover {
       border-color: var(--color-navy);
       background: var(--color-taupe);
     }
 
     /* ── Input bar ───────────────────────────────── */
-    .athina-input-bar {
+    .compass-input-bar {
       display: flex;
       align-items: flex-end;
       gap: 10px;
       padding: var(--space-3) 0 var(--space-5);
       flex-shrink: 0;
     }
-    .athina-input-wrap {
+    .compass-input-wrap {
       flex: 1;
       background: #fff;
       border: 1.5px solid var(--color-rule);
@@ -189,10 +189,10 @@
       padding: 10px 14px;
       transition: border-color 0.15s;
     }
-    .athina-input-wrap:focus-within {
+    .compass-input-wrap:focus-within {
       border-color: var(--color-navy);
     }
-    .athina-input {
+    .compass-input {
       flex: 1;
       border: none;
       outline: none;
@@ -205,9 +205,9 @@
       max-height: 120px;
       line-height: 1.5;
     }
-    .athina-input::placeholder { color: var(--color-muted); }
+    .compass-input::placeholder { color: var(--color-muted); }
 
-    .athina-send {
+    .compass-send {
       width: 44px;
       height: 44px;
       border-radius: 10px;
@@ -220,10 +220,10 @@
       flex-shrink: 0;
       transition: opacity 0.15s;
     }
-    .athina-send:hover { opacity: 0.85; }
-    .athina-send:disabled { opacity: 0.3; cursor: default; }
+    .compass-send:hover { opacity: 0.85; }
+    .compass-send:disabled { opacity: 0.3; cursor: default; }
 
-    .athina-status-bar {
+    .compass-status-bar {
       text-align: center;
       font-size: 12px;
       color: var(--color-muted);
@@ -274,18 +274,18 @@
   </nav>
 </header>
 
-<main id="main" class="athina-page">
+<main id="main" class="compass-page">
 
-  <div class="athina-intro">
-    <div class="athina-intro__avatar" id="athina-avatar">
-      <img src="assets/athina-logo.png" alt="Compass">
+  <div class="compass-intro">
+    <div class="compass-intro__avatar" id="compass-avatar">
+      <img src="assets/compass-logo.png" alt="Compass">
     </div>
-    <h1 class="athina-intro__name"
+    <h1 class="compass-intro__name"
         data-en="Compass" data-bg="Компас">Компас</h1>
-    <p class="athina-intro__sub"
-       data-en="My name is Compass. I'm here to help guide you and answer your questions about your career and path forward. I have my limits — but I'll assist you with everything I've got."
-       data-bg="Казвам се Компас. Тук съм, за да те напътствам и да отговарям на въпросите ти за твоята кариера и пътя напред. Имам своите граници — но ще ти помогна с всичко, което мога.">
-      Казвам се Компас. Тук съм, за да те напътствам и да отговарям на въпросите ти за твоята кариера и пътя напред. Имам своите граници — но ще ти помогна с всичко, което мога.
+    <p class="compass-intro__sub"
+       data-en="I'm Compass, built by the founders of Successful Future to help guide you through our process and answer your questions. I have limitations, but I'm here to help with everything I can."
+       data-bg="Аз съм Компас, създаден от основателите на Успешно Бъдеще, за да ви насочвам в нашия процес и да отговарям на въпросите ви. Имам ограничения, но съм тук, за да помогна с всичко, което мога.">
+      Аз съм Компас, създаден от основателите на Успешно Бъдеще, за да ви насочвам в нашия процес и да отговарям на въпросите ви. Имам ограничения, но съм тук, за да помогна с всичко, което мога.
     </p>
     <p style="font-size:13px; color:var(--color-muted); margin:0 0 var(--space-2);"
        data-en="Ask me anything about:" data-bg="Питай ме за:">Питай ме за:</p>
@@ -301,22 +301,22 @@
     </div>
   </div>
 
-  <div class="athina-chat">
+  <div class="compass-chat">
 
-    <div class="athina-messages" id="athina-messages"></div>
+    <div class="compass-messages" id="compass-messages"></div>
 
-    <div class="athina-suggestions" id="athina-suggestions">
-      <button class="athina-suggestion" data-en="What is OPT?" data-bg="Какво е OPT?">Какво е OPT?</button>
-      <button class="athina-suggestion" data-en="How does STEM OPT work?" data-bg="Как работи STEM OPT?">Как работи STEM OPT?</button>
-      <button class="athina-suggestion" data-en="Can I work on an F-1 visa?" data-bg="Мога ли да работя с виза F-1?">Мога ли да работя с виза F-1?</button>
-      <button class="athina-suggestion" data-en="What is NCAA eligibility?" data-bg="Какво е NCAA допустимост?">Какво е NCAA допустимост?</button>
+    <div class="compass-suggestions" id="compass-suggestions">
+      <button class="compass-suggestion" data-en="What is OPT?" data-bg="Какво е OPT?">Какво е OPT?</button>
+      <button class="compass-suggestion" data-en="How does STEM OPT work?" data-bg="Как работи STEM OPT?">Как работи STEM OPT?</button>
+      <button class="compass-suggestion" data-en="Can I work on an F-1 visa?" data-bg="Мога ли да работя с виза F-1?">Мога ли да работя с виза F-1?</button>
+      <button class="compass-suggestion" data-en="What is NCAA eligibility?" data-bg="Какво е NCAA допустимост?">Какво е NCAA допустимост?</button>
     </div>
 
-    <div class="athina-input-bar">
-      <div class="athina-input-wrap">
+    <div class="compass-input-bar">
+      <div class="compass-input-wrap">
         <textarea
-          class="athina-input"
-          id="athina-input"
+          class="compass-input"
+          id="compass-input"
           rows="1"
           placeholder="Задай въпрос…"
           data-placeholder-en="Ask a question…"
@@ -325,17 +325,17 @@
           autocomplete="off"
         ></textarea>
       </div>
-      <button class="athina-send" id="athina-send" aria-label="Send">
+      <button class="compass-send" id="compass-send" aria-label="Send">
         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M15 8.5H2M9 2l6 6.5L9 15"/>
         </svg>
       </button>
     </div>
 
-    <div class="athina-status-bar" id="athina-status"></div>
+    <div class="compass-status-bar" id="compass-status"></div>
 
     <div style="text-align:center; padding-bottom:var(--space-3);">
-      <span class="athina-intro__disclaimer"
+      <span class="compass-intro__disclaimer"
             data-en="General guidance only — not legal advice"
             data-bg="Само обща насока — не правна консултация">
         Само обща насока — не правна консултация
@@ -353,11 +353,11 @@
   const WORKER_URL = 'https://ub-chat-proxy.rapid-poetry-d971.workers.dev';
   const PROTOTYPE_MODE = WORKER_URL === 'YOUR_WORKER_URL_HERE';
 
-  const messagesEl   = document.getElementById('athina-messages');
-  const inputEl      = document.getElementById('athina-input');
-  const sendBtn      = document.getElementById('athina-send');
-  const statusEl     = document.getElementById('athina-status');
-  const suggestionsEl = document.getElementById('athina-suggestions');
+  const messagesEl   = document.getElementById('compass-messages');
+  const inputEl      = document.getElementById('compass-input');
+  const sendBtn      = document.getElementById('compass-send');
+  const statusEl     = document.getElementById('compass-status');
+  const suggestionsEl = document.getElementById('compass-suggestions');
 
   // Auto-grow textarea
   inputEl.addEventListener('input', () => {
@@ -371,7 +371,7 @@
   sendBtn.addEventListener('click', send);
 
   // Suggestion chips
-  suggestionsEl.querySelectorAll('.athina-suggestion').forEach(btn => {
+  suggestionsEl.querySelectorAll('.compass-suggestion').forEach(btn => {
     btn.addEventListener('click', () => {
       const lang = document.documentElement.getAttribute('data-lang') || 'bg';
       inputEl.value = btn.getAttribute('data-' + lang) || btn.textContent;
@@ -386,7 +386,7 @@
 
   function addBubble(text, role) {
     const el = document.createElement('div');
-    el.className = `athina-bubble athina-bubble--${role}`;
+    el.className = `compass-bubble compass-bubble--${role}`;
     el.textContent = text;
     messagesEl.appendChild(el);
     scrollBottom();
@@ -395,19 +395,19 @@
 
   function showTyping() {
     const el = document.createElement('div');
-    el.className = 'athina-bubble athina-bubble--typing';
-    el.id = 'athina-typing';
-    el.innerHTML = '<div class="athina-dots"><span></span><span></span><span></span></div>';
+    el.className = 'compass-bubble compass-bubble--typing';
+    el.id = 'compass-typing';
+    el.innerHTML = '<div class="compass-dots"><span></span><span></span><span></span></div>';
     messagesEl.appendChild(el);
     scrollBottom();
   }
 
   function removeTyping() {
-    const el = document.getElementById('athina-typing');
+    const el = document.getElementById('compass-typing');
     if (el) el.remove();
   }
 
-  const avatar = document.getElementById('athina-avatar');
+  const avatar = document.getElementById('compass-avatar');
   if (avatar) {
     let spinning = false;
 

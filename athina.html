@@ -319,6 +319,8 @@
           id="athina-input"
           rows="1"
           placeholder="Задай въпрос…"
+          data-placeholder-en="Ask a question…"
+          data-placeholder-bg="Задай въпрос…"
           maxlength="400"
           autocomplete="off"
         ></textarea>
@@ -425,6 +427,14 @@
     // spin once on page load
     setTimeout(spin, 400);
   }
+
+  // Sync placeholder with language toggle
+  function updatePlaceholder() {
+    const lang = document.documentElement.getAttribute('data-lang') || 'bg';
+    inputEl.placeholder = inputEl.getAttribute('data-placeholder-' + lang) || inputEl.placeholder;
+  }
+  new MutationObserver(updatePlaceholder).observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
+  updatePlaceholder();
 
   const conversationHistory = [];
 

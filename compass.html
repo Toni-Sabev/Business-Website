@@ -156,19 +156,21 @@
       flex-shrink: 0;
     }
     .compass-suggestion {
-      font-size: 13px;
-      color: var(--color-navy);
-      background: #fff;
-      border: 1px solid var(--color-rule);
-      border-radius: 99px;
-      padding: 6px 14px;
+      font-size: var(--fs-chip);
+      font-weight: 700;
+      color: var(--color-green);
+      background: rgba(0, 150, 110, 0.10);
+      border: none;
+      border-radius: var(--radius-chip);
+      padding: 5px 12px;
       cursor: pointer;
-      transition: border-color 0.15s, background 0.15s;
-      white-space: nowrap;
+      transition: background 0.15s;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      font-family: var(--font-body);
     }
     .compass-suggestion:hover {
-      border-color: var(--color-navy);
-      background: var(--color-taupe);
+      background: rgba(0, 150, 110, 0.20);
     }
 
     /* ── Input bar ───────────────────────────────── */
@@ -289,20 +291,6 @@
        data-bg="Аз съм Компас, създаден от основателите на Успешно Бъдеще, за да ви насочвам в нашия процес и да отговарям на въпросите ви. Имам ограничения, но съм тук, за да помогна с всичко, което мога.">
       Аз съм Компас, създаден от основателите на Успешно Бъдеще, за да ви насочвам в нашия процес и да отговарям на въпросите ви. Имам ограничения, но съм тук, за да помогна с всичко, което мога.
     </p>
-    <p style="font-size:13px; color:var(--color-muted); margin:0 0 var(--space-2);"
-       data-en="Ask me anything about:" data-bg="Питай ме за:">Питай ме за:</p>
-    <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:var(--space-3);">
-      <span class="chip chip--green" data-en="US Admissions" data-bg="Прием в САЩ">Прием в САЩ</span>
-      <span class="chip chip--green" data-en="Stipends" data-bg="Стипендии">Стипендии</span>
-      <span class="chip chip--green" data-en="Documentation &amp; Requirements" data-bg="Документация и изисквания">Документация и изисквания</span>
-      <span class="chip chip--green" data-en="SSN" data-bg="Социален номер">Социален номер</span>
-      <span class="chip chip--green">SEVIS</span>
-      <span class="chip chip--green">NCAA</span>
-      <span class="chip chip--green">STEM OPT</span>
-      <span class="chip chip--green">CPT</span>
-      <span class="chip chip--green">OPT</span>
-      <span class="chip chip--green" data-en="F-1 Visa" data-bg="Виза F-1">Виза F-1</span>
-    </div>
   </div>
 
   <div class="compass-chat">
@@ -310,10 +298,12 @@
     <div class="compass-messages" id="compass-messages"></div>
 
     <div class="compass-suggestions" id="compass-suggestions">
-      <button class="compass-suggestion" data-en="What is OPT?" data-bg="Какво е OPT?">Какво е OPT?</button>
-      <button class="compass-suggestion" data-en="How does STEM OPT work?" data-bg="Как работи STEM OPT?">Как работи STEM OPT?</button>
-      <button class="compass-suggestion" data-en="Can I work on an F-1 visa?" data-bg="Мога ли да работя с виза F-1?">Мога ли да работя с виза F-1?</button>
+      <button class="compass-suggestion" data-en="Is my child safe in the US?" data-bg="Безопасно ли е детето ми в САЩ?">Безопасно ли е детето ми в САЩ?</button>
+      <button class="compass-suggestion" data-en="How can I connect to universities?" data-bg="Как мога да се свържа с университети?">Как мога да се свържа с университети?</button>
       <button class="compass-suggestion" data-en="What is NCAA eligibility?" data-bg="Какво е NCAA допустимост?">Какво е NCAA допустимост?</button>
+      <button class="compass-suggestion" data-en="What does the process from Europe to the USA look like?" data-bg="Как изглежда процесът от Европа до САЩ?">Как изглежда процесът от Европа до САЩ?</button>
+      <button class="compass-suggestion" data-en="Can I work in the United States if I am not a citizen?" data-bg="Мога ли да работя в САЩ, ако не съм гражданин?">Мога ли да работя в САЩ, ако не съм гражданин?</button>
+      <button class="compass-suggestion" data-en="What are the different types of visas?" data-bg="Какви са различните видове визи?">Какви са различните видове визи?</button>
     </div>
 
     <div class="compass-input-bar">
@@ -468,6 +458,20 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message: text, history: conversationHistory }),
         });
+
+        if (res.status === 429) {
+          removeTyping();
+          const lang = document.documentElement.lang || 'bg';
+          const msg = lang === 'en'
+            ? "It seems I've run out of energy for a moment — could you give me a minute or two to rest? I'll be right back with you."
+            : "Изглежда, че ми свърши зарядът за момент — можеш ли да ми дадеш минута-две да си почина? Веднага след това ще съм тук за теб.";
+          addBubble(msg, 'bot');
+          sendBtn.disabled = false;
+          statusEl.textContent = '';
+          inputEl.focus();
+          return;
+        }
+
         const data = await res.json();
         removeTyping();
         const reply = data.reply || '…';

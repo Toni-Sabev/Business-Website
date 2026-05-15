@@ -348,6 +348,55 @@
     .article-card__excerpt { font-size: 14px; color: var(--color-muted); margin: 0; line-height: 1.55; }
     .article-card__cta { margin-top: auto; font-size: 13px; font-weight: 600; color: var(--color-red); }
 
+    /* ── What we offer ── */
+    .offer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+    }
+    @media (max-width: 900px) { .offer-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .offer-grid { grid-template-columns: 1fr; } }
+    .offer-item {
+      background: #fff;
+      border: 1px solid var(--color-rule);
+      border-radius: var(--radius-card);
+      padding: var(--space-4);
+    }
+    .offer-item__title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--color-navy);
+      margin: 0 0 var(--space-2);
+    }
+    .offer-item__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .offer-item__list li {
+      font-size: 14px;
+      color: var(--color-muted);
+      line-height: 1.55;
+      padding-left: 16px;
+      position: relative;
+    }
+    .offer-item__list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--color-green);
+      flex-shrink: 0;
+    }
+
     /* ── Final CTA flip ── */
     .cta-flip {
       perspective: 1200px;
@@ -472,6 +521,67 @@
 <!-- ═══ MAIN ═══════════════════════════════════════════════════════ -->
 <main id="main">
 
+  <!-- ░░ WHAT WE OFFER ░░ -->
+  <section class="section" aria-labelledby="offer-heading">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" data-en="What we offer" data-bg="Какво предлагаме">Какво предлагаме</span>
+        <h2 class="h2" id="offer-heading"
+            data-en="Everything you need, in one place."
+            data-bg="Всичко, от което се нуждаете, на едно място.">
+          Всичко, от което се нуждаете, на едно място.
+        </h2>
+      </div>
+      <div class="offer-grid">
+
+        <div class="offer-item">
+          <h3 class="offer-item__title" data-en="Profile Building" data-bg="Изграждане на профил">Изграждане на профил</h3>
+          <ul class="offer-item__list">
+            <li data-en="We build a complete academic and athletic profile for each student"
+                data-bg="Изграждаме пълен академичен и спортен профил за всеки студент">Изграждаме пълен академичен и спортен профил за всеки студент</li>
+            <li data-en="A detailed profile report is produced as a tangible deliverable"
+                data-bg="Изготвяме подробен профилен доклад като осезаем краен продукт">Изготвяме подробен профилен доклад като осезаем краен продукт</li>
+            <li data-en="The report is used for direct, targeted presentation to US universities"
+                data-bg="Докладът се използва за пряко, целенасочено представяне пред американски университети">Докладът се използва за пряко, целенасочено представяне пред американски университети</li>
+          </ul>
+        </div>
+
+        <div class="offer-item">
+          <h3 class="offer-item__title" data-en="University Outreach" data-bg="Комуникация с университети">Комуникация с университети</h3>
+          <ul class="offer-item__list">
+            <li data-en="Personalised outreach to programmes that match your goals — no mass applications"
+                data-bg="Персонализирана комуникация с програмите, подходящи за вашите цели — без масово кандидатстване">Персонализирана комуникация с програмите, подходящи за вашите цели — без масово кандидатстване</li>
+            <li data-en="We reach the people who administer scholarships directly, such as head coaches"
+                data-bg="Достигаме директно до хората, които разпределят стипендиите, като например главните треньори">Достигаме директно до хората, които разпределят стипендиите, като например главните треньори</li>
+          </ul>
+        </div>
+
+        <div class="offer-item">
+          <h3 class="offer-item__title" data-en="Visa &amp; Documentation" data-bg="Виза и документация">Виза и документация</h3>
+          <ul class="offer-item__list">
+            <li data-en="F-1 visa and SEVIS guidance, navigated step by step"
+                data-bg="Насочване за виза F-1 и SEVIS, стъпка по стъпка">Насочване за виза F-1 и SEVIS, стъпка по стъпка</li>
+            <li data-en="Health documentation, university registration, and enrolment paperwork — all handled"
+                data-bg="Здравна документация, университетска регистрация и документи за записване — всичко е поето">Здравна документация, университетска регистрация и документи за записване — всичко е поето</li>
+          </ul>
+        </div>
+
+        <div class="offer-item">
+          <h3 class="offer-item__title" data-en="Budget &amp; Logistics" data-bg="Бюджет и логистика">Бюджет и логистика</h3>
+          <ul class="offer-item__list">
+            <li data-en="Flights, phones, banks, logistics."
+                data-bg="Полети, телефон, банка, логистика.">Полети, телефон, банка, логистика.</li>
+            <li data-en="Guidance on housing after the first year in the dorms"
+                data-bg="Насоки за жилище след първата година в общежитието">Насоки за жилище след първата година в общежитието</li>
+            <li data-en="You will receive a full budget report for your parents so that they are aware of what to expect in terms of costs"
+                data-bg="Получавате пълен бюджетен доклад за родителите, така че да са наясно какво да очакват по отношение на разходите">Получавате пълен бюджетен доклад за родителите, така че да са наясно какво да очакват по отношение на разходите</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ░░ HERO ░░ -->
   <section class="hero" aria-labelledby="hero-heading">
     <div class="hero__bg-pattern" aria-hidden="true"></div>
@@ -489,11 +599,6 @@
              data-en="We didn't just study in the USA — we lived through the move, the bureaucracy, the homesickness, and building a career on the other side. Now we'll be the mentors we wished we had — beside you and your family from the first email to graduation day."
              data-bg="Ние не просто учихме в САЩ — преживяхме преместването, бюрокрацията, носталгията и изграждането на кариера от другата страна. Сега ще бъдем менторите, които мечтаехме да имаме — до вас и вашето семейство от първия имейл до дипломирането.">
             Ние не просто учихме в САЩ — преживяхме преместването, бюрокрацията, носталгията и изграждането на кариера от другата страна. Сега ще бъдем менторите, които мечтаехме да имаме — до вас и вашето семейство от първия имейл до дипломирането.
-          </p>
-          <p class="hero__lede lede"
-             data-en="We help you identify the right US universities and scholarship opportunities, while supporting you through the visa process, documentation, and choosing the best path forward."
-             data-bg="Помагаме ви да откриете подходящи американски университети и възможности за стипендии, като ви съдействаме с визовия процес, документите и избора на най-подходящия път напред.">
-            Помагаме ви да откриете подходящи американски университети и възможности за стипендии, като ви съдействаме с визовия процес, документите и избора на най-подходящия път напред.
           </p>
           <p class="hero__lede lede"
              data-en="US universities are a fully achievable goal when you have the right strategy and a clear, step-by-step plan. That is exactly where we come in. Whether you are aiming for the Ivy League, a Division 1 or 2 athletic programme, or any other institution that fits your goals — we will help you choose the right path and navigate the entire process with confidence."

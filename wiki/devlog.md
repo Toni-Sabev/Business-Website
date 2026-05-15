@@ -2,6 +2,33 @@
 
 ---
 
+## Current State (2026-05-15)
+
+**Version**: 1.8 — Compass prompt overhaul, home page "What we offer" section, compass chip redesign
+**Deployed**: GitHub Pages — `https://toni-sabev.github.io/Business-Website/`
+**Form**: Formspree `xrejonok` → `info@uspeshno-budeshte.com`
+**AI Worker**: Cloudflare Workers — `https://ub-chat-proxy.rapid-poetry-d971.workers.dev`
+**AI Model**: Gemini 2.5 Flash via Google AI Studio API
+**Repo**: `https://github.com/Toni-Sabev/Business-Website`
+
+### What's complete
+- All v1.7 items remain live
+- Compass 429 error handling — friendly bilingual message shown to user on rate limit
+- Compass system prompt expanded: visa types (F-1, J-1, O-1, H-1B, B-2) with guardrail, updated website architecture (Home page added, About corrected, packages moved), custom packages noted, specific topic guidance for university connections and child safety questions
+- Compass suggestion chips redesigned — now styled as green chips matching the intro topic chips; 6 curated questions replacing the generic defaults
+- Home page: new "What we offer" section above the hero — 4-card grid (Profile Building, University Outreach, Visa & Documentation, Budget & Logistics) with bilingual bullet points
+- Home page: removed redundant hero paragraph ("We help you identify the right US universities…")
+- Deleted unused legacy file `about 2.html`
+
+### Known open items
+- Mobile header tight on phones < 400px
+- Form success message English-only (doesn't switch with lang toggle)
+- `pricing.html`, `team.html` — unused legacy files
+- Worker CORS currently set to `'*'` — lock to `https://toni-sabev.github.io` before final deploy
+- Resources page — needs at least one new article
+
+---
+
 ## Current State (2026-05-12)
 
 **Version**: 1.7 — home page fully revised, all copy updated, flags hero photo  
@@ -77,6 +104,32 @@
 ---
 
 ## Session Log
+
+### 2026-05-15 — Compass overhaul + home page "What we offer" section
+
+**Compass (`compass.html` + `worker/compass.js`)**
+- 429 rate-limit error now returns a friendly bilingual message instead of a generic error ("It seems I've run out of energy for a moment…")
+- Worker returns HTTP 429 with `{ error: 'rate_limited' }` so the frontend can distinguish it from other failures
+- System prompt: added visa types section (F-1, J-1, O-1, H-1B, B-2) with explicit guardrail — explain only, never recommend
+- System prompt: website architecture corrected — Home page added as main entry point, About page corrected to founders-only, packages moved to Home page
+- System prompt: custom packages added to the PACKAGES section
+- System prompt: specific topic guidance added for "university connections" (profile-driven outreach, company's core speciality) and "child safety" (empathetic parent-focused response)
+- Suggestion chips redesigned — styled as green chips matching the intro topic area chips; white bordered buttons removed
+- 6 curated suggestion questions added (reordered: Safety → University Outreach → NCAA → Europe to USA → Work in US → Visa types)
+- Removed generic topic chips (US Admissions, Stipends, SSN, etc.) from intro area
+
+**Home page (`index.html`)**
+- New "What we offer" section added above the hero — 4-card grid with bilingual bullet points
+  - Profile Building: academic/athletic profile + internal profile report as deliverable
+  - University Outreach: personalised contact, reaches scholarship administrators (head coaches)
+  - Visa & Documentation: F-1/SEVIS + health docs, university registration and enrolment
+  - Budget & Logistics: flights/phones/banks, housing guidance, full budget report for parents
+- Removed redundant hero paragraph ("We help you identify the right US universities…")
+
+**Cleanup**
+- Deleted unused legacy file `about 2.html`
+
+---
 
 ### 2026-05-12 — Home page + nav fix + packages reorganisation
 - Built `index.html` as full production home page (hero, trust strip, packages, who-we-are, Compass feature, resources teaser, CTA band)

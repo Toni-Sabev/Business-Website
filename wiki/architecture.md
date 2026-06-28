@@ -7,18 +7,41 @@
 ## Overview
 
 Plain HTML5 / CSS3 / vanilla JS — no framework, no build step, no dependencies.
-Two live pages: **About** (landing) and **Contact**. Static assets served from the same repo.
+Live pages: **Home** (`index.html`), **About**, **Contact**, **Resources**, **Compass**, plus **Privacy** / **Terms** and a set of long-form **articles**. Static assets served from the same repo.
 Form submissions handled by Formspree (external SaaS) — no backend required.
+
+URLs are **clean / extensionless** via directory-based routing — every page is a `index.html` inside a named folder, so it resolves as `/about/` rather than `/about.html`. See **URL Routing** below.
 
 ---
 
 ## File Layout
 
+Each user-facing page lives in its own folder as `index.html` so the served URL is clean
+(`/about/`, `/contact/`, …). `index.html` at the repo root is the home page (`/`).
+
 ```
 successful-future/
-├── about.html              # Landing page — What We Do, Services, Founders, CTA
-├── contact.html            # Contact page — enquiry form + sidebar details
-├── index.html              # Redirect stub (unused — about.html is the entry point)
+├── index.html              # Home page (/) — offer, hero, packages, who-we-are, Compass, CTA
+├── about/index.html        # About (/about/) — What We Do, Services, Founders, CTA
+├── contact/index.html      # Contact (/contact/) — enquiry form + sidebar details
+├── resources/index.html    # Resources (/resources/) — article index
+├── compass/index.html      # Compass (/compass/) — AI assistant page
+├── privacy/index.html      # Privacy (/privacy/)
+├── terms/index.html        # Terms (/terms/)
+│
+├── articles/               # Long-form guides, each its own clean URL (/articles/<slug>/)
+│   ├── employment-international-athlete/index.html
+│   ├── stem-international-athlete/index.html
+│   ├── ncaa-international-athlete-guide/index.html
+│   └── sevis-i20-f1-lifecycle/index.html
+│
+├── pricing.html            # Unused / unlinked — left flat (not deployed as a live page)
+├── team.html               # Unused / unlinked — left flat
+│
+├── CNAME                   # Custom domain: uspeshno-budeshte.org
+├── .nojekyll               # Disable Jekyll processing (plain static site)
+├── robots.txt              # Allow all + sitemap pointer
+├── sitemap.xml             # Clean-URL sitemap (all live pages)
 ├── README.md               # Project readme
 │
 ├── assets/
@@ -40,14 +63,27 @@ successful-future/
 │   ├── base.css            # Reset, typography, container, section spacing
 │   ├── components.css      # Header, footer, cards, buttons, forms — all shared components
 │   └── pages/
-│       ├── about.css       # About-page-specific overrides (mostly empty — inline <style> used)
-│       └── contact.css     # Contact layout, form styles, map placeholder
+│       ├── about.css       # About-page overrides (mostly empty — inline <style> used)
+│       ├── contact.css     # Contact layout, form styles, map placeholder
+│       ├── article.css     # Long-form article layout
+│       ├── home.css, pricing.css, resources.css
+│
+├── worker/
+│   └── compass.js          # Cloudflare Worker powering the Compass AI assistant
+│
+├── files/                  # Dev-only snippets/templates — NOT deployed pages
 │
 └── wiki/                   # This directory
     ├── architecture.md
     ├── vision.md
     └── devlog.md
 ```
+
+> **Asset & link paths are root-relative.** All pages reference shared assets as
+> `/styles/…`, `/scripts/…`, `/assets/…` and link to other pages as `/about/`, `/contact/`, `/`.
+> This is depth-independent — a page works the same whether it sits at `/about/` or
+> `/articles/<slug>/` — and assumes the site is served from the domain root (it is:
+> `uspeshno-budeshte.org`).
 
 ---
 
@@ -105,7 +141,7 @@ Every visible text element has `data-en` and `data-bg` attributes. On language t
 
 ## Pages
 
-### `about.html` — Landing
+### `about/index.html` — About (`/about/`)
 
 Four sections:
 
@@ -114,7 +150,7 @@ Four sections:
 | What We Do | Intro text (max-width 720px) + 5-column services grid |
 | Services | University Selection, Budgeting, Admissions, Career, Holistic Support |
 | Founders | Three horizontal cards — portrait photo (top) + action photo (bottom), credentials, bio, achievements, LinkedIn |
-| CTA | Navy block — "Get in touch" button linking to contact.html |
+| CTA | Navy block — "Get in touch" button linking to `/contact/` |
 
 **Inline `<style>` block** handles page-specific layout (services grid breakpoints, founder card two-photo stack, holistic block, credential badges).
 
@@ -126,7 +162,7 @@ Four sections:
 ≥ 1100px → 5 columns, gap: 16px
 ```
 
-### `contact.html` — Contact
+### `contact/index.html` — Contact (`/contact/`)
 
 Two areas side-by-side (`.contact-layout`):
 
@@ -194,6 +230,37 @@ Submissions are emailed to `info@uspeshno-budeshte.com` by Formspree. Also visib
 
 **Mobile nav drawer** (`.mobile-nav`): hidden by default, `.open` class toggled by hamburger click.
 
+**Active link**: `nav.js` normalises `location.pathname` (strips trailing slash; `/` = home) and compares it against each nav link's normalised `href`, adding `.active` on a match. Clean-URL aware — see **URL Routing**.
+
+---
+
+## URL Routing
+
+The site uses **clean, extensionless URLs** via **directory-based routing** — no server
+rewrites or build step needed (works natively on any static host, GitHub Pages included).
+
+**Convention**: every user-facing page is `index.html` inside a folder named for its slug.
+A static host serves a directory request from its `index.html`, so the URL needs no extension:
+
+| File on disk | Served URL |
+|---|---|
+| `index.html` | `/` |
+| `about/index.html` | `/about/` |
+| `contact/index.html` | `/contact/` |
+| `articles/stem-international-athlete/index.html` | `/articles/stem-international-athlete/` |
+
+**Canonical form has a trailing slash** (`/about/`).
+
+**Rules when adding/editing pages:**
+- New page → create `<slug>/index.html`. New article → `articles/<slug>/index.html`.
+- Link between pages with root-relative clean paths: `href="/about/"`, `href="/"` (home).
+- Reference shared assets root-relative: `/styles/…`, `/scripts/…`, `/assets/…`.
+  Never use `../` — root-relative paths are depth-independent.
+- Add the new URL to `sitemap.xml`.
+- Old `.html` paths are **not** redirected (no stubs) — they 404. Acceptable because the
+  site had negligible indexing under the old paths; revisit if Cloudflare analytics shows
+  404s on `*.html`.
+
 ---
 
 ## Deployment
@@ -201,19 +268,20 @@ Submissions are emailed to `info@uspeshno-budeshte.com` by Formspree. Also visib
 **Hosting**: GitHub Pages  
 **Repo**: `https://github.com/Toni-Sabev/Business-Website`  
 **Branch**: `main`  
-**Live URL**: `https://toni-sabev.github.io/Business-Website/`
+**Custom domain**: `https://uspeshno-budeshte.org` (via `CNAME` file; GitHub auto-provisions SSL)  
+**Front layer**: Cloudflare (DNS, Web Analytics, and the Compass Worker in `worker/compass.js`)
 
-Every `git push` to `main` auto-deploys. No build step required.
-
-**Custom domain** (future): add a `CNAME` file to repo root containing the domain. Point DNS to GitHub's servers. GitHub auto-provisions SSL.
+Every `git push` to `main` auto-deploys. No build step required. `.nojekyll` disables Jekyll
+processing so folders are served as-is.
 
 ---
 
 ## Known Constraints
 
-- `index.html` exists but is unused — `about.html` is the effective entry point
-- `pricing.html` and `team.html` exist from early prototyping — not linked, not deployed as live pages
-- `styles/pages/about.css` is empty — all About page layout lives in an inline `<style>` block in `about.html`
+- `pricing.html` and `team.html` exist from early prototyping — not linked, not deployed; left flat (no clean URL)
+- `files/` holds dev-only snippets/templates, not live pages — its internal links may be stale and are not maintained
+- `styles/pages/about.css` is empty — all About page layout lives in an inline `<style>` block in `about/index.html`
 - Logo uses `mix-blend-mode: multiply` — only looks correct on the cream background; would need adjustment on dark sections
 - Google Maps embed requires internet connection to load — shows blank grey box when offline
 - Formspree free tier: first submission to a new form requires email verification from Formspree before delivery begins
+- Old `*.html` URLs return 404 after the clean-URL migration (no redirect stubs)

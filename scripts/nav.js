@@ -20,13 +20,17 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Mark active nav link
+  // Mark active nav link — clean-URL aware (e.g. "/", "/about/")
+  const norm = (p) => {
+    p = p.replace(/\/index\.html$/, '/'); // tolerate any leftover index.html
+    p = p.replace(/\/+$/, '');            // drop trailing slash(es)
+    return p === '' ? '/' : p;
+  };
+  const current = norm(location.pathname);
   const links = document.querySelectorAll('.site-nav a, .mobile-nav a');
-  const path = location.pathname.replace(/\/$/, '') || '/index.html';
   links.forEach(a => {
-    const href = a.getAttribute('href').replace(/\/$/, '') || '/index.html';
-    if (path.endsWith(href) || (href === 'index.html' && (path === '' || path === '/'))) {
-      a.classList.add('active');
-    }
+    const href = a.getAttribute('href') || '';
+    if (/^(https?:|mailto:|tel:|#)/.test(href)) return; // skip external/anchor
+    if (norm(href) === current) a.classList.add('active');
   });
 });

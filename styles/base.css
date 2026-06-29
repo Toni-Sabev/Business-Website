@@ -1,4 +1,4 @@
-/* Base — reset, typography, utilities */
+/* Base - reset, typography, utilities */
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -16,9 +16,14 @@ body {
   font-size: var(--fs-body);
   line-height: 1.65;
   color: var(--color-ink);
-  background: var(--color-cream);
+  background: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+main, header, footer, section, article {
+  position: relative;
+  z-index: 1;
 }
 
 img, svg {
@@ -155,6 +160,23 @@ ul, ol {
   display: grid;
   gap: var(--space-3);
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* Mobile global typography & section spacing */
+@media (max-width: 767px) {
+  body {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .section {
+    padding: 44px 0;
+  }
+  .section-head {
+    margin-bottom: 28px;
+  }
+  .rule {
+    margin: 24px 0;
+  }
 }
 
 /* Reduced motion */

@@ -1,4 +1,4 @@
-/* Article page — shared across all blog articles */
+/* Article page - shared across all blog articles */
 
 /* ── Back link ─────────────────────────────────────────────── */
 .article-back {
@@ -29,7 +29,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-green);
-  background: rgba(0,150,110,0.10);
+  background: rgba(74,139,223,0.10);
   padding: 3px 10px;
   border-radius: var(--radius-chip);
   margin-bottom: var(--space-3);
@@ -146,7 +146,7 @@
 /* ── Callout boxes ─────────────────────────────────────────── */
 .callout {
   border-left: 3px solid var(--color-navy-mid);
-  background: rgba(24,40,69,0.04);
+  background: rgba(10,34,71,0.04);
   border-radius: 0 var(--radius-btn) var(--radius-btn) 0;
   padding: var(--space-3) var(--space-4);
   margin: var(--space-4) 0;
@@ -155,12 +155,12 @@
 
 .callout--warning {
   border-left-color: var(--color-red);
-  background: rgba(214,38,18,0.05);
+  background: rgba(160,0,109,0.05);
 }
 
 .callout--tip {
   border-left-color: var(--color-green);
-  background: rgba(0,150,110,0.06);
+  background: rgba(74,139,223,0.06);
 }
 
 .callout__label {

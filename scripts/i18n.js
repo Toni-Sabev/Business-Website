@@ -4,13 +4,13 @@ function setLang(lang) {
   localStorage.setItem(KEY, lang);
   document.documentElement.lang = lang;
 
-  // innerHTML — elements with data-en or data-bg
+  // innerHTML - elements with data-en or data-bg
   document.querySelectorAll('[data-en],[data-bg]').forEach(el => {
     const txt = el.dataset[lang];
     if (txt != null) el.innerHTML = txt;
   });
 
-  // HTML attributes — convention: data-[attrname]-en / data-[attrname]-bg
+  // HTML attributes - convention: data-[attrname]-en / data-[attrname]-bg
   // e.g. data-placeholder-en="…" sets the placeholder attribute when EN is active.
   // To add a new translatable attribute anywhere on the site, just add the data pair.
   document.querySelectorAll('*').forEach(el => {

@@ -1,0 +1,270 @@
+/* Globe hero - scroll-driven 3D (Three.js). Self-contained; ported from prototype. */
+
+@keyframes globe-cue {
+  0%, 100% { transform: rotate(45deg) translate(0, 0); opacity: .5; }
+  50%      { transform: rotate(45deg) translate(6px, 6px); opacity: 1; }
+}
+
+.globe-hero {
+  position: relative;
+  height: 340vh;
+  background: radial-gradient(120% 90% at 70% 30%, #103A6E 0%, #0A2247 38%, #061327 78%);
+  font-family: "Hanken Grotesk", -apple-system, system-ui, sans-serif;
+}
+
+.globe-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.globe-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.globe-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(80% 60% at 50% 42%, transparent 40%, rgba(4, 12, 28, .55) 100%);
+}
+
+/* Overlay layers */
+.globe-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+}
+.globe-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
+  pointer-events: none;
+}
+.globe-content {
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+}
+.globe-content-inner {
+  width: min(1280px, 93vw);
+  margin: 0 auto;
+}
+.globe-content-box {
+  max-width: 540px;
+  pointer-events: auto;
+}
+
+/* Typography */
+.globe-quote {
+  position: absolute;
+  top: 76px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  width: min(640px, 90vw);
+  text-align: center;
+  font-family: var(--font-display, "Source Serif 4", serif);
+  font-style: italic;
+  font-size: clamp(14px, 1.8vw, 18px);
+  line-height: 1.5;
+  color: #B9D2F0;
+  opacity: 0.92;
+  letter-spacing: 0.01em;
+  pointer-events: auto;
+}
+.globe-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .28em;
+  color: #8FB8E8;
+  margin-bottom: 22px;
+}
+.globe-content .globe-eyebrow {
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.globe-title {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: clamp(44px, 8.2vw, 116px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+.globe-sub {
+  margin: 24px 0 0;
+  max-width: 520px;
+  font-size: clamp(15px, 1.6vw, 19px);
+  line-height: 1.6;
+  color: #B9D2F0;
+}
+.globe-h2 {
+  margin: 0 0 18px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: #fff;
+}
+.globe-ctext {
+  margin: 0 0 28px;
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.65;
+  color: #C2D8F2;
+}
+
+/* Buttons */
+.globe-intro-cta {
+  margin-top: 30px;
+  pointer-events: auto;
+}
+.globe-content-actions {
+  display: flex;
+  gap: 13px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.globe-btn {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 15px 26px;
+  border-radius: 11px;
+  border: 1px solid transparent;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.globe-btn--accent {
+  background: #A0006D;
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(160, 0, 109, .4);
+}
+.globe-btn--accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(160, 0, 109, .5);
+}
+.globe-btn--ghost {
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  border-color: rgba(140, 184, 232, .4);
+  padding: 15px 24px;
+}
+.globe-btn--ghost:hover {
+  background: rgba(255, 255, 255, .16);
+}
+
+/* Scroll cue */
+.globe-cue {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #8FB8E8;
+  pointer-events: none;
+}
+.globe-cue span:first-child {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .22em;
+}
+.globe-cue-arrow {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-right: 2px solid #8FB8E8;
+  border-bottom: 2px solid #8FB8E8;
+  transform: rotate(45deg);
+  animation: globe-cue 1.6s ease-in-out infinite;
+}
+
+/* Mobile: anchor text layers to bottom so the globe breathes above */
+@media (max-width: 767px) {
+  .globe-quote {
+    top: 80px;
+    text-align: center;
+    font-size: 13.5px;
+  }
+  .globe-intro {
+    justify-content: flex-end;
+    align-items: flex-start;
+    text-align: left;
+    padding: 0 24px 0;
+  }
+  .globe-title {
+    font-size: clamp(28px, 7.5vw, 42px);
+  }
+  .globe-sub {
+    font-size: 14px;
+    margin-top: 14px;
+  }
+  .globe-content {
+    align-items: flex-end;
+    padding-bottom: 80px;
+  }
+  .globe-content-inner {
+    text-align: center;
+  }
+  .globe-content-box {
+    margin: 0 auto;
+  }
+  .globe-h2 {
+    font-size: clamp(22px, 5.5vw, 32px);
+    margin-bottom: 12px;
+  }
+  .globe-ctext {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  .globe-btn {
+    font-size: 13.5px;
+    padding: 10px 20px;
+  }
+}
+
+/* Fallback: no WebGL or reduced motion - collapse to one screen, show intro + CTA */
+.globe-hero.is-fallback {
+  height: auto;
+  min-height: 100vh;
+}
+.globe-hero.is-fallback .globe-stage {
+  position: relative;
+  height: auto;
+  min-height: 100vh;
+}
+.globe-hero.is-fallback .globe-intro {
+  position: relative;
+  min-height: 100vh;
+  opacity: 1 !important;
+  transform: none !important;
+}
+.globe-hero.is-fallback .globe-content,
+.globe-hero.is-fallback .globe-cue {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .globe-cue-arrow { animation: none; }
+}

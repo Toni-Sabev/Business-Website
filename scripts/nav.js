@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Mark active nav link — clean-URL aware (e.g. "/", "/about/")
+  // Mark active nav link - clean-URL aware (e.g. "/", "/about/")
   const norm = (p) => {
     p = p.replace(/\/index\.html$/, '/'); // tolerate any leftover index.html
     p = p.replace(/\/+$/, '');            // drop trailing slash(es)

@@ -13,6 +13,12 @@
   transition: color 0.15s;
 }
 .article-back:hover { color: var(--color-navy); }
+@media (max-width: 767px) {
+  .article-back {
+    margin-top: 10px;
+    margin-bottom: var(--space-4);
+  }
+}
 
 /* ── Article header ────────────────────────────────────────── */
 .article-header {

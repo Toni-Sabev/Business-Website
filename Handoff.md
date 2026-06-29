@@ -1,112 +1,74 @@
 # Session Handoff & Master Handout — Успешно Бъдеще Website
 
-_Last updated: June 29, 2026. Master working documentation for current status, local prototyping setup, reference material, accomplishments, and tomorrow's session roadmap. Not meant for deployment._
+_Last updated: June 29, 2026. Master documentation reflecting completed website prototype redesign, architecture, live functionality, and Git repository status._
 
 ---
 
-## 🚀 How to Preview Locally
+## 🚀 Preview & Run Locally
 From project root (`Business Website/`):
 ```bash
 python3 -m http.server 8000
 ```
-Then open **http://localhost:8000/** in your browser. Clean directory-based URLs work seamlessly: `/`, `/about/`, `/contact/`, `/resources/`, `/compass/`, `/articles/<slug>/`.
-- **Responsive Testing**: Test mobile via browser DevTools responsive mode (e.g., iPhone 390×844) — **mobile is the priority; most users visit on phones.**
+Then open **http://localhost:8000/** in your browser. Clean directory-based URLs work seamlessly across all pages:
+`/`, `/about/`, `/contact/`, `/resources/`, `/compass/`, `/articles/<slug>/`.
 
 ---
 
 ## 🚦 Git & Deployment State
-- **Production Repository**: `Toni-Sabev/Business-Website`, branch `main`, hosted on GitHub Pages with custom domain **uspeshno-budeshte.org** (Cloudflare DNS, analytics, Compass worker).
-- **Deployed to Production**: Clean-URL migration structure and hidden packages section.
-- **LOCAL ONLY (Uncommitted & Not Pushed)**:
-  - Globe hero transformations & 3D continent polygon mapping.
-  - Site-wide continuous 3D orbital trajectory background (`/scripts/orbital-bg.js`).
-  - Restyled brand blue service cards (`.offer-item`) with summarized 1-bullet copy across `index.html`, `privacy/index.html`, and `terms/index.html`.
-  - Brand navy blue track record strip (`.trust-strip`).
-  - Crisp white sticky navigation header (`.site-header`).
-  - Headline copy updates (*"From Europe to America"* / *"От Европа до Америка"*, *"Book a meeting"* / *"Запазете среща"*).
-  - **All changes from June 29 session (see below).**
-- **Workflow Rules**: Always propose a plan before implementing. Do **NOT** commit or push until a working prototype is explicitly approved by the user. Prototyping mode active.
+- **Production Repository**: `Toni-Sabev/Business-Website`, branch `main`, hosted on GitHub Pages with custom domain **uspeshno-budeshte.org** (Cloudflare DNS, Cloudflare Web Analytics, Compass Cloudflare AI Worker).
+- **Git Commit**: `feat: complete website redesign with unified Compass 3D hero, mobile responsiveness audit, and home motto` (committed & pushed to remote `main`).
+- **Status**: Complete website prototype redesign successfully implemented, tested, committed, and pushed.
 
 ---
 
-## 🛠️ Master Summary of Accomplishments & Features Chosen
+## 🛠️ Master Summary of Accomplishments & Features
 
-### 1. 🌐 3D Geo-Dot Globe Hero (`/scripts/globe.js`)
-- **Sleek Tech Aesthetics (Tree Removal)**: Completely eliminated tree instances, cone geometries, and seasonal color shifts.
-- **High-Precision Continent Mapping**: Mathematical ray-casting land detection algorithm (`isLand(lat, lng)`).
-- **Transatlantic Europe ✈️ US Trajectories**: Flight arcs restricted to Sofia, London, Delaware, Missouri.
-- **Centered 3D Viewport Angle**: Northern Hemisphere pitched forward, transatlantic trajectories centered.
-- **Clean Coastline Boundaries**: Smooth perimeter loops, no internal geometric lines.
-- **Scroll-Driven Contrast Dimming**: Progressive opacity scaling on scroll.
+### 1. 🧭 Redesigned Compass AI Page (`/compass/`) & 3D Logo Planet (`/scripts/compass-planet.js`)
+- **Unified Deep Tech Navy Canvas**: Removed artificial section splits and white background cards. The entire page uses one continuous, deep tech navy space gradient background (`radial-gradient(125% 95% at 50% 0%, #103A6E 0%, #0A2247 40%, #061327 100%)`) with soft floating radial color blooms.
+- **Real 3D Spherical Logo Planet**: Turned the flat 2D owl logo into a curved 3D spherical dome (`z = √(R² - x² - y²)`) using `MeshStandardMaterial`, custom procedural bump relief map, and smooth PBR lighting.
+- **Softened Tint & Contrast**: Softened the logo face contrast from harsh white to silky metallic ice-blue (`#d8e6f7` to `#93bce8`) with tuned 3D key lighting (`#e6f0fa`) to integrate with space blue.
+- **Compact 3D Stage Sizing**: Refined planet stage dimensions (`270px` desktop / `220px` mobile) for balanced framing.
+- **Sleek Compact Typography**: Reduced chat bubble font size to `13.5px`, question chips to `11.5px`, and input text to `13.5px`. Live Cloudflare Worker proxy (`WORKER_URL`) fully connected and functioning with Bulgarian/English fallback state handling.
 
-### 2. 📱 Mobile Hero Layout (`/styles/globe.css`)
-- **Intro text ("From Europe to America") anchored bottom-left** on mobile (`justify-content: flex-end; align-items: flex-start`).
-- **Globe drifts upward on scroll** — `scene.position.y` animates from `0.28` to `+1.4` units over 60% of scroll progress, clearing the text as the next section arrives.
-- **"Our entire experience..." text (globe-content) anchored bottom-center** on mobile, 80px from bottom edge.
-- **Removed "Scroll to begin" text** — only the animated arrow remains.
+### 2. 📱 Site-Wide Mobile Responsiveness Audit
+- **Fluid Responsive Type Scale (`styles/tokens.css`)**: Adjusted `--fs-hero` (`clamp(30px, 5.5vw, 76px)`), `--fs-h2` (`clamp(24px, 4vw, 54px)`), and `--fs-lede` (`clamp(15px, 2vw, 18px)`). Headings and lead paragraphs scale naturally on mobile screens without overflowing.
+- **Snug Section & Card Padding (`styles/base.css` & `styles/components.css`)**: Reduced mobile section padding to `44px` and card padding (`.card`, `.offer-item`, `.package-card`, `.founder-card__body`) to `20px 16px`.
+- **Full-Bleed Founder Photos**: Fixed founder cards (`.founder-card`) on the About page so photos extend full-bleed to top, left, and right borders with no white padding gaps.
 
-### 3. ✨ Site-Wide 3D Orbital Trajectories Background (`/scripts/orbital-bg.js`)
-- Continuous 3D orbital trajectory rings with orbiting particle beads across all pages via Three.js.
+### 3. 📖 Home Page Motto & Globe Framing (`index.html`, `scripts/globe.js`, `styles/globe.css`)
+- **Bilingual Antoine de Saint-Exupéry Motto**: Inserted quote inside `#hero-intro` at the top of the globe hero stage (`top: 76px` desktop / `80px` mobile under the header):
+  - *EN*: “As for the future, your task is not to foresee it, but to enable it.” — Antoine de Saint-Exupéry
+  - *BG*: „Колкото до бъдещето, твоята задача не е да го предвидиш, а да го направиш възможно.“ — Антоан дьо Сент-Екзюпери
+- **Synchronized Scroll Fade**: The quote vanishes together with *"From Europe to America"* as the user scrolls.
+- **Desktop Globe Camera Distance**: Adjusted 3D camera distance (`BASE_Z = 7.4`) in `globe.js` to scale the desktop globe slightly smaller, creating vertical headroom for the top quote.
 
-### 4. 💳 Brand Blue Service Offer Cards (`.offer-item`)
-- Navy gradient backgrounds, white headings, ice-blue body text, glowing blue bullet indicators.
-- Streamlined to 1 concise bullet per card in both languages.
+### 4. 📞 Contact Page Background & Glassmorphism (`contact/index.html`, `styles/pages/contact.css`)
+- **Fixed Orbital Canvas Masking**: Removed opaque background sections to reveal the site-wide Three.js orbital background canvas (`#orbital-bg-canvas`).
+- **Glassmorphism Form Cards**: Applied translucent frosted glass cards (`rgba(255, 255, 255, 0.85)` with `backdrop-filter: blur(16px)`).
+- **Mobile Input Optimization**: Compact form inputs (`13.5px`, `9px 12px` padding) and full-width mobile submit button.
 
-### 5. 📰 Resource Cards — Navy Gradient (`.article-card`, `.blog-card`)
-- Both home page and resources page cards now use the brand navy gradient (`linear-gradient(145deg, var(--color-navy-mid), var(--color-navy))`).
-- White/ice-blue text for readability on dark background.
-- "Read article →" buttons removed — entire card is the clickable link.
-- Article card styles consolidated into `components.css` (were duplicated in home page inline style block).
-
-### 6. 🧭 Brand Navy "Our Path" Track Record Strip (`.trust-strip`)
-- Navy gradient, ice-blue labels, crisp white italic institution typography.
-- "NCAA" updated to **"NCAA 2025"**.
-- Infinity stat label trimmed to "Forms, registrations, documents" (removed "a path already navigated").
-
-### 7. 🏛️ Crisp White Site Header (`.site-header`)
-- `rgba(255,255,255,0.95)` with backdrop blur.
-
-### 8. ✍️ Copy Updates (June 29)
-- **"Who we are" paragraph**: New storytelling copy — *"Трима приятели. Един риск..."* in both EN and BG.
-- **Compass section paragraph**: Condensed to single focused sentence in both languages.
-- **Globe content paragraph**: Added *"...and the first steps of a career abroad"* / *"...в кариерата в чужбина"*.
-
-### 9. 🗑️ Removed Components
-- **"The future is ahead of you!" CTA flip block** removed from home page.
-- **"Ready to start?" CTA flip block** removed from about page.
-
-### 10. 🎨 Site-Wide Design System Tokens (`styles/tokens.css`)
+### 5. 🎨 Design System & Brand Palette (`styles/tokens.css`)
 - **Royal Blue `#4A8BDF`** (Lead brand color — token `--color-green`).
-- **Eggplant `#A0006D`** (Accent: CTAs & key flight arcs — token `--color-red`).
+- **Eggplant `#A0006D`** (Accent: CTAs & flight arcs — token `--color-red`).
 - **Deep Tech Navy `#0A2247` / `#061327`** (Dark sections, service cards, footer — token `--color-navy`).
 - **Crisp White `#FFFFFF` & Cream `#F5F3EE`** (Page backgrounds and card surfaces).
 
 ---
 
-## 📂 Reference Material
-- `../REDESIGN-PROMPT.md` — Full redesign brief (color palette, fonts, section hierarchy, 3D hero specs).
-- `../Successful Future - Home.dc.html` — Visual target prototype file (redesigned home layout + globe source).
+## 📂 Repository Structure & Key Files
+- `index.html` — Home page with 3D Geo-Dot Globe, Saint-Exupéry motto, brand blue offer cards, track record strip.
+- `about/index.html` — About Us page with full-bleed founder cards, company tenets, comparison matrix.
+- `compass/index.html` — Compass AI page with continuous tech blue canvas, interactive 3D logo planet, live AI proxy chat.
+- `contact/index.html` — Contact page with glassmorphism forms and direct contact info.
+- `resources/index.html` & `articles/` — Resource hub and articles with dark navy gradient cards.
+- `scripts/globe.js` — 3D interactive continent-dot globe canvas script.
+- `scripts/compass-planet.js` — 3D spherical dome logo planet rendering script.
+- `scripts/orbital-bg.js` — Site-wide 3D background orbital trajectory animation script.
+- `scripts/i18n.js` — Dynamic runtime Bulgarian/English translation toggle.
 
 ---
 
-## 📅 Roadmap for Next Session
-
-### ✅ Home Page — COMPLETE
-The home page is considered done. No further changes planned.
-
-### 👥 Part 1: About Page Enhancement (Highest Priority Next)
-- [ ] **Dynamic 3D Founder Cards**: Interactive 3D visual elements for each founder card.
-- [ ] **Color & Component Sanity Check**: Full audit across all pages — color matching, transitions, component consistency.
-
-### 🚀 Part 2: Resources & Contact Pages
-- [ ] **Strategic roadmap** for Resources and Contact page redesign.
-- [ ] **Initial implementation** once About page is done.
-- [ ] Update wiki docs and Handoff.md.
-
----
-
-## ⚠️ Gotchas & Engineering Rules
-- **Nested HTML Comments**: Nested HTML comments break rendering. Remove inner `<!-- -->` tags and avoid `--` or `-->` inside wrapper notes.
-- **Bilingual i18n System**: Bulgarian (`bg`) is the default static HTML language. Dynamic translations via `scripts/i18n.js` using `data-en` and `data-bg` attributes (support `innerHTML` for `<br>` etc.).
-- **Inline Style Blocks Override components.css**: The home page has a large inline `<style>` block that takes precedence over `components.css`. Always check both when a style isn't applying.
-- **Dev Directory Exclusions**: The `files/` folder contains local dev-only snippets and is excluded from production deployments.
+## ⚠️ Engineering Rules & Maintainer Notes
+- **Bilingual i18n System**: Bulgarian (`bg`) is the static HTML language. Dynamic runtime translations target `data-en` and `data-bg` attributes on elements, and `data-placeholder-en` / `data-placeholder-bg` on inputs.
+- **Clean Directory URLs**: Web server routes directories directly to `index.html` (`/about/`, `/contact/`, `/compass/`).
+- **Local Dev Snippets**: `files/` directory contains local development code snippets and is excluded from production server deployment.

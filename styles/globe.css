@@ -203,7 +203,7 @@
 /* Mobile: anchor text layers to bottom so the globe breathes above */
 @media (max-width: 767px) {
   .globe-quote {
-    top: 140px;
+    top: 90px;
     text-align: center;
     font-size: 13.5px;
   }

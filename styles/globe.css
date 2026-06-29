@@ -211,7 +211,7 @@
     justify-content: flex-end;
     align-items: flex-start;
     text-align: left;
-    padding: 0 24px 0;
+    padding: 0 24px 110px;
   }
   .globe-title {
     font-size: clamp(28px, 7.5vw, 42px);

@@ -67,7 +67,7 @@
 /* Typography */
 .globe-quote {
   position: absolute;
-  top: 76px;
+  top: 165px;
   left: 50%;
   transform: translateX(-50%);
   margin: 0;
@@ -203,7 +203,7 @@
 /* Mobile: anchor text layers to bottom so the globe breathes above */
 @media (max-width: 767px) {
   .globe-quote {
-    top: 80px;
+    top: 140px;
     text-align: center;
     font-size: 13.5px;
   }

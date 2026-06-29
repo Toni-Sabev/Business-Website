@@ -82,6 +82,20 @@ ul, ol {
   }
 }
 
+/* First section top offset below floating header */
+main > section:first-child:not(.globe-hero),
+main > .hero:first-child,
+main > .about-hero:first-child {
+  padding-top: 170px;
+}
+@media (max-width: 767px) {
+  main > section:first-child:not(.globe-hero),
+  main > .hero:first-child,
+  main > .about-hero:first-child {
+    padding-top: 135px;
+  }
+}
+
 /* Section background alternates */
 .section--alt {
   background: var(--color-cream-soft);

@@ -419,11 +419,30 @@ a.wordmark--logo {
   padding-top: var(--space-4);
   border-top: 1px solid rgba(255,255,255,0.08);
   font-size: 12px;
-  color: rgba(255,255,255,0.35);
+  font-weight: 600;
+  color: rgba(255,255,255,0.65);
 }
-.footer-bottom a { color: rgba(255,255,255,0.50); transition: color 0.15s; }
+.footer-bottom a { color: rgba(255,255,255,0.70); transition: color 0.15s; }
 .footer-bottom a:hover { color: #fff; }
 .footer-bottom-links { display: flex; gap: var(--space-3); }
+
+.footer-legal {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.60);
+  border-top: 1px solid rgba(255,255,255,0.10);
+  padding-top: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* Email addresses — system monospace for readability across all fonts/languages */
+a[href^="mailto:"] {
+  font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Code", monospace;
+  font-weight: 400;
+  font-size: 0.95em;
+}
 
 /* ─── Track Record / Trust Strip ─────────────────────────────── */
 .trust-strip {
@@ -985,10 +1004,16 @@ a.wordmark--logo {
 
 .founder-card__bio {
   font-size: 14px;
+  font-weight: 400;
   line-height: 1.70;
   color: var(--color-muted);
   padding-top: var(--space-3);
   border-top: 1px solid var(--color-rule);
+}
+.founder-card__bio strong,
+.founder-card__bio b {
+  font-weight: inherit;
+  font-size: inherit;
 }
 
 .founder-card__achievements {

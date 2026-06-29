@@ -33,8 +33,9 @@
   --color-clay-soft:   var(--color-red-soft);
 
   /* ── Typography ──────────────────────────────────────────────── */
-  --font-display: "Source Serif 4", Georgia, serif;
-  --font-body:    "Manrope", -apple-system, system-ui, sans-serif;
+  --font-display: "Graduate", Georgia, serif;
+  --font-body:    "Graduate", Georgia, serif;
+  --font-serif:   "Instrument Serif", Georgia, serif; /* quotes, compass intro */
 
   /* ── Type scale ──────────────────────────────────────────────── */
   --fs-hero:   clamp(30px, 5.5vw, 76px);

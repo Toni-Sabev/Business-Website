@@ -28,6 +28,11 @@
   var T, renderer, scene, camera, globe, orbits, clock, raf;
   var markers = [], arcs = [], arcParticles = [], landDotMat, boundaryDotMat, oceanDotMat;
   var progress = 0;
+  var cachedVH = 0;
+
+  function getVH() {
+    return (window.visualViewport ? window.visualViewport.height : 0) || window.innerHeight;
+  }
 
   function smooth(x, a, b) {
     var t = Math.max(0, Math.min(1, (x - a) / (b - a)));
@@ -151,8 +156,15 @@
     T = window.THREE;
     var canvas = document.getElementById('globe-canvas');
     if (!canvas || renderer) return;
+    cachedVH = getVH();
     var w = canvas.clientWidth || window.innerWidth;
-    var h = canvas.clientHeight || window.innerHeight;
+    var h = canvas.clientHeight || cachedVH;
+
+    canvas.addEventListener('webglcontextlost', function (e) {
+      e.preventDefault();
+      if (raf) { cancelAnimationFrame(raf); raf = null; }
+      hero.classList.add('is-fallback');
+    }, false);
 
     renderer = new T.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -346,7 +358,7 @@
 
   function onScroll() {
     var rect = hero.getBoundingClientRect();
-    var total = hero.offsetHeight - window.innerHeight;
+    var total = hero.offsetHeight - cachedVH;
     progress = total > 0 ? Math.max(0, Math.min(1, -rect.top / total)) : 0;
     var p = progress;
 
@@ -363,6 +375,7 @@
 
   function onResize() {
     if (!renderer) return;
+    cachedVH = getVH();
     var canvas = document.getElementById('globe-canvas');
     var w = canvas.clientWidth, h = canvas.clientHeight;
     renderer.setSize(w, h, false);

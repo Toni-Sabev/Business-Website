@@ -27,6 +27,22 @@ _Last updated: July 9, 2026. Master documentation reflecting completed website p
 
 ---
 
+## ✅ Session Update — July 9, 2026 (later same day): Compass disabled — decided not useful enough to keep live
+
+Site owner's call: Compass (the AI chat assistant) wasn't earning its keep — not useful enough to justify the ongoing maintenance surface (live Cloudflare Worker, Gemini API dependency, the privacy/legal disclosures it required). Decision was to **disable, not delete** — everything is kept in the repo in case it's revisited later, but nothing on the live site links to it anymore.
+
+**What was done:**
+- Every link to `/compass/` was wrapped in an HTML comment (not deleted) — primary nav and mobile nav on all 10 pages that had one, the footer "Pages" column on the 3 pages that listed it (`index.html`, `privacy/index.html`, `terms/index.html`), and the `sitemap.xml` entry. Each comment is tagged `Compass disabled 2026-07-09, kept for possible future use` so they're easy to find and revert.
+- The home page's entire "Meet Compass" teaser section (`#compass-section` in `index.html` — eyebrow, heading, topic chips, fake chat preview, CTA button) was wrapped in a single HTML comment, following the same pattern already used for the old flags-photo hero elsewhere in that file (see the "OLD HERO" comment block for the precedent).
+- **Files deliberately left untouched and fully functional**: `compass/index.html`, `scripts/compass-planet.js`, `styles/pages/compass.css`, `worker/compass.js`. If you navigate directly to `/compass/` on the live site, it still works exactly as before — it's just not linked from anywhere a visitor would naturally end up.
+- `/privacy/` clause 2's "Compass assistant" data-collection bullet was commented out (both languages). Clauses 3, 4, and 8, which each had a short "...and the Compass assistant" / "...or the Compass assistant" phrase woven into an otherwise-still-needed sentence, were directly edited to remove just that phrase (not comment-out-able without breaking the sentence — the original wording is in git history if needed).
+- `/terms/` clause 6 ("Compass") was commented out in full (both languages), and clauses 7–12 were renumbered to 6–11 so the live page reads as a clean, gapless list. Verified in-browser that both language versions render 1–11 with no trace of Compass.
+- **Not touched**: `wiki/devlog.md` (historical log, not rewritten), the Compass-specific CORS/Worker-logging backlog items below (resolved by disablement, see updated notes there), and the actual deployed Cloudflare Worker service itself — that's infrastructure outside this repo; if the site owner wants to stop paying for/running it, it needs to be paused or deleted directly in the Cloudflare dashboard.
+
+**To restore Compass in a future session:** search the repo for `Compass disabled 2026-07-09` — every commented-out block carries that exact string as a marker. Uncomment each, restore the two edited privacy-clause phrases (see git history around this commit), and re-renumber `/terms/` clauses 6–11 back up to 7–12 with a new clause 6 for Compass.
+
+---
+
 ## 🚀 Preview & Run Locally
 From project root (`Business Website/`):
 ```bash
@@ -108,14 +124,15 @@ Then open **http://localhost:8000/** in your browser. Clean directory-based URLs
 Nothing below is a regression from today's work; these are pre-existing or intentionally-deferred items surfaced during the font/legal-pages cleanup, listed so they aren't lost.
 
 **Legal / privacy — worth real attention before treating the policy as final:**
-- **Compass Worker logging unconfirmed.** Does anything on the Cloudflare side (`worker/compass.js`, or Cloudflare account settings like Logpush / dashboard request logging) persist the *content* of chat messages anywhere? The worker source has no explicit logging call (no KV/D1 write, no external log drain visible), but Cloudflare account-level logging settings aren't visible from the codebase. Confirm directly in the Cloudflare dashboard and update the privacy policy's data-retention section if anything beyond the stateless proxy request is actually retained.
+- ~~Compass Worker logging unconfirmed~~ — **moot as of 2026-07-09**, Compass is disabled and no longer linked from the live site, and the privacy policy no longer references it. Still relevant *if Compass is ever revived*: does anything on the Cloudflare side (`worker/compass.js`, or Cloudflare account settings like Logpush / dashboard request logging) persist the *content* of chat messages anywhere? The worker source has no explicit logging call, but Cloudflare account-level logging settings aren't visible from the codebase. Confirm in the Cloudflare dashboard before re-enabling.
 - **Vendor names were stripped from `/privacy/` clause 4 & 5** at the owner's request on 2026-07-09. Current live text just says "third-party service providers," no names. The removed text (EN; BG mirrored it):
   > Form submissions are processed by Formspree, Inc. (United States). Compass messages are processed by Google LLC (United States) through infrastructure operated by Cloudflare, Inc., using the free tier of Google's Gemini API. Under that tier's terms, Google may use the content of your messages to improve and train its models. We do not sell your personal data, and we do not share it with universities, coaches, or any third party without your instruction.
   >
   > [Clause 5] The processors named above are established in the United States. Transfers are made under the European Commission's Standard Contractual Clauses.
 
   GDPR Art. 13(1)(e) requires disclosing categories of recipients — the version above is the accurate, specific disclosure the original `legal-pages-task.md` draft was written to include. This was a deliberate, temporary simplification, not an oversight. Restore something equivalently specific before real launch.
-- **Compass CORS may be broken in production right now.** `worker/compass.js` sets `ALLOWED_ORIGIN = 'https://toni-sabev.github.io'`, but the site's actual production domain (per `CNAME`) is `uspeshno-budeshte.org`. If that's genuinely what's deployed on Cloudflare, browser fetch requests from the live site would get CORS-blocked and the Compass chat would silently fail with a generic error. Could not verify against the actually-deployed Worker code from this environment — only this local copy. Check the Cloudflare dashboard directly.
+- ~~Compass CORS may be broken in production~~ — **moot as of 2026-07-09**, nothing on the live site calls the Worker anymore. Still worth knowing if Compass is revived: `worker/compass.js` sets `ALLOWED_ORIGIN = 'https://toni-sabev.github.io'`, but the site's actual production domain (per `CNAME`) is `uspeshno-budeshte.org` — those don't match, so re-enabling Compass as-is would likely hit CORS failures. Fix `ALLOWED_ORIGIN` (and confirm what's actually deployed on Cloudflare, which may differ from this local file) before relinking it anywhere.
+- **The live Cloudflare Worker service itself was not touched.** Disabling Compass in this repo only removes links to it — if a Worker is still deployed and receiving the Gemini API key, it keeps existing (and potentially costing money / being reachable by direct request) until manually paused or deleted in the Cloudflare dashboard. That's outside what a git push can do.
 - **Minors restriction is copy-only, not technically enforced.** The contact form says it's for parents/guardians or 18+, but nothing actually verifies age or role. Fine as a first pass per the site owner's chosen option, but worth knowing it's not a hard gate.
 
 **Cleanup identified but not yet done** (from a dead-code audit run this session — see also the "Known Constraints" additions in `wiki/architecture.md`):
@@ -125,5 +142,5 @@ Nothing below is a regression from today's work; these are pre-existing or inten
 - `assets/fonts/NeueMachina-Light.woff2`, `-Regular.woff2`, `-Ultrabold.woff2` (~74KB) are not referenced anywhere in the codebase — no `@font-face`, no CSS, no HTML link.
 - `README.md` is stale — describes an old two-page prototype (`blog/index.html`, placeholder pricing/team pages) that no longer matches the real site structure.
 - `scripts/globe.js` has a harmless but pointless dead condition: `idx < ap.curvePoints.length * ap.curvePoints.length` — always true for any real array, likely meant to be `idx < ap.curvePoints.length`.
-- `contact/index.html`'s footer "Pages" column is missing a "Компас"/"Compass" link that every other page's footer has — pre-existing inconsistency, not introduced or fixed this session.
-- `compass/index.html` has no `<footer>` at all — pre-existing, every other live page has one.
+- ~~`contact/index.html`'s footer "Pages" column is missing a "Компас"/"Compass" link~~ — **moot as of 2026-07-09**, Compass is disabled and no page should link to it now anyway.
+- `compass/index.html` has no `<footer>` at all — pre-existing, every other live page has one. Now purely academic since the page isn't linked, but noted in case it's revived.

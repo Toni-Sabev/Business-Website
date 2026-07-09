@@ -16,7 +16,7 @@
 
 ## Current State (July 2026)
 
-A highly polished, multi-page interactive platform with 3D WebGL visuals and Edge AI chat functionality, fully bilingual (BG/EN toggle), deployed on GitHub Pages with Cloudflare optimizations. Font and legal-pages cleanup passes are complete; the site is considered in good standing for this phase.
+A highly polished, multi-page interactive platform with 3D WebGL visuals, fully bilingual (BG/EN toggle), deployed on GitHub Pages with Cloudflare optimizations. Font and legal-pages cleanup passes are complete; the site is considered in good standing for this phase. The Compass AI chat feature was disabled on 2026-07-09 (not deleted — see the note at the top of `wiki/architecture.md`).
 
 | Page | Status |
 |---|---|
@@ -24,7 +24,7 @@ A highly polished, multi-page interactive platform with 3D WebGL visuals and Edg
 | **About** | Live — Company tenets, comparison matrix, 3 founder cards with dual-photo setups and detailed bios |
 | **Contact** | Live — enquiry form (Formspree client-side fetch), required privacy-policy consent checkbox, age-restriction notice (parents/guardians or 18+), office details, Sofia map embed, site-wide orbital canvas |
 | **Resources** | Live — article index with category filtering chips |
-| **Compass** | Live — Edge AI chatbot page with 3D spherical logo planet canvas, "Compass can make mistakes" disclaimer under the input |
+| **Compass** | **Disabled** (2026-07-09) — deemed not useful enough to keep live. Page, script, styles, and Worker proxy all still exist in the repo and work if visited directly, but nothing links to `/compass/` anymore (nav, footer, home page section, and sitemap entry are all commented out). |
 | **Articles** | Live — long-form articles (NCAA guide, STEM benefits, OPT/CPT employment, SEVIS lifecycle) |
 | **Privacy / Terms** | Live — real bilingual GDPR-oriented policy and terms of service (previously both were an accidental copy of the homepage). See `Handoff.md` for the one open item (vendor-name disclosure was intentionally simplified). |
 
@@ -36,7 +36,7 @@ A highly polished, multi-page interactive platform with 3D WebGL visuals and Edg
 Ensure that local performance remains extremely fast despite Three.js WebGL and interactive animations. Optimize rendering, camera math, and loading behaviors where possible.
 
 ### Copy Refinement
-Ensure all Bulgarian translations match professional educational and athletic advisory standards. Keep system prompt instructions for Compass aligned with real-world immigration and admission updates.
+Ensure all Bulgarian translations match professional educational and athletic advisory standards.
 
 ---
 
@@ -46,7 +46,7 @@ Ensure all Bulgarian translations match professional educational and athletic ad
 Add structured parent and student-athlete testimonials to the Home and About pages.
 
 ### FAQ Section
-Integrate a searchable FAQ section to resources or as direct suggestion prompts on the Compass AI page.
+Integrate a searchable FAQ section on the Resources page.
 
 ### SEO & Localization Enhancements
 - Expand `<meta>` and Open Graph tags for all articles in both languages.

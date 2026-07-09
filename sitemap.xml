@@ -20,11 +20,13 @@
     <priority>0.7</priority>
     <changefreq>weekly</changefreq>
   </url>
+  <!-- Compass disabled 2026-07-09, kept for possible future use:
   <url>
     <loc>https://uspeshno-budeshte.org/compass/</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
+  -->
   <url>
     <loc>https://uspeshno-budeshte.org/articles/employment-international-athlete/</loc>
     <priority>0.6</priority>

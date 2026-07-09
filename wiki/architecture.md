@@ -6,7 +6,9 @@
 
 ## Overview
 
-The Successful Future (Успешно Бъдеще) platform is a high-performance marketing website, interactive guidance utility, and AI assistant interface. While it avoids the complexity of heavy single-page application (SPA) frameworks or build steps to keep local development instantaneous, it features an advanced client-side architecture incorporating **3D WebGL visuals**, **dynamic theme-switching systems**, **3D CSS animations**, and **Edge AI Workers**.
+The Successful Future (Успешно Бъдеще) platform is a high-performance marketing website and interactive guidance utility. While it avoids the complexity of heavy single-page application (SPA) frameworks or build steps to keep local development instantaneous, it features an advanced client-side architecture incorporating **3D WebGL visuals**, **dynamic theme-switching systems**, and **3D CSS animations**.
+
+> **Compass (the AI chat assistant) is disabled as of 2026-07-09.** It wasn't providing enough value to justify the maintenance surface (a live Cloudflare Worker + Gemini API dependency, plus the privacy/legal disclosures it required). The code is intentionally *not* deleted — `compass/index.html`, `scripts/compass-planet.js`, `styles/pages/compass.css`, and `worker/compass.js` all still exist and still work if visited directly — but every link to it (primary nav, mobile nav, footer, the home page's "Meet Compass" section, `sitemap.xml`) has been commented out, and the AI-assistant-specific clauses in `/privacy/` and `/terms/` have been removed or renumbered accordingly. See "Known Constraints" below and `Handoff.md` for the full list of what was touched and how to restore it.
 
 ### 🌟 Key Advanced Features & Technologies
 
@@ -20,9 +22,9 @@ The Successful Future (Успешно Бъдеще) platform is a high-performan
    - **3D CSS Flip Cards** (`index.html`): Offers detailed packages with 3D rotation transforms (`transform-style: preserve-3d` and `backface-visibility`) that flip on hover/tap to reveal features.
    - **Frosted Glassmorphism UI**: Uses `backdrop-filter: blur(16px)` and translucent surfaces to display forms and cards over the 3D space orbit canvas.
 
-3. **Immersive Edge AI Integration**:
-   - **Compass Chat Assistant** (`compass/index.html`): Full-featured chat UI with message bubbles, typing indicators, and suggestion chips.
-   - **Cloudflare Worker Proxy** (`worker/compass.js`): Proxy routing to the Gemini 2.5 Flash API with built-in context history management (last 3 turns), strict role-based prompts, and HTTP 429 rate-limit fallback.
+3. **Immersive Edge AI Integration — disabled, code retained:**
+   - **Compass Chat Assistant** (`compass/index.html`): Full-featured chat UI with message bubbles, typing indicators, and suggestion chips. Not linked from anywhere live; reachable only by direct URL.
+   - **Cloudflare Worker Proxy** (`worker/compass.js`): Proxy routing to the Gemini 2.5 Flash API with built-in context history management (last 3 turns), strict role-based prompts, and HTTP 429 rate-limit fallback. The Worker source is kept in the repo; whether the actual Cloudflare-hosted Worker service has been paused/deleted is a separate, manual step outside this repo — see `Handoff.md`.
 
 ---
 
@@ -36,7 +38,7 @@ successful-future/
 ├── about/index.html        # About (/about/) — Who We Do, Services, Founders (dual photo stack)
 ├── contact/index.html      # Contact (/contact/) — Glassmorphism form, Sofia map, orbital bg canvas
 ├── resources/index.html    # Resources (/resources/) — Article index with category chips
-├── compass/index.html      # Compass (/compass/) — Chat UI, 3D spherical logo planet canvas
+├── compass/index.html      # DISABLED 2026-07-09, not linked anywhere — Chat UI, 3D spherical logo planet canvas
 ├── privacy/index.html      # Privacy (/privacy/)
 ├── terms/index.html        # Terms (/terms/)
 │
@@ -82,7 +84,7 @@ successful-future/
 │       ├── home.css, pricing.css, resources.css
 │
 ├── worker/
-│   └── compass.js          # Cloudflare Worker powering the Compass AI assistant
+│   └── compass.js          # DISABLED 2026-07-09 — Cloudflare Worker that powered the Compass AI assistant
 │
 ├── files/                  # Dev-only snippets/templates — NOT deployed pages
 ├── dev/
@@ -296,7 +298,7 @@ A static host serves a directory request from its `index.html`, so the URL needs
 **Repo**: `https://github.com/Toni-Sabev/Business-Website`  
 **Branch**: `main`  
 **Custom domain**: `https://uspeshno-budeshte.org` (via `CNAME` file; GitHub auto-provisions SSL)  
-**Front layer**: Cloudflare (DNS, Web Analytics, and the Compass Worker in `worker/compass.js`)
+**Front layer**: Cloudflare (DNS, Web Analytics; the Compass Worker in `worker/compass.js` is disabled — see the note near the top of this document)
 
 Every `git push` to `main` auto-deploys. No build step required. `.nojekyll` disables Jekyll
 processing so folders are served as-is.

@@ -1,6 +1,29 @@
 # Session Handoff & Master Handout — Успешно Бъдеще Website
 
-_Last updated: June 29, 2026. Master documentation reflecting completed website prototype redesign, architecture, live functionality, and Git repository status._
+_Last updated: July 9, 2026. Master documentation reflecting completed website prototype redesign, architecture, live functionality, and Git repository status._
+
+---
+
+## ✅ Session Update — July 9, 2026: Font cleanup + legal pages — site marked good standing
+
+**Fonts**: Bulgarian (default) side moved off "Graduate" (a single-weight font that was forcing synthetic/fake bold everywhere) through a live-tested sequence — Golos Text, PT Serif, Spectral, Commissioner, Bitter — landing on **Lora** for both `--font-display` and `--font-body`. English side (Playfair Display + Inter) was reviewed and kept as-is. A dev-only audit page, `dev/fonts.html`, was built with real Google Fonts data (Cyrillic-cut verification, Bulgarian `locl` GSUB inspection via fontTools, variable-font/size comparison) backing the decision — not linked, not deployed.
+
+**Bugs fixed**:
+- Contact page email address (`info@uspeshno-budeshte.com`) was wrapping mid-word onto two lines in both the contact-details card and every page's footer — added `white-space: nowrap`.
+- Site footer had two stacked divider lines instead of one (`.footer-bottom` and its child `.footer-legal` each had their own `border-top`) — removed the redundant one.
+- Home page hero: the Saint-Exupéry quote's bottom line overlapped the 3D globe's topmost landmass dots on desktop. Fixed by nudging the globe's rest-state vertical offset (`scene.position.y` in `scripts/globe.js`, the `wide` branch) from `0` to `-0.16` — verified with real screenshots at 1440×900, a short 1440×760 laptop height, and mobile (unaffected, separate code branch).
+- Two article pages (NCAA guide, SEVIS lifecycle) had dead `href="#"` placeholder links for Privacy/Terms in their footer — pointed at the real `/privacy/` and `/terms/` routes.
+
+**Legal pages** (`/privacy/`, `/terms/`): both were, until today, an accidental byte-for-byte copy of the homepage — no real policy text existed anywhere on the site. Replaced with real bilingual (`data-lang-content` pattern, matching the article-page convention) content based on `legal-pages-task.md`, after getting explicit answers from the site owner on the three open questions in that doc:
+- **Controller**: not yet a registered ЕООД — controller is the named individual Tonislav Sabev, correspondence address ulitsa "Professor Georgi Zlatarski", Sofia, Bulgaria.
+- **Minors**: enquiry form is restricted (by copy, not technical enforcement) to parents/guardians or students 18+; clause 8 and a form-level notice both reflect this.
+- **Compass/Gemini**: confirmed running on the **free Gemini tier** — clause 4 originally disclosed the training implication, but see the backlog item below, this was later simplified at the owner's request.
+- Contact form got a required, unticked privacy-consent checkbox (blocks submission, verified via real form-fill test) and an age-restriction notice.
+- Compass page got a one-line "Compass can make mistakes" disclaimer under the chat input.
+- Footer "Pages" column now includes Privacy/Terms links on every page that has a footer (10 of 11 live pages — `compass/index.html` has no footer at all, pre-existing, not addressed here).
+- At the owner's follow-up request, the "Legal" / "Правна информация" badge was removed from both pages' headers, and privacy clause 4/5 was genericized to drop specific vendor names (Formspree, Google, Cloudflare) and the Gemini free-tier detail — the removed text is preserved in full in the backlog section below.
+
+**Wiki**: `architecture.md`'s Design System section (colors *and* fonts) was significantly out of date — described an old navy/red/green palette and Source Serif 4 + Manrope, neither of which matches `tokens.css` and hadn't for some time. Corrected to reflect actual current values. `vision.md`'s Current State table and Near-Term list updated; the "Contact Form Success — Bilingual" near-term item was removed because it's already implemented (verified in `contact/index.html`'s `FORM_STRINGS`).
 
 ---
 
@@ -79,3 +102,28 @@ Then open **http://localhost:8000/** in your browser. Clean directory-based URLs
 - **Bilingual i18n System**: Bulgarian (`bg`) is the static HTML language. Dynamic runtime translations target `data-en` and `data-bg` attributes on elements, and `data-placeholder-en` / `data-placeholder-bg` on inputs.
 - **Clean Directory URLs**: Web server routes directories directly to `index.html` (`/about/`, `/contact/`, `/compass/`).
 - **Local Dev Snippets**: `files/` directory contains local development code snippets and is excluded from production server deployment.
+
+## 🔲 Backlog — known issues for next session
+
+Nothing below is a regression from today's work; these are pre-existing or intentionally-deferred items surfaced during the font/legal-pages cleanup, listed so they aren't lost.
+
+**Legal / privacy — worth real attention before treating the policy as final:**
+- **Compass Worker logging unconfirmed.** Does anything on the Cloudflare side (`worker/compass.js`, or Cloudflare account settings like Logpush / dashboard request logging) persist the *content* of chat messages anywhere? The worker source has no explicit logging call (no KV/D1 write, no external log drain visible), but Cloudflare account-level logging settings aren't visible from the codebase. Confirm directly in the Cloudflare dashboard and update the privacy policy's data-retention section if anything beyond the stateless proxy request is actually retained.
+- **Vendor names were stripped from `/privacy/` clause 4 & 5** at the owner's request on 2026-07-09. Current live text just says "third-party service providers," no names. The removed text (EN; BG mirrored it):
+  > Form submissions are processed by Formspree, Inc. (United States). Compass messages are processed by Google LLC (United States) through infrastructure operated by Cloudflare, Inc., using the free tier of Google's Gemini API. Under that tier's terms, Google may use the content of your messages to improve and train its models. We do not sell your personal data, and we do not share it with universities, coaches, or any third party without your instruction.
+  >
+  > [Clause 5] The processors named above are established in the United States. Transfers are made under the European Commission's Standard Contractual Clauses.
+
+  GDPR Art. 13(1)(e) requires disclosing categories of recipients — the version above is the accurate, specific disclosure the original `legal-pages-task.md` draft was written to include. This was a deliberate, temporary simplification, not an oversight. Restore something equivalently specific before real launch.
+- **Compass CORS may be broken in production right now.** `worker/compass.js` sets `ALLOWED_ORIGIN = 'https://toni-sabev.github.io'`, but the site's actual production domain (per `CNAME`) is `uspeshno-budeshte.org`. If that's genuinely what's deployed on Cloudflare, browser fetch requests from the live site would get CORS-blocked and the Compass chat would silently fail with a generic error. Could not verify against the actually-deployed Worker code from this environment — only this local copy. Check the Cloudflare dashboard directly.
+- **Minors restriction is copy-only, not technically enforced.** The contact form says it's for parents/guardians or 18+, but nothing actually verifies age or role. Fine as a first pass per the site owner's chosen option, but worth knowing it's not a hard gate.
+
+**Cleanup identified but not yet done** (from a dead-code audit run this session — see also the "Known Constraints" additions in `wiki/architecture.md`):
+- `pricing.html` / `team.html` are orphaned (not linked, not deployed) along with their dedicated CSS: `.pricing-tier`, `.pricing-card*`, `.featured-badge`, `.btn--ghost-white`, `.team-card*`, `.placeholder-block`, `.placeholder-line`, and all of `styles/pages/pricing.css`.
+- `styles/pages/about.css` and `styles/pages/home.css` are real CSS files with real rules, but not `<link>`ed from any live page — fully dead weight.
+- ~54 unused selectors identified in `styles/components.css` alone (chip/card/testimonial/polaroid/process/blog-card families that were superseded by page-specific classes but never removed). Full list was produced during the audit but not saved to a file — re-run if needed.
+- `assets/fonts/NeueMachina-Light.woff2`, `-Regular.woff2`, `-Ultrabold.woff2` (~74KB) are not referenced anywhere in the codebase — no `@font-face`, no CSS, no HTML link.
+- `README.md` is stale — describes an old two-page prototype (`blog/index.html`, placeholder pricing/team pages) that no longer matches the real site structure.
+- `scripts/globe.js` has a harmless but pointless dead condition: `idx < ap.curvePoints.length * ap.curvePoints.length` — always true for any real array, likely meant to be `idx < ap.curvePoints.length`.
+- `contact/index.html`'s footer "Pages" column is missing a "Компас"/"Compass" link that every other page's footer has — pre-existing inconsistency, not introduced or fixed this session.
+- `compass/index.html` has no `<footer>` at all — pre-existing, every other live page has one.

@@ -7,7 +7,7 @@
   <meta name="description" content="Book a free 45-minute consultation with Successful Future.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/base.css">
   <link rel="stylesheet" href="/styles/components.css">
@@ -70,6 +70,8 @@
           <form class="contact-form" action="https://formspree.io/f/xrejonok" method="POST" novalidate>
             <!-- Honeypot -->
             <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off">
+
+            <p style="font-size:13px;color:var(--color-muted);margin:-4px 0 4px;" data-en="This form is for parents/guardians or students aged 18+. If you're under 18, please have a parent or guardian submit it for you." data-bg="Тази форма е предназначена за родители/настойници или ученици на 18 или повече години. Ако сте под 18 години, помолете родител или настойник да я попълни вместо вас.">Тази форма е предназначена за родители/настойници или ученици на 18 или повече години. Ако сте под 18 години, помолете родител или настойник да я попълни вместо вас.</p>
 
             <div class="form-group">
               <label data-en="I am a" data-bg="Аз съм">Аз съм</label>
@@ -135,6 +137,13 @@
               <div class="char-count" aria-live="polite" id="char-count">0 / 500</div>
             </div>
 
+            <div class="form-group" style="flex-direction:row;align-items:flex-start;gap:8px;">
+              <input type="checkbox" id="privacy-consent" name="privacy_consent" required style="margin-top:3px;">
+              <label for="privacy-consent" style="font-size:13px;font-weight:400;">
+                <span data-en="I agree to the " data-bg="Съгласен съм с ">Съгласен съм с </span><a href="/privacy/" target="_blank" rel="noopener" data-en="Privacy Policy" data-bg="Политиката за поверителност">Политиката за поверителност</a><span data-en="." data-bg=".">.</span>
+              </label>
+            </div>
+
             <div aria-live="polite" id="form-errors" style="color:var(--color-clay);font-size:13px;"></div>
 
             <button type="submit" class="btn btn--primary btn--lg" data-en="Send my enquiry" data-bg="Изпратете запитване">Изпратете запитване</button>
@@ -153,7 +162,7 @@
             </div>
             <div>
               <div style="font-weight:600;font-size:14px;color:var(--color-forest);" data-en="Email" data-bg="Имейл">Имейл</div>
-              <a href="mailto:info@uspeshno-budeshte.com" style="font-size:14px;color:var(--color-clay);">info@uspeshno-budeshte.com</a>
+              <a href="mailto:info@uspeshno-budeshte.com" style="font-size:14px;color:var(--color-clay);white-space:nowrap;">info@uspeshno-budeshte.com</a>
             </div>
           </div>
 
@@ -206,6 +215,8 @@
           <li><a href="/about/" data-en="About" data-bg="За нас">За нас</a></li>
           <li><a href="/resources/" data-en="Resources" data-bg="Ресурси">Ресурси</a></li>
           <li><a href="/contact/" data-en="Contact" data-bg="Контакт">Контакт</a></li>
+          <li><a href="/privacy/" data-en="Privacy" data-bg="Поверителност">Поверителност</a></li>
+          <li><a href="/terms/" data-en="Terms" data-bg="Условия">Условия</a></li>
         </ul>
       </div>
 
@@ -241,6 +252,7 @@
       nameRequired:   'Please enter your name.',
       gradeRequired:  'Please select a grade.',
       emailRequired:  'Please enter a valid email.',
+      privacyRequired: 'Please agree to the Privacy Policy to continue.',
       sending:        'Sending…',
       submitLabel:    'Send my enquiry',
       successTitle:   'Message sent!',
@@ -253,6 +265,7 @@
       nameRequired:   'Моля, въведете вашето име.',
       gradeRequired:  'Моля, изберете клас.',
       emailRequired:  'Моля, въведете валиден имейл адрес.',
+      privacyRequired: 'Моля, съгласете се с Политиката за поверителност, за да продължите.',
       sending:        'Изпращане…',
       submitLabel:    'Изпратете запитване',
       successTitle:   'Съобщението е изпратено!',
@@ -282,11 +295,13 @@
         const name   = form.querySelector('#fullname');
         const role   = form.querySelector('input[name="role"]:checked');
         const grade  = form.querySelector('#grade');
+        const privacyConsent = form.querySelector('#privacy-consent');
         const msgs   = [];
         if (!role)                                msgs.push(t.roleRequired);
         if (!name.value.trim())                   msgs.push(t.nameRequired);
         if (!grade.value)                         msgs.push(t.gradeRequired);
         if (!email.value || !email.validity.valid) msgs.push(t.emailRequired);
+        if (!privacyConsent.checked)               msgs.push(t.privacyRequired);
         errors.textContent = msgs.join(' ');
         if (msgs.length > 0) return;
 

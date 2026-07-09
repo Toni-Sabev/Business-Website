@@ -69,3 +69,15 @@
 .comparison-table td:last-child  { color: var(--color-clay); font-weight: 500; }
 .comparison-table tr:last-child td { border-bottom: none; }
 .comparison-table tr:nth-child(even) td { background: var(--color-cream-soft); }
+
+@media (max-width: 767px) {
+  .tenet-number {
+    font-size: 40px;
+  }
+  .comparison-table th,
+  .comparison-table td {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+}
+

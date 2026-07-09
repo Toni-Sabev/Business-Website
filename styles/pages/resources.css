@@ -56,3 +56,11 @@
   pointer-events: none;
   opacity: 0.6;
 }
+
+@media (max-width: 767px) {
+  .resources-sub {
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+}
+

@@ -406,6 +406,7 @@ a.wordmark--logo {
   color: rgba(255,255,255,0.60);
   transition: color 0.15s;
   text-decoration: none;
+  white-space: nowrap;
 }
 .footer-col a:hover { color: #fff; }
 
@@ -430,9 +431,6 @@ a.wordmark--logo {
   font-size: 11px;
   font-weight: 600;
   color: rgba(255,255,255,0.60);
-  border-top: 1px solid rgba(255,255,255,0.10);
-  padding-top: 20px;
-  margin-top: 20px;
   margin-bottom: 20px;
   line-height: 1.6;
 }
@@ -1169,39 +1167,72 @@ a[href^="mailto:"] {
 /* ─── Mobile Component Optimizations ─────────────────────────────────────── */
 @media (max-width: 767px) {
   .btn--lg {
-    font-size: 14px;
-    padding: 11px 22px;
-  }
-  .btn--md {
-    font-size: 13px;
+    font-size: 13.5px;
     padding: 9px 18px;
   }
-  .btn--sm {
-    font-size: 11.5px;
+  .btn--md {
+    font-size: 12px;
     padding: 7px 14px;
+  }
+  .btn--sm {
+    font-size: 11px;
+    padding: 5px 10px;
   }
 
   .offer-item {
-    padding: 20px 16px;
-    border-radius: 14px;
+    padding: 16px 14px;
+    border-radius: var(--radius-card);
   }
   .offer-item__title {
-    font-size: 17px;
-    margin-bottom: 10px;
+    font-size: 15px;
+    margin-bottom: 8px;
   }
   .offer-item__list li {
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 12.5px;
+    line-height: 1.45;
   }
 
   .card, .package-card, .article-card {
-    padding: 20px 16px;
-    border-radius: 14px;
+    padding: 16px 14px;
+    border-radius: var(--radius-card);
   }
+  .article-card__title {
+    font-size: 16px !important;
+    margin-bottom: 6px;
+  }
+  .article-card__excerpt {
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  
+  .blog-card__body {
+    padding: 14px 12px;
+    gap: 8px;
+  }
+  .blog-card__meta {
+    font-size: 11px;
+  }
+
   .founder-card {
-    border-radius: 14px;
+    border-radius: var(--radius-card);
   }
   .founder-card__body {
-    padding: 20px 16px;
+    padding: 16px 14px;
+    gap: 12px;
+  }
+  .founder-card__name {
+    font-size: 20px !important;
+  }
+  .founder-card__bio {
+    font-size: 13px;
+    line-height: 1.55;
+    padding-top: 12px;
+  }
+  .founder-card__achievements {
+    padding-top: 12px;
+    gap: 6px;
+  }
+  .founder-card__achievements li {
+    font-size: 12.5px;
   }
 }

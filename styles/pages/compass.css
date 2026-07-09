@@ -235,6 +235,14 @@ html, body { height: 100%; margin: 0; }
   flex-shrink: 0;
 }
 
+.compass-mistake-note {
+  text-align: center;
+  font-size: 11px;
+  color: #8FB8E8;
+  opacity: 0.65;
+  margin: 6px 0 0;
+}
+
 .compass-legal {
   text-align: center;
   padding: var(--space-4) 0;

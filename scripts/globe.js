@@ -330,7 +330,7 @@
 
     var wide = window.innerWidth > 900;
     scene.position.x = wide ? smooth(p, 0.42, 0.92) * 1.05 : 0;
-    scene.position.y = wide ? 0 : 0.28 + smooth(p, 0, 0.6) * 1.4;
+    scene.position.y = wide ? -0.16 : 0.28 + smooth(p, 0, 0.6) * 1.4;
     globe.scale.setScalar(1 - smooth(p, 0.42, 0.92) * 0.12);
 
     var pulse = 1 + Math.sin(t * 2.2) * 0.18;

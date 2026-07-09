@@ -14,67 +14,59 @@
 
 ---
 
-## Current State (May 2026)
+## Current State (July 2026)
 
-Two-page static website, bilingual (BG/EN toggle), deployed on GitHub Pages.
+A highly polished, multi-page interactive platform with 3D WebGL visuals and Edge AI chat functionality, fully bilingual (BG/EN toggle), deployed on GitHub Pages with Cloudflare optimizations. Font and legal-pages cleanup passes are complete; the site is considered in good standing for this phase.
 
 | Page | Status |
 |---|---|
-| About | Live — What We Do, 5 service areas, 3 founder cards with dual photos |
-| Contact | Live — Enquiry form (Formspree), email, hours, Sofia map |
+| **Home** | Live — Three.js continent-dot globe, Antoine de Saint-Exupéry bilingual quote, "What we offer" grid, 3D CSS flip package cards, who-we-are stats |
+| **About** | Live — Company tenets, comparison matrix, 3 founder cards with dual-photo setups and detailed bios |
+| **Contact** | Live — enquiry form (Formspree client-side fetch), required privacy-policy consent checkbox, age-restriction notice (parents/guardians or 18+), office details, Sofia map embed, site-wide orbital canvas |
+| **Resources** | Live — article index with category filtering chips |
+| **Compass** | Live — Edge AI chatbot page with 3D spherical logo planet canvas, "Compass can make mistakes" disclaimer under the input |
+| **Articles** | Live — long-form articles (NCAA guide, STEM benefits, OPT/CPT employment, SEVIS lifecycle) |
+| **Privacy / Terms** | Live — real bilingual GDPR-oriented policy and terms of service (previously both were an accidental copy of the homepage). See `Handoff.md` for the one open item (vendor-name disclosure was intentionally simplified). |
 
 ---
 
 ## Near-Term
 
-### Custom Domain
-Point `uspeshno-budeshte.com` (or `.bg`) to GitHub Pages. Add `CNAME` file to repo. GitHub handles SSL automatically.
+### Performance & Asset Optimization
+Ensure that local performance remains extremely fast despite Three.js WebGL and interactive animations. Optimize rendering, camera math, and loading behaviors where possible.
 
 ### Copy Refinement
-All body copy is currently in English and Bulgarian. Review and refine the Bulgarian translations with native speaker input — especially the founder bios and service descriptions.
-
-### Mobile Header
-The header on small phones (~390px) is tight: logo + brand name + lang toggle + CTA button + hamburger in one row. Consider hiding the "Book a call" button on mobile (the contact page is one tap away via the hamburger) and reducing the logo to ~52px on small screens.
-
-### Contact Form Success — Bilingual
-The success confirmation message after form submission is English-only. Should switch with the lang toggle like everything else.
+Ensure all Bulgarian translations match professional educational and athletic advisory standards. Keep system prompt instructions for Compass aligned with real-world immigration and admission updates.
 
 ---
 
 ## Medium-Term
 
-### Testimonials Section
-Add a section to `about.html` with 2–3 testimonials from past students/families. Adds social proof and breaks up the page between Founders and CTA.
+### Testimonials & Case Studies
+Add structured parent and student-athlete testimonials to the Home and About pages.
 
-### Resources Page
-Previously removed for faster deployment. Bring back as a curated guide: timeline for US applications, financial aid explained, FAQ. Bilingual.
+### FAQ Section
+Integrate a searchable FAQ section to resources or as direct suggestion prompts on the Compass AI page.
 
-### SEO
-- `<meta>` descriptions currently in English only — add Bulgarian equivalents
-- Add `hreflang` tags for BG/EN
-- Submit sitemap to Google Search Console once on a real domain
-
-### Analytics
-Add privacy-friendly analytics (Plausible or Fathom) to understand which sections get attention and where drop-off happens on the contact form.
+### SEO & Localization Enhancements
+- Expand `<meta>` and Open Graph tags for all articles in both languages.
+- Ensure proper `hreflang` tags are outputted for standard search crawlers.
 
 ---
 
 ## Long-Term
 
-### CRM / Lead Management
-Once form volume grows beyond what email can handle, connect Formspree to a simple CRM (Notion database, Airtable, or HubSpot free tier) via Zapier. Each submission auto-creates a lead record.
+### CRM & Lead Pipeline
+Once form volume grows, connect Formspree submissions to a simple CRM pipeline (Notion database, Airtable, or HubSpot) using Zapier to auto-generate lead cards.
 
-### Booking Integration
-Replace the enquiry form with a direct calendar booking (Calendly embed) for the initial 45-minute consultation. Reduces friction — one less back-and-forth email.
-
-### Blog / Content
-SEO-driven content in Bulgarian: "How to apply to a US university from Bulgaria", "Swimming scholarships explained", etc. Builds organic search traffic from the exact audience.
+### Direct Booking Integration
+Replace or supplement the inquiry form with a direct calendar booking widget (e.g., Calendly embed) for scheduling initial 45-minute consultations.
 
 ---
 
 ## Design Principles
 
-1. **Speed over completeness.** Ship a clean two-page site before adding features. Every page that isn't ready is a page that delays launch.
-2. **Bulgarian first.** Default language is Bulgarian. EN is a toggle for international visitors or parents with English preference.
-3. **The founders are the product.** The personal stories — Olympic, NCAA, national records — are the differentiator. Design serves those stories.
-4. **No backend complexity.** Static HTML + Formspree handles everything needed at this stage. Avoid servers, databases, and frameworks until traffic justifies it.
+1. **Rich Aesthetics and Immersive Interactivity.** Focus on premium design details (frosted-glass panels, smooth micro-animations, 3D WebGL elements) to captivate families and student-athletes immediately.
+2. **Bulgarian First.** Default language is Bulgarian. English is a toggle for international visitors or parents with English preferences.
+3. **The Founders are the Product.** The personal stories — Olympic, NCAA, national records — are the differentiator. Design serves those stories.
+4. **No Build Step/Compilation Overhead.** Keep the code base plain HTML, vanilla CSS, and standard ES6 JS files to maintain instant load times and local development speed. Avoid bundlers, frameworks, and preprocessors.

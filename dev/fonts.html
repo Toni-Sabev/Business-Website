@@ -1,0 +1,696 @@
+<title>Font Preview — Успешно Бъдеще (dev only, not deployed)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Literata:wght@400;600;700&family=Lora:wght@400;600;700&family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Vollkorn:wght@400;600;700&family=Unbounded:wght@400;600;700&family=Golos+Text:wght@400;600;700&family=Onest:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600;700&family=Commissioner:wght@400;600;700&family=Source+Serif+4:wght@400;600;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles/tokens.css">
+
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--preview-bg, var(--color-cream));
+    color: var(--preview-fg, var(--color-ink));
+    font-family: system-ui, -apple-system, sans-serif;
+    padding: 32px 24px 120px;
+    transition: background .2s, color .2s;
+  }
+  body.dark-mode {
+    --preview-bg: var(--color-navy);
+    --preview-fg: #F5F3EE;
+  }
+  .page-head {
+    max-width: 900px;
+    margin: 0 auto 32px;
+  }
+  .page-head h1 { font-size: 28px; margin: 0 0 8px; }
+  .page-head p { color: var(--color-muted); line-height: 1.6; }
+  .toggle-bar {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: flex-end; gap: 10px;
+    padding: 10px 0; margin-bottom: 8px;
+    background: inherit;
+  }
+  .toggle-bar button {
+    font: inherit; font-size: 13px; font-weight: 600;
+    padding: 8px 16px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--color-rule);
+    background: var(--color-cream-soft); color: var(--color-ink);
+  }
+  body.dark-mode .toggle-bar button {
+    background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.2);
+  }
+
+  .audit {
+    max-width: 900px; margin: 0 auto 40px; padding: 20px 24px;
+    background: rgba(160,0,109,0.06); border: 1px solid rgba(160,0,109,0.25);
+    border-radius: var(--radius-card);
+    line-height: 1.6;
+  }
+  .audit h2 { margin-top: 0; font-size: 18px; }
+  .audit code { background: rgba(0,0,0,0.06); padding: 1px 5px; border-radius: 4px; font-size: 0.92em; }
+
+  .section-label {
+    max-width: 1100px; margin: 48px auto 12px; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-red);
+  }
+
+  .specimen {
+    max-width: 1100px; margin: 0 auto 24px;
+    border: 1px solid var(--color-rule); border-radius: var(--radius-card);
+    padding: 28px 32px; background: var(--preview-bg, var(--color-cream-soft));
+    color: var(--preview-fg, var(--color-ink));
+  }
+  .specimen__head h3 { margin: 0 0 4px; font-size: 18px; font-family: system-ui, sans-serif; }
+  .role-tag {
+    display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-left: 8px;
+    background: var(--color-taupe); color: var(--color-navy); vertical-align: middle;
+  }
+  .role-tag--control { background: var(--color-red); color: #fff; }
+  .specimen .meta { font-size: 12px; color: var(--color-muted); margin: 0 0 18px; font-family: system-ui, sans-serif; }
+
+  .specimen__hero div { font-size: clamp(28px, 4vw, 42px); line-height: 1.1; margin-bottom: 4px; }
+  .specimen__h2 { font-size: var(--fs-h2); margin: 18px 0 10px; }
+  .specimen__body { font-size: var(--fs-body); line-height: 1.65; max-width: 640px; margin: 0 0 8px; }
+  .specimen__weights { display: flex; gap: 24px; font-size: 20px; margin: 18px 0 10px; }
+  .specimen__alphabet { font-size: 15px; line-height: 1.8; opacity: 0.85; margin: 10px 0; }
+  .specimen__glyphrow { font-size: 72px; line-height: 1.2; letter-spacing: 0.08em; margin: 12px 0 0; }
+
+  .hero-mock { max-width: 1100px; margin: 0 auto 28px; }
+  .hero-mock__label { font-size: 12px; color: var(--color-muted); margin: 0 0 8px; font-family: system-ui, sans-serif; }
+  .hero-mock__stage {
+    background: radial-gradient(120% 90% at 70% 30%, #103A6E 0%, #0A2247 38%, #061327 78%);
+    border-radius: var(--radius-card); padding: 64px 48px; text-align: center; color: #fff;
+  }
+  .hero-mock__title { font-size: clamp(32px, 5vw, 64px); font-weight: 600; margin: 0 0 16px; line-height: 1.05; }
+  .hero-mock__sub { font-size: 17px; color: #B9D2F0; margin: 0 0 20px; }
+  .hero-mock__cta {
+    display: inline-block; background: #A0006D; color: #fff; font-weight: 600;
+    font-size: 14px; padding: 12px 22px; border-radius: 10px;
+  }
+
+  table.size-table {
+    max-width: 1100px; margin: 12px auto 0; width: 100%; border-collapse: collapse; font-size: 13px;
+  }
+  table.size-table th, table.size-table td {
+    text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--color-rule);
+  }
+  table.size-table th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-muted); }
+</style>
+
+<div class="page-head">
+  <h1>Font preview — Bulgarian/Cyrillic candidates</h1>
+  <p>Standalone dev page. Not linked from nav, not deployed. Built against <code>styles/tokens.css</code>
+  for real palette/spacing values. <code>tokens.css</code> itself has not been touched by this page.</p>
+</div>
+
+<div class="toggle-bar">
+  <button id="theme-toggle" onclick="document.body.classList.toggle('dark-mode'); this.textContent = document.body.classList.contains('dark-mode') ? 'Cream on navy (click for navy on cream)' : 'Navy on cream (click for cream on navy)';">Navy on cream (click for cream on navy)</button>
+</div>
+
+
+  <section class="audit">
+    <h2>§1 — Audit result (stated plainly)</h2>
+    <p><strong>The premise in this task's "Context" section does not match the live site.</strong>
+    I checked <code>styles/tokens.css</code> as it exists right now: the live BG (default) typeface is
+    <strong>PT Serif</strong> for both <code>--font-display</code> and <code>--font-body</code>, and the
+    EN override (<code>html[lang="en"]</code>) is <strong>Playfair Display</strong> / <strong>Inter</strong>.
+    Both of those were set earlier this session after live A/B testing on the actual site and were
+    explicitly approved.</p>
+    <p><strong>"Source Serif 4" + "Manrope" is not, and was never, the live pairing.</strong> That combination
+    only exists in one place in this repo: <code>files/sevis-i20-f1-lifecycle.html</code> — a dev-only,
+    non-deployed snippet (per the project wiki, <code>files/</code> is explicitly excluded from production).
+    So there is no "silent fallback to Georgia" bug to report on the live site for that pairing, because it
+    was never requested by any live page in the first place.</p>
+    <p>That said, I ran the actual check the task asked for, applied to the real candidate: I fetched
+    Google Fonts' own CSS for <strong>Source Serif 4</strong> with a Chrome user-agent and confirmed the
+    response includes a real <code>/* cyrillic */ @font-face</code> block (not just latin/latin-ext) — so
+    if this pairing were ever wired up, it would not silently fall back to Georgia. It also has a proper
+    <code>locl</code> feature with a dedicated <code>BGR</code> language-system entry in its GSUB table
+    (verified below, not assumed) — so it does actively adapt shapes for <code>lang="bg"</code>.</p>
+  </section>
+
+
+<p class="section-label">Full mock hero sections</p>
+
+  <section class="hero-mock">
+    <p class="hero-mock__label">Pairing A — display: PT Serif / body: Golos Text</p>
+    <div class="hero-mock__stage">
+      <h1 class="hero-mock__title" style="font-family:'PT Serif';" lang="bg">От Европа до Америка.</h1>
+      <p class="hero-mock__sub" style="font-family:'Golos Text';" lang="bg">Пътят на един студент, начертан през цяла планета.</p>
+      <div class="hero-mock__cta" style="font-family:'Golos Text';">Запазете среща</div>
+    </div>
+  </section>
+
+  <section class="hero-mock">
+    <p class="hero-mock__label">Pairing B — display: Literata / body: Onest</p>
+    <div class="hero-mock__stage">
+      <h1 class="hero-mock__title" style="font-family:'Literata';" lang="bg">От Европа до Америка.</h1>
+      <p class="hero-mock__sub" style="font-family:'Onest';" lang="bg">Пътят на един студент, начертан през цяла планета.</p>
+      <div class="hero-mock__cta" style="font-family:'Onest';">Запазете среща</div>
+    </div>
+  </section>
+
+  <section class="hero-mock">
+    <p class="hero-mock__label">Control (dev-snippet pairing) — display: Source Serif 4 / body: Manrope</p>
+    <div class="hero-mock__stage">
+      <h1 class="hero-mock__title" style="font-family:'Source Serif 4';" lang="bg">От Европа до Америка.</h1>
+      <p class="hero-mock__sub" style="font-family:'Manrope';" lang="bg">Пътят на един студент, начертан през цяла планета.</p>
+      <div class="hero-mock__cta" style="font-family:'Manrope';">Запазете среща</div>
+    </div>
+  </section>
+
+
+<p class="section-label">Control (dev-snippet pairing, not live) — specimens</p>
+
+  <section class="specimen">
+    <header class="specimen__head">
+      <h3>Source Serif 4 <span class="role-tag role-tag--control">control</span></h3>
+      <p class="meta">Cyrillic cut: yes &nbsp;·&nbsp; Variable: yes &nbsp;·&nbsp; ~33.5 KB (latin+cyrillic, weights used)</p>
+      <!-- locl check: PASS — has a dedicated Bulgarian (BGR) locl substitution; shape adapts to lang="bg" -->
+    </header>
+
+    <div class="specimen__hero" style="font-family:'Source Serif 4';">
+      <div class="w400" lang="bg">От Европа до Америка.</div>
+      <div class="w400" lang="en">From Europe to America.</div>
+    </div>
+
+    <h2 class="specimen__h2" style="font-family:'Source Serif 4';" lang="bg">Всичко, от което се нуждаете.</h2>
+
+    <p class="specimen__body" style="font-family:'Source Serif 4';" lang="bg">От първия имейл до дипломирането — превеждаме студентите и техните семейства през хаоса на кандидатстването, приема, преместването и първите стъпки в кариерата в чужбина. Ние не просто учихме в САЩ — ние го изживяхме, а сега сме менторите, които самите бихме искали да имаме.</p>
+    <p class="specimen__body" style="font-family:'Source Serif 4';" lang="en">From the first email to graduation day, we guide students and their families through the chaos of applications, admissions, relocation, and the first steps of a career abroad. We didn't just study in the USA — we lived it, and now we are the mentors we wished we had.</p>
+
+    <div class="specimen__weights" style="font-family:'Source Serif 4';">
+      <span style="font-weight:400;">Aa Бб 400</span>
+      <span style="font-weight:600;">Aa Бб 600</span>
+      <span style="font-weight:700;">Aa Бб 700</span>
+    </div>
+
+    <p class="specimen__alphabet" style="font-family:'Source Serif 4';" lang="bg">АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ абвгдежзийклмнопрстуфхцчшщъьюя</p>
+
+    <p class="specimen__glyphrow" style="font-family:'Source Serif 4';" lang="bg">ж д и л б г п т ц ю</p>
+  </section>
+
+  <section class="specimen">
+    <header class="specimen__head">
+      <h3>Manrope <span class="role-tag role-tag--control">control</span></h3>
+      <p class="meta">Cyrillic cut: yes &nbsp;·&nbsp; Variable: yes &nbsp;·&nbsp; ~21.4 KB (latin+cyrillic, weights used)</p>
+      <!-- locl check: PASS — has a dedicated Bulgarian (BGR) locl substitution; shape adapts to lang="bg" -->
+    </header>
+
+    <div class="specimen__hero" style="font-family:'Manrope';">
+      <div class="w400" lang="bg">От Европа до Америка.</div>
+      <div class="w400" lang="en">From Europe to America.</div>
+    </div>
+
+    <h2 class="specimen__h2" style="font-family:'Manrope';" lang="bg">Всичко, от което се нуждаете.</h2>
+
+    <p class="specimen__body" style="font-family:'Manrope';" lang="bg">От първия имейл до дипломирането — превеждаме студентите и техните семейства през хаоса на кандидатстването, приема, преместването и първите стъпки в кариерата в чужбина. Ние не просто учихме в САЩ — ние го изживяхме, а сега сме менторите, които самите бихме искали да имаме.</p>
+    <p class="specimen__body" style="font-family:'Manrope';" lang="en">From the first email to graduation day, we guide students and their families through the chaos of applications, admissions, relocation, and the first steps of a career abroad. We didn't just study in the USA — we lived it, and now we are the mentors we wished we had.</p>
+
+    <div class="specimen__weights" style="font-family:'Manrope';">
+      <span style="font-weight:400;">Aa Бб 400</span>
+      <span style="font-weight:600;">Aa Бб 600</span>
+      <span style="font-weight:700;">Aa Бб 700</span>
+    </div>
+
+    <p class="specimen__alphabet" style="font-family:'Manrope';" lang="bg">АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ абвгдежзийклмнопрстуфхцчшщъьюя</p>
+
+    <p class="specimen__glyphrow" style="font-family:'Manrope';" lang="bg">ж д и л б г п т ц ю</p>
+  </section>
+
+
+<p class="section-label">Display candidates</p>
+
+  <section class="specimen">
+    <header class="specimen__head">
+      <h3>PT Serif <span class="role-tag role-tag--display">display</span></h3>
+      <p class="meta">Cyrillic cut: yes &nbsp;·&nbsp; Variable: no (static instances only) &nbsp;·&nbsp; ~103.3 KB (latin+cyrillic, weights used)</p>
+      <!-- locl check: NO BGR locl feature — renders one fixed Cyrillic glyph set regardless of language; judge the row below by eye -->
+    </header>
+
+    <div class="specimen__hero" style="font-family:'PT Serif';">
+      <div class="w400" lang="bg">От Европа до Америка.</div>
+      <div class="w400" lang="en">From Europe to America.</div>
+    </div>
+
+    <h2 class="specimen__h2" style="font-family:'PT Serif';" lang="bg">Всичко, от което се нуждаете.</h2>
+
+    <p class="specimen__body" style="font-family:'PT Serif';" lang="bg">От първия имейл до дипломирането — превеждаме студентите и техните семейства през хаоса на кандидатстването, приема, преместването и първите стъпки в кариерата в чужбина. Ние не просто учихме в САЩ — ние го изживяхме, а сега сме менторите, които самите бихме искали да имаме.</p>
+    <p class="specimen__body" style="font-family:'PT Serif';" lang="en">From the first email to graduation day, we guide students and their families through the chaos of applications, admissions, relocation, and the first steps of a career abroad. We didn't just study in the USA — we lived it, and now we are the mentors we wished we had.</p>
+
+    <div class="specimen__weights" style="font-family:'PT Serif';">
+      <span style="font-weight:400;">Aa Бб 400</span>
+      <span style="font-weight:600;">Aa Бб 600</span>
+      <span style="font-weight:700;">Aa Бб 700</span>
+    </div>
+
+    <p class="specimen__alphabet" style="font-family:'PT Serif';" lang="bg">АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ абвгдежзийклмнопрстуфхцчшщъьюя</p>
+
+    <p class="specimen__glyphrow" style="font-family:'PT Serif';" lang="bg">ж д и л б г п т ц ю</p>
+  </section>
+
+
+  <section class="specimen">
+    <header class="specimen__head">
+      <h3>Literata <span class="role-tag role-tag--display">display</span></h3>
+      <p class="meta">Cyrillic cut: yes &nbsp;·&nbsp; Variable: yes &nbsp;·&nbsp; ~30.7 KB (latin+cyrillic, weights used)</p>
+      <!-- locl check: NO BGR locl feature — renders one fixed Cyrillic glyph set regardless of language; judge the row below by eye -->
+    </header>
+
+    <div class="specimen__hero" style="font-family:'Literata';">
+      <div class="w400" lang="bg">От Европа до Америка.</div>
+      <div class="w400" lang="en">From Europe to America.</div>
+    </div>
+
+    <h2 class="specimen__h2" style="font-family:'Literata';" lang="bg">Всичко, от което се нуждаете.</h2>
+
+    <p class="specimen__body" style="font-family:'Literata';" lang="bg">От първия имейл до дипломирането — превеждаме студентите и техните семейства през хаоса на кандидатстването, приема, преместването и първите стъпки в кариерата в чужбина. Ние не просто учихме в САЩ — ние го изживяхме, а сега сме менторите, които самите бихме искали да имаме.</p>
+    <p class="specimen__body" style="font-family:'Literata';" lang="en">From the first email to graduation day, we guide students and their families through the chaos of applications, admissions, relocation, and the first steps of a career abroad. We didn't just study in the USA — we lived it, and now we are the mentors we wished we had.</p>
+
+    <div class="specimen__weights" style="font-family:'Literata';">
+      <span style="font-weight:400;">Aa Бб 400</span>
+      <span style="font-weight:600;">Aa Бб 600</span>
+      <span style="font-weight:700;">Aa Бб 700</span>
+    </div>
+
+    <p class="specimen__alphabet" style="font-family:'Literata';" lang="bg">АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ абвгдежзийклмнопрстуфхцчшщъьюя</p>
+
+    <p class="specimen__glyphrow" style="font-family:'Literata';" lang="bg">ж д и л б г п т ц ю</p>
+  </section>
+
+
+  <section class="specimen">
+    <header class="specimen__head">
+      <h3>Lora <span class="role-tag role-tag--display">display</span></h3>
+      <p class="meta">Cyrillic cut: yes &nbsp;·&nbsp; Variable: yes &nbsp;·&nbsp; ~31.9 KB (latin+cyrillic, weights used)</p>
+      <!-- locl check: PASS — has a dedicated Bulgarian (BGR) locl substitution; shape adapts to lang="bg" -->
+    </header>
+
+    <div class="specimen__hero" style="font-family:'Lora';">
+      <div class="w400" lang="bg">От Европа до Америка.</div>
+      <div class="w400" lang="en">From Europe to America.</div>
+    </div>
+
+    <h2 class="specimen__h2" style="font-family:'Lora';" lang="bg">Всичко, от което се нуждаете.</h2>
+
+    <p class="specimen__body" style="font-family:'Lora';" lang="bg">От първия имейл до дипломирането — превеждаме студентите и техните семейства през хаоса на кандидатстването, приема, преместването и първите стъпки в кариерата в чужбина. Ние не просто учихме в САЩ — ние го изживяхме, а сега сме менторите, които самите бихме искали да имаме.</p>
+    <p class="specimen__body" style="font-family:'Lora';" lang="en">From the first email to graduation day, we guide students and their families through the chaos of applications, admissions, relocation, and the first steps of a career abroad. We didn't just study in the USA — we lived it, and now we are the mentors we wished we had.</p>
+
+    <div class="specimen__weights" style="font-family:'Lora';">
+      <span style="font-weight:400;">Aa Бб 400</span>
+      <span style="font-weight:600;">Aa Бб 600</span>
+      <span style="font-weight:700;">Aa Бб 700</span>
+    </div>
+
+    <p class="specimen__alphabet" style="font-family:'Lora';" lang="bg">АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ абвгдежзийклмнопрстуфхцчшщъьюя</p>
+
+    <p class="specimen__glyphrow" style="font-family:'Lora';" lang="bg">ж д и л б г п т ц ю</p>
+  </section>
+
+
+  <section class="specimen">
+    <header class="specimen__head">
+      <h3>Playfair Display <span class="role-tag role-tag--display">display</span></h3>
+      <p class="meta">Cyrillic cut: yes &nbsp;·&nbsp; Variable: yes &nbsp;·&nbsp; ~32.5 KB (latin+cyrillic, weights used)</p>
+      <!-- locl check: NO BGR locl feature — renders one fixed Cyrillic glyph set regardless of language; judge the row below by eye -->
+    </header>
+
+    <div class="specimen__hero" style="font-family:'Playfair Display';">
+      <div class="w400" lang="bg">От Европа до Америка.</div>
+      <div class="w400" lang="en">From Europe to America.</div>
+    </div>
+
+    <h2 class="specimen__h2" style="font-family:'Playfair Display';" lang="bg">Всичко, от което се нуждаете.</h2>
+
+    <p class="specimen__body" style="font-family:'Playfair Display';" lang="bg">От първия имейл до дипломирането — превеждаме студентите и техните семейства през хаоса на кандидатстването, приема, преместването и първите стъпки в кариерата в чужбина. Ние не просто учихме в САЩ — ние го изживяхме, а сега сме менторите, които самите бихме искали да имаме.</p>
+    <p class="specimen__body" style="font-family:'Playfair Display';" lang="en">From the first email to graduation day, we guide students and their families through the chaos of applications, admissions, relocation, and the first steps of a career abroad. We didn't just study in the USA — we lived it, and now we are the mentors we wished we had.</p>
+
+    <div class="specimen__weights" style="font-family:'Playfair Display';">
+      <span style="font-weight:400;">Aa Бб 400</span>
+      <span style="font-weight:600;">Aa Бб 600</span>
+      <span style="font-weight:700;">Aa Бб 700</span>
+    </div>
+
+    <p class="specimen__alphabet" style="font-family:'Playfair Display';" lang="bg">АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ абвгдежзийклмнопрстуфхцчшщъьюя</p>
+
+    <p class="specimen__glyphrow" style="font-family:'Playfair Display';" lang="bg">ж д и л б г п т ц ю</p>
+  </section>
+
+
+  <section class="specimen">
+    <header class="specimen__head">
+      <h3>Cormorant Garamond <span class="role-tag role-tag--display">display</span></h3>
+      <p class="meta">Cyrillic cut: yes &nbsp;·&nbsp; Variable: yes &nbsp;·&nbsp; ~34.8 KB (latin+cyrillic, weights used)</p>
+      <!-- locl check: PASS — has a dedicated Bulgarian (BGR) locl substitution; shape adapts to lang="bg" -->
+    </header>
+
+    <div class="specimen__hero" style="font-family:'Cormorant Garamond';">
+      <div class="w400" lang="bg">От Европа до Америка.</div>
+      <div class="w400" lang="en">From Europe to America.</div>
+    </div>
+
+    <h2 class="specimen__h2" style="font-family:'Cormorant Garamond';" lang="bg">Всичко, от което се нуждаете.</h2>
+
+    <p class="specimen__body" style="font-family:'Cormorant Garamond';" lang="bg">От първия имейл до дипломирането — превеждаме студентите и техните семейства през хаоса на кандидатстването, приема, преместването и първите стъпки в кариерата в чужбина. Ние не просто учихме в САЩ — ние го изживяхме, а сега сме менторите, които самите бихме искали да имаме.</p>
+    <p class="specimen__body" style="font-family:'Cormorant Garamond';" lang="en">From the first email to graduation day, we guide students and their families through the chaos of applications, admissions, relocation, and the first steps of a career abroad. We didn't just study in the USA — we lived it, and now we are the mentors we wished we had.</p>
+
+    <div class="specimen__weights" style="font-family:'Cormorant Garamond';">
+      <span style="font-weight:400;">Aa Бб 400</span>
+      <span style="font-weight:600;">Aa Бб 600</span>
+      <span style="font-weight:700;">Aa Бб 700</span>
+    </div>
+
+    <p class="specimen__alphabet" style="font-family:'Cormorant Garamond';" lang="bg">АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ абвгдежзийклмнопрстуфхцчшщъьюя</p>
+
+    <p class="specimen__glyphrow" style="font-family:'Cormorant Garamond';" lang="bg">ж д и л б г п т ц ю</p>
+  </section>
+
+
+  <section class="specimen">
+    <header class="specimen__head">
+      <h3>Vollkorn <span class="role-tag role-tag--display">display</span></h3>
+      <p class="meta">Cyrillic cut: yes &nbsp;·&nbsp; Variable: yes &nbsp;·&nbsp; ~39.6 KB (latin+cyrillic, weights used)</p>
+      <!-- locl check: PASS — has a dedicated Bulgarian (BGR) locl substitution; shape adapts to lang="bg" -->
+    </header>
+
+    <div class="specimen__hero" style="font-family:'Vollkorn';">
+      <div class="w400" lang="bg">От Европа до Америка.</div>
+      <div class="w400" lang="en">From Europe to America.</div>
+    </div>
+
+    <h2 class="specimen__h2" style="font-family:'Vollkorn';" lang="bg">Всичко, от което се нуждаете.</h2>
+
+    <p class="specimen__body" style="font-family:'Vollkorn';" lang="bg">От първия имейл до дипломирането — превеждаме студентите и техните семейства през хаоса на кандидатстването, приема, преместването и първите стъпки в кариерата в чужбина. Ние не просто учихме в САЩ — ние го изживяхме, а сега сме менторите, които самите бихме искали да имаме.</p>
+    <p class="specimen__body" style="font-family:'Vollkorn';" lang="en">From the first email to graduation day, we guide students and their families through the chaos of applications, admissions, relocation, and the first steps of a career abroad. We didn't just study in the USA — we lived it, and now we are the mentors we wished we had.</p>
+
+    <div class="specimen__weights" style="font-family:'Vollkorn';">
+      <span style="font-weight:400;">Aa Бб 400</span>
+      <span style="font-weight:600;">Aa Бб 600</span>
+      <span style="font-weight:700;">Aa Бб 700</span>
+    </div>
+
+    <p class="specimen__alphabet" style="font-family:'Vollkorn';" lang="bg">АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ абвгдежзийклмнопрстуфхцчшщъьюя</p>
+
+    <p class="specimen__glyphrow" style="font-family:'Vollkorn';" lang="bg">ж д и л б г п т ц ю</p>
+  </section>
+
+
+  <section class="specimen">
+    <header class="specimen__head">
+      <h3>Unbounded <span class="role-tag role-tag--display">display</span></h3>
+      <p class="meta">Cyrillic cut: yes &nbsp;·&nbsp; Variable: yes &nbsp;·&nbsp; ~31.4 KB (latin+cyrillic, weights used)</p>
+      <!-- locl check: PASS — has a dedicated Bulgarian (BGR) locl substitution; shape adapts to lang="bg" -->
+    </header>
+
+    <div class="specimen__hero" style="font-family:'Unbounded';">
+      <div class="w400" lang="bg">От Европа до Америка.</div>
+      <div class="w400" lang="en">From Europe to America.</div>
+    </div>
+
+    <h2 class="specimen__h2" style="font-family:'Unbounded';" lang="bg">Всичко, от което се нуждаете.</h2>
+
+    <p class="specimen__body" style="font-family:'Unbounded';" lang="bg">От първия имейл до дипломирането — превеждаме студентите и техните семейства през хаоса на кандидатстването, приема, преместването и първите стъпки в кариерата в чужбина. Ние не просто учихме в САЩ — ние го изживяхме, а сега сме менторите, които самите бихме искали да имаме.</p>
+    <p class="specimen__body" style="font-family:'Unbounded';" lang="en">From the first email to graduation day, we guide students and their families through the chaos of applications, admissions, relocation, and the first steps of a career abroad. We didn't just study in the USA — we lived it, and now we are the mentors we wished we had.</p>
+
+    <div class="specimen__weights" style="font-family:'Unbounded';">
+      <span style="font-weight:400;">Aa Бб 400</span>
+      <span style="font-weight:600;">Aa Бб 600</span>
+      <span style="font-weight:700;">Aa Бб 700</span>
+    </div>
+
+    <p class="specimen__alphabet" style="font-family:'Unbounded';" lang="bg">АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ абвгдежзийклмнопрстуфхцчшщъьюя</p>
+
+    <p class="specimen__glyphrow" style="font-family:'Unbounded';" lang="bg">ж д и л б г п т ц ю</p>
+  </section>
+
+  <section class="specimen">
+    <header class="specimen__head">
+      <h3>Golos Text <span class="role-tag role-tag--body">body</span></h3>
+      <p class="meta">Cyrillic cut: yes &nbsp;·&nbsp; Variable: yes &nbsp;·&nbsp; ~18.5 KB (latin+cyrillic, weights used)</p>
+      <!-- locl check: NO BGR locl feature — renders one fixed Cyrillic glyph set regardless of language; judge the row below by eye -->
+    </header>
+
+    <div class="specimen__hero" style="font-family:'Golos Text';">
+      <div class="w400" lang="bg">От Европа до Америка.</div>
+      <div class="w400" lang="en">From Europe to America.</div>
+    </div>
+
+    <h2 class="specimen__h2" style="font-family:'Golos Text';" lang="bg">Всичко, от което се нуждаете.</h2>
+
+    <p class="specimen__body" style="font-family:'Golos Text';" lang="bg">От първия имейл до дипломирането — превеждаме студентите и техните семейства през хаоса на кандидатстването, приема, преместването и първите стъпки в кариерата в чужбина. Ние не просто учихме в САЩ — ние го изживяхме, а сега сме менторите, които самите бихме искали да имаме.</p>
+    <p class="specimen__body" style="font-family:'Golos Text';" lang="en">From the first email to graduation day, we guide students and their families through the chaos of applications, admissions, relocation, and the first steps of a career abroad. We didn't just study in the USA — we lived it, and now we are the mentors we wished we had.</p>
+
+    <div class="specimen__weights" style="font-family:'Golos Text';">
+      <span style="font-weight:400;">Aa Бб 400</span>
+      <span style="font-weight:600;">Aa Бб 600</span>
+      <span style="font-weight:700;">Aa Бб 700</span>
+    </div>
+
+    <p class="specimen__alphabet" style="font-family:'Golos Text';" lang="bg">АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ абвгдежзийклмнопрстуфхцчшщъьюя</p>
+
+    <p class="specimen__glyphrow" style="font-family:'Golos Text';" lang="bg">ж д и л б г п т ц ю</p>
+  </section>
+
+
+  <section class="specimen">
+    <header class="specimen__head">
+      <h3>Onest <span class="role-tag role-tag--body">body</span></h3>
+      <p class="meta">Cyrillic cut: yes &nbsp;·&nbsp; Variable: yes &nbsp;·&nbsp; ~19.7 KB (latin+cyrillic, weights used)</p>
+      <!-- locl check: NO BGR locl feature — renders one fixed Cyrillic glyph set regardless of language; judge the row below by eye -->
+    </header>
+
+    <div class="specimen__hero" style="font-family:'Onest';">
+      <div class="w400" lang="bg">От Европа до Америка.</div>
+      <div class="w400" lang="en">From Europe to America.</div>
+    </div>
+
+    <h2 class="specimen__h2" style="font-family:'Onest';" lang="bg">Всичко, от което се нуждаете.</h2>
+
+    <p class="specimen__body" style="font-family:'Onest';" lang="bg">От първия имейл до дипломирането — превеждаме студентите и техните семейства през хаоса на кандидатстването, приема, преместването и първите стъпки в кариерата в чужбина. Ние не просто учихме в САЩ — ние го изживяхме, а сега сме менторите, които самите бихме искали да имаме.</p>
+    <p class="specimen__body" style="font-family:'Onest';" lang="en">From the first email to graduation day, we guide students and their families through the chaos of applications, admissions, relocation, and the first steps of a career abroad. We didn't just study in the USA — we lived it, and now we are the mentors we wished we had.</p>
+
+    <div class="specimen__weights" style="font-family:'Onest';">
+      <span style="font-weight:400;">Aa Бб 400</span>
+      <span style="font-weight:600;">Aa Бб 600</span>
+      <span style="font-weight:700;">Aa Бб 700</span>
+    </div>
+
+    <p class="specimen__alphabet" style="font-family:'Onest';" lang="bg">АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ абвгдежзийклмнопрстуфхцчшщъьюя</p>
+
+    <p class="specimen__glyphrow" style="font-family:'Onest';" lang="bg">ж д и л б г п т ц ю</p>
+  </section>
+
+
+  <section class="specimen">
+    <header class="specimen__head">
+      <h3>IBM Plex Sans <span class="role-tag role-tag--body">body</span></h3>
+      <p class="meta">Cyrillic cut: yes &nbsp;·&nbsp; Variable: yes &nbsp;·&nbsp; ~36.5 KB (latin+cyrillic, weights used)</p>
+      <!-- locl check: PASS — has a dedicated Bulgarian (BGR) locl substitution; shape adapts to lang="bg" -->
+    </header>
+
+    <div class="specimen__hero" style="font-family:'IBM Plex Sans';">
+      <div class="w400" lang="bg">От Европа до Америка.</div>
+      <div class="w400" lang="en">From Europe to America.</div>
+    </div>
+
+    <h2 class="specimen__h2" style="font-family:'IBM Plex Sans';" lang="bg">Всичко, от което се нуждаете.</h2>
+
+    <p class="specimen__body" style="font-family:'IBM Plex Sans';" lang="bg">От първия имейл до дипломирането — превеждаме студентите и техните семейства през хаоса на кандидатстването, приема, преместването и първите стъпки в кариерата в чужбина. Ние не просто учихме в САЩ — ние го изживяхме, а сега сме менторите, които самите бихме искали да имаме.</p>
+    <p class="specimen__body" style="font-family:'IBM Plex Sans';" lang="en">From the first email to graduation day, we guide students and their families through the chaos of applications, admissions, relocation, and the first steps of a career abroad. We didn't just study in the USA — we lived it, and now we are the mentors we wished we had.</p>
+
+    <div class="specimen__weights" style="font-family:'IBM Plex Sans';">
+      <span style="font-weight:400;">Aa Бб 400</span>
+      <span style="font-weight:600;">Aa Бб 600</span>
+      <span style="font-weight:700;">Aa Бб 700</span>
+    </div>
+
+    <p class="specimen__alphabet" style="font-family:'IBM Plex Sans';" lang="bg">АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ абвгдежзийклмнопрстуфхцчшщъьюя</p>
+
+    <p class="specimen__glyphrow" style="font-family:'IBM Plex Sans';" lang="bg">ж д и л б г п т ц ю</p>
+  </section>
+
+
+  <section class="specimen">
+    <header class="specimen__head">
+      <h3>Commissioner <span class="role-tag role-tag--body">body</span></h3>
+      <p class="meta">Cyrillic cut: yes &nbsp;·&nbsp; Variable: yes &nbsp;·&nbsp; ~29.8 KB (latin+cyrillic, weights used)</p>
+      <!-- locl check: PASS — has a dedicated Bulgarian (BGR) locl substitution; shape adapts to lang="bg" -->
+    </header>
+
+    <div class="specimen__hero" style="font-family:'Commissioner';">
+      <div class="w400" lang="bg">От Европа до Америка.</div>
+      <div class="w400" lang="en">From Europe to America.</div>
+    </div>
+
+    <h2 class="specimen__h2" style="font-family:'Commissioner';" lang="bg">Всичко, от което се нуждаете.</h2>
+
+    <p class="specimen__body" style="font-family:'Commissioner';" lang="bg">От първия имейл до дипломирането — превеждаме студентите и техните семейства през хаоса на кандидатстването, приема, преместването и първите стъпки в кариерата в чужбина. Ние не просто учихме в САЩ — ние го изживяхме, а сега сме менторите, които самите бихме искали да имаме.</p>
+    <p class="specimen__body" style="font-family:'Commissioner';" lang="en">From the first email to graduation day, we guide students and their families through the chaos of applications, admissions, relocation, and the first steps of a career abroad. We didn't just study in the USA — we lived it, and now we are the mentors we wished we had.</p>
+
+    <div class="specimen__weights" style="font-family:'Commissioner';">
+      <span style="font-weight:400;">Aa Бб 400</span>
+      <span style="font-weight:600;">Aa Бб 600</span>
+      <span style="font-weight:700;">Aa Бб 700</span>
+    </div>
+
+    <p class="specimen__alphabet" style="font-family:'Commissioner';" lang="bg">АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ абвгдежзийклмнопрстуфхцчшщъьюя</p>
+
+    <p class="specimen__glyphrow" style="font-family:'Commissioner';" lang="bg">ж д и л б г п т ц ю</p>
+  </section>
+
+
+
+  <section class="audit">
+    <h2>§3 — Bulgarian letterform (<code>locl</code>) results — real GSUB data, not assumptions</h2>
+    <p>I downloaded each candidate's actual Cyrillic-subset <code>.woff2</code> file and parsed its GSUB
+    table with <code>fontTools</code>, looking for a <code>locl</code> feature registered under a
+    <code>BGR</code> (Bulgarian) language-system for the <code>cyrl</code> script. This is the mechanism
+    that makes a font's glyph shapes actually change when an element carries <code>lang="bg"</code>. A
+    font without it renders <strong>one fixed glyph set no matter what <code>lang</code> says</strong> —
+    that shape may or may not already look Bulgarian by design; only your eyes on the glyph row below can
+    settle that part.</p>
+    <p><strong>This task's own §3 prior guess ("expect PT Serif and Golos Text to pass, expect Playfair
+    Display and Cormorant Garamond to fail") does not match what's actually in these font files:</strong></p>
+    <ul>
+      <li><strong>Has real <code>BGR</code> locl (PASS):</strong> Lora, Cormorant Garamond, Vollkorn, Unbounded, IBM Plex Sans, Commissioner, Source Serif 4, Manrope</li>
+      <li><strong>No <code>BGR</code> locl (fixed glyph set):</strong> PT Serif, Literata, Playfair Display, Golos Text, Onest</li>
+    </ul>
+    <p>Notably PT Serif and Golos Text — both genuinely Cyrillic-native fonts — ship a single default glyph
+    set with no OpenType-level Bulgarian/Russian switching at all (their designers likely picked one
+    default and didn't need to branch it), while Cormorant Garamond, of all things, does carry a real
+    <code>BGR</code> substitution table. Judge the actual rendered shapes in each specimen's glyph row
+    below — that's the real test.</p>
+  </section>
+
+
+<p class="section-label">§4 — Cyrillic / variable-font / size table</p>
+<table class="size-table">
+  <thead>
+    <tr><th>Font</th><th>Role</th><th>Cyrillic cut</th><th>Variable font</th><th>~Size (latin+cyrillic, weights used)</th><th>BGR locl</th></tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>PT Serif</td>
+        <td>display</td>
+        <td>yes</td>
+        <td>no</td>
+        <td>~103.3 KB</td>
+        <td>no BGR locl (see row above)</td>
+      </tr>
+
+      <tr>
+        <td>Literata</td>
+        <td>display</td>
+        <td>yes</td>
+        <td>yes</td>
+        <td>~30.7 KB</td>
+        <td>no BGR locl (see row above)</td>
+      </tr>
+
+      <tr>
+        <td>Lora</td>
+        <td>display</td>
+        <td>yes</td>
+        <td>yes</td>
+        <td>~31.9 KB</td>
+        <td>PASS</td>
+      </tr>
+
+      <tr>
+        <td>Playfair Display</td>
+        <td>display</td>
+        <td>yes</td>
+        <td>yes</td>
+        <td>~32.5 KB</td>
+        <td>no BGR locl (see row above)</td>
+      </tr>
+
+      <tr>
+        <td>Cormorant Garamond</td>
+        <td>display</td>
+        <td>yes</td>
+        <td>yes</td>
+        <td>~34.8 KB</td>
+        <td>PASS</td>
+      </tr>
+
+      <tr>
+        <td>Vollkorn</td>
+        <td>display</td>
+        <td>yes</td>
+        <td>yes</td>
+        <td>~39.6 KB</td>
+        <td>PASS</td>
+      </tr>
+
+      <tr>
+        <td>Unbounded</td>
+        <td>display</td>
+        <td>yes</td>
+        <td>yes</td>
+        <td>~31.4 KB</td>
+        <td>PASS</td>
+      </tr>
+
+      <tr>
+        <td>Golos Text</td>
+        <td>body</td>
+        <td>yes</td>
+        <td>yes</td>
+        <td>~18.5 KB</td>
+        <td>no BGR locl (see row above)</td>
+      </tr>
+
+      <tr>
+        <td>Onest</td>
+        <td>body</td>
+        <td>yes</td>
+        <td>yes</td>
+        <td>~19.7 KB</td>
+        <td>no BGR locl (see row above)</td>
+      </tr>
+
+      <tr>
+        <td>IBM Plex Sans</td>
+        <td>body</td>
+        <td>yes</td>
+        <td>yes</td>
+        <td>~36.5 KB</td>
+        <td>PASS</td>
+      </tr>
+
+      <tr>
+        <td>Commissioner</td>
+        <td>body</td>
+        <td>yes</td>
+        <td>yes</td>
+        <td>~29.8 KB</td>
+        <td>PASS</td>
+      </tr>
+
+      <tr>
+        <td>Source Serif 4</td>
+        <td>control</td>
+        <td>yes</td>
+        <td>yes</td>
+        <td>~33.5 KB</td>
+        <td>PASS</td>
+      </tr>
+
+      <tr>
+        <td>Manrope</td>
+        <td>control</td>
+        <td>yes</td>
+        <td>yes</td>
+        <td>~21.4 KB</td>
+        <td>PASS</td>
+      </tr>
+
+  </tbody>
+</table>
+<p style="max-width:1100px;margin:12px auto 0;font-size:12px;color:var(--color-muted);">
+  Sizes measured by actually downloading each font's real latin + cyrillic <code>.woff2</code> subset files from
+  Google Fonts (weights 400/600/700 for variable fonts collapse into one file per subset; PT Serif is static
+  and needs separate 400 and 700 files, which is why its total is disproportionately larger).
+</p>

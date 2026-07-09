@@ -6,57 +6,70 @@
 
 ## Overview
 
-Plain HTML5 / CSS3 / vanilla JS — no framework, no build step, no dependencies.
-Live pages: **Home** (`index.html`), **About**, **Contact**, **Resources**, **Compass**, plus **Privacy** / **Terms** and a set of long-form **articles**. Static assets served from the same repo.
-Form submissions handled by Formspree (external SaaS) — no backend required.
+The Successful Future (Успешно Бъдеще) platform is a high-performance marketing website, interactive guidance utility, and AI assistant interface. While it avoids the complexity of heavy single-page application (SPA) frameworks or build steps to keep local development instantaneous, it features an advanced client-side architecture incorporating **3D WebGL visuals**, **dynamic theme-switching systems**, **3D CSS animations**, and **Edge AI Workers**.
 
-URLs are **clean / extensionless** via directory-based routing — every page is a `index.html` inside a named folder, so it resolves as `/about/` rather than `/about.html`. See **URL Routing** below.
+### 🌟 Key Advanced Features & Technologies
+
+1. **3D WebGL Graphics & Particle Systems (Three.js)**:
+   - **Interactive Scroll-Driven Continent-Dot Globe** (`scripts/globe.js`): Interactive globe on the Home page that rotates and scales dynamically with scroll. Integrates a bilingual Saint-Exupéry motto that fades synchronously with the globe framing.
+   - **Procedural 3D Logo Planet** (`scripts/compass-planet.js`): Replaces the flat 2D owl logo on the Compass page with a rotating 3D spherical dome featuring custom procedural bump relief maps, physically-based rendering (PBR), and metallic ice-blue key lighting.
+   - **3D Space Orbit Trajectory Background** (`scripts/orbital-bg.js`): Site-wide floating orbit animation that serves as a background canvas for overlaying content.
+
+2. **Rich UI Aesthetics & Dynamic Theme Contrasting**:
+   - **Dynamic Floating Header Contrast** (`scripts/nav.js`): Floats overlays directly onto dark blue sections. Real-time scroll detection switches the header class between transparent dark (`site-header--dark`) and light glass mode (`site-header--light`) for perfect readability. Automatically swaps logo assets (`assets/logo-white.png` vs `assets/logo.png`) based on the active theme.
+   - **3D CSS Flip Cards** (`index.html`): Offers detailed packages with 3D rotation transforms (`transform-style: preserve-3d` and `backface-visibility`) that flip on hover/tap to reveal features.
+   - **Frosted Glassmorphism UI**: Uses `backdrop-filter: blur(16px)` and translucent surfaces to display forms and cards over the 3D space orbit canvas.
+
+3. **Immersive Edge AI Integration**:
+   - **Compass Chat Assistant** (`compass/index.html`): Full-featured chat UI with message bubbles, typing indicators, and suggestion chips.
+   - **Cloudflare Worker Proxy** (`worker/compass.js`): Proxy routing to the Gemini 2.5 Flash API with built-in context history management (last 3 turns), strict role-based prompts, and HTTP 429 rate-limit fallback.
 
 ---
 
 ## File Layout
 
-Each user-facing page lives in its own folder as `index.html` so the served URL is clean
-(`/about/`, `/contact/`, …). `index.html` at the repo root is the home page (`/`).
+Every user-facing page follows **clean directory-based routing** (lives as `/slug/index.html` to resolve extensionless). 
 
 ```
 successful-future/
-├── index.html              # Home page (/) — offer, hero, packages, who-we-are, Compass, CTA
-├── about/index.html        # About (/about/) — What We Do, Services, Founders, CTA
-├── contact/index.html      # Contact (/contact/) — enquiry form + sidebar details
-├── resources/index.html    # Resources (/resources/) — article index
-├── compass/index.html      # Compass (/compass/) — AI assistant page
+├── index.html              # Home page (/) — Dot Globe, Saint-Exupéry quote, 3D flip packages, offer cards
+├── about/index.html        # About (/about/) — Who We Do, Services, Founders (dual photo stack)
+├── contact/index.html      # Contact (/contact/) — Glassmorphism form, Sofia map, orbital bg canvas
+├── resources/index.html    # Resources (/resources/) — Article index with category chips
+├── compass/index.html      # Compass (/compass/) — Chat UI, 3D spherical logo planet canvas
 ├── privacy/index.html      # Privacy (/privacy/)
 ├── terms/index.html        # Terms (/terms/)
 │
-├── articles/               # Long-form guides, each its own clean URL (/articles/<slug>/)
+├── articles/               # Long-form guides, each with its own clean URL (/articles/<slug>/)
 │   ├── employment-international-athlete/index.html
 │   ├── stem-international-athlete/index.html
 │   ├── ncaa-international-athlete-guide/index.html
 │   └── sevis-i20-f1-lifecycle/index.html
 │
-├── pricing.html            # Unused / unlinked — left flat (not deployed as a live page)
-├── team.html               # Unused / unlinked — left flat
+├── pricing.html            # Unused legacy file
+├── team.html               # Unused legacy file
 │
-├── CNAME                   # Custom domain: uspeshno-budeshte.org
-├── .nojekyll               # Disable Jekyll processing (plain static site)
-├── robots.txt              # Allow all + sitemap pointer
-├── sitemap.xml             # Clean-URL sitemap (all live pages)
-├── README.md               # Project readme
+├── CNAME                   # Custom domain (uspeshno-budeshte.org)
+├── .nojekyll               # Disables Jekyll processing on GitHub Pages
+├── robots.txt              # Search engine crawler directives
+├── sitemap.xml             # Sitemap with clean URLs
+├── README.md               # Readme instructions
 │
 ├── assets/
-│   ├── logo.png            # Runner/graduate figure logo (mix-blend-mode: multiply on cream bg)
+│   ├── logo.png            # Runner/graduate logo asset for light backgrounds
+│   ├── logo-white.png      # White logo asset for dark background canvases
+│   ├── compass-logo.png    # Owl logo fallback asset
 │   └── founders/
-│       ├── simeon.jpg      # Simeon Sabev — portrait
-│       ├── simeon-2.webp   # Simeon Sabev — butterfly stroke action
-│       ├── kaloyan.jpg     # Kaloyan Levterov — podium/suit photo
-│       ├── kaloyan-2.jpg   # Kaloyan Levterov — Tokyo 2020 Olympic dive
-│       ├── toni.jpg        # Tonislav Sabev — portrait
-│       └── toni-2.jpg      # Tonislav Sabev — swimming celebration
+│       ├── simeon.jpg / simeon-2.webp   # Simeon Sabev (portrait / butterfly action)
+│       ├── kaloyan.jpg / kaloyan-2.jpg   # Kaloyan Levterov (podium / Tokyo Olympic dive)
+│       └── toni.jpg / toni-2.jpg         # Tonislav Sabev (portrait / swim celebration)
 │
 ├── scripts/
-│   ├── i18n.js             # EN/BG language toggle (localStorage, innerHTML)
-│   └── nav.js              # Sticky header shadow + mobile menu toggle + active link
+│   ├── globe.js            # 3D interactive continent-dot globe (Three.js WebGL)
+│   ├── compass-planet.js   # 3D spherical dome logo planet rendering (Three.js WebGL)
+│   ├── orbital-bg.js       # Site-wide 3D background orbital trajectory animation
+│   ├── i18n.js             # Bilingual translation layer (localStorage, data-en/bg attributes)
+│   └── nav.js              # Scrolling header contrast controller, logo asset swapper, mobile menu
 │
 ├── styles/
 │   ├── tokens.css          # Design tokens (CSS custom properties)
@@ -72,6 +85,8 @@ successful-future/
 │   └── compass.js          # Cloudflare Worker powering the Compass AI assistant
 │
 ├── files/                  # Dev-only snippets/templates — NOT deployed pages
+├── dev/
+│   └── fonts.html          # Dev-only Cyrillic font-candidate audit/preview — not linked, not deployed
 │
 └── wiki/                   # This directory
     ├── architecture.md
@@ -93,23 +108,35 @@ All values live as CSS custom properties on `:root`.
 
 ### Colours
 
+Royal-blue / eggplant palette on a cream canvas (token *names* are legacy — `--color-red` is eggplant, `--color-green` is royal blue, not the literal Bulgarian-flag colors the names suggest).
+
 | Token | Value | Usage |
 |---|---|---|
-| `--color-navy` | `#182845` | Primary brand, headings, nav active |
-| `--color-red` | `#D62612` | Bulgarian flag red, accents |
-| `--color-green` | `#00966E` | Bulgarian flag green, credentials, labels |
+| `--color-navy` | `#0A2247` | Primary deep navy — dark sections, footer, globe background |
+| `--color-navy-mid` | `#103A6E` | Medium navy, gradients |
+| `--color-navy-deep` | `#061327` | Darkest navy — footer base |
+| `--color-red` | `#A0006D` | Eggplant — primary CTA accent |
+| `--color-red-soft` | `#C21E8A` | Lighter eggplant — hover state |
+| `--color-green` | `#4A8BDF` | Royal blue — the lead brand color (eyebrows, links, chips, badges) |
+| `--color-green-soft` | `#2E6BC4` | Royal blue deep |
 | `--color-cream` | `#F5F3EE` | Page background |
-| `--color-cream-soft` | slightly lighter cream | Card backgrounds |
-| `--color-ink` | near-black | Body text |
-| `--color-muted` | mid-grey | Secondary text |
-| `--color-rule` | light grey | Borders, dividers |
+| `--color-cream-soft` | `#FFFFFF` | Card background (pure white) |
+| `--color-taupe` | `#E3E9F2` | Blue-tinted chip backgrounds |
+| `--color-ink` | `#0E2138` | Body text & headings |
+| `--color-muted` | `#5B7290` | Secondary text |
+| `--color-rule` | `rgba(20,50,90,0.10)` | Hairline dividers |
 
 ### Typography
 
-| Token | Font | Usage |
-|---|---|---|
-| `--font-display` | Source Serif 4 | Headings, wordmark |
-| `--font-body` | Manrope | All body text, UI |
+Bulgarian (default language) and English use **different font pairs**, switched via `html[lang="en"]` overriding the `:root` defaults.
+
+| Token | BG (default) | EN (`html[lang="en"]`) | Usage |
+|---|---|---|---|
+| `--font-display` | Lora | Playfair Display | Headings, wordmark |
+| `--font-body` | Lora | Inter | All body text, UI |
+| `--font-serif` | Instrument Serif (both languages) | | Home hero quote, Compass intro accent text |
+
+Both BG fonts are loaded from the shared per-page Google Fonts `<link>` in `<head>` (alongside Instrument Serif); the EN pair is loaded via `@import` at the top of `tokens.css`. This was arrived at through live A/B testing of several Cyrillic-native candidates (Golos Text, PT Serif, Spectral, Commissioner, Bitter, Lora) directly on the site — see `dev/fonts.html` for the fuller candidate audit (Cyrillic-cut verification, Bulgarian `locl` GSUB check, variable-font/size comparison) that fed that decision.
 
 ### Spacing
 
@@ -278,10 +305,13 @@ processing so folders are served as-is.
 
 ## Known Constraints
 
-- `pricing.html` and `team.html` exist from early prototyping — not linked, not deployed; left flat (no clean URL)
+- `pricing.html` and `team.html` exist from early prototyping — not linked, not deployed; left flat (no clean URL). A cleanup pass identified their dedicated CSS (`.pricing-tier`, `.featured-badge`, `.btn--ghost-white`, `.team-card*`, `.placeholder-block`, `styles/pages/pricing.css`) as removable alongside them — not yet done, tracked in `Handoff.md`.
 - `files/` holds dev-only snippets/templates, not live pages — its internal links may be stale and are not maintained
-- `styles/pages/about.css` is empty — all About page layout lives in an inline `<style>` block in `about/index.html`
-- Logo uses `mix-blend-mode: multiply` — only looks correct on the cream background; would need adjustment on dark sections
+- `dev/fonts.html` holds a dev-only Cyrillic font-candidate audit page (not linked, not deployed) — real Google Fonts data (Cyrillic subset presence, Bulgarian `locl` GSUB support, variable-font size) for the display/body font decision
+- `styles/pages/about.css` and `styles/pages/home.css` both contain real rules but are **not `<link>`ed from any live page** — dead/unreachable CSS, not empty as previously documented here. Not yet cleaned up.
+- `compass/index.html` has no `<footer>` at all (every other live page does) — pre-existing, not addressed in the font/legal-pages work.
+- The base logo uses `mix-blend-mode: multiply` which fits light backgrounds; dark headers and dark canvas backgrounds rely on `logo-white.png` to maintain visual contrast.
 - Google Maps embed requires internet connection to load — shows blank grey box when offline
 - Formspree free tier: first submission to a new form requires email verification from Formspree before delivery begins
 - Old `*.html` URLs return 404 after the clean-URL migration (no redirect stubs)
+- `/privacy/` and `/terms/` now carry real bilingual content (previously both were an accidental copy of the homepage). The contact form requires a privacy-policy consent checkbox before submission, and is restricted in copy (not technically enforced) to parents/guardians or students 18+. Clause 4 of the privacy policy intentionally does not name specific vendors (Formspree, Google, Cloudflare) — see `Handoff.md` for the fuller version and why that's a temporary simplification.

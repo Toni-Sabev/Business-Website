@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 /* Design tokens - Royal-blue / eggplant palette (cream canvas kept).
    Token NAMES are unchanged so every existing rule restyles automatically.
    New roles:  red  → eggplant accent (CTAs)
@@ -33,8 +35,8 @@
   --color-clay-soft:   var(--color-red-soft);
 
   /* ── Typography ──────────────────────────────────────────────── */
-  --font-display: "Graduate", Georgia, serif;
-  --font-body:    "Graduate", Georgia, serif;
+  --font-display: "Lora", Georgia, serif;
+  --font-body:    "Lora", Georgia, serif;
   --font-serif:   "Instrument Serif", Georgia, serif; /* quotes, compass intro */
 
   /* ── Type scale ──────────────────────────────────────────────── */
@@ -74,3 +76,39 @@
   /* ── Transitions ─────────────────────────────────────────────── */
   --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
+/* ── Mobile Redefinitions (max-width: 767px) ──────────────────── */
+@media (max-width: 767px) {
+  :root {
+    /* Compress typography */
+    --fs-hero: clamp(24px, 5.5vw, 36px);
+    --fs-h2: clamp(20px, 4.5vw, 26px);
+    --fs-h3: clamp(15px, 3vw, 18px);
+    --fs-body: 13.5px;
+    --fs-lede: clamp(14px, 2.5vw, 15px);
+    --fs-small: 12px;
+    --fs-chip: 10.5px;
+
+    /* Compress spacing/layout (8pt grid scaled down) */
+    --space-3: 16px;
+    --space-4: 24px;
+    --space-5: 32px;
+    --space-6: 44px;
+    --space-7: 64px;
+    --space-8: 80px;
+
+    /* Adjust container gutter */
+    --gutter: 16px;
+
+    /* Slightly smaller corner radii on tight dimensions */
+    --radius-card: 12px;
+  }
+}
+
+/* ── English Font Overrides ─────────────────────────────────── */
+html[lang="en"] {
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body:    "Inter", system-ui, -apple-system, sans-serif;
+}
+
+

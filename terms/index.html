@@ -3,428 +3,40 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Успешно Бъдеще - От България до американски университет</title>
-  <meta name="description" content="Образователна консултация за български ученици и техните семейства. Подкрепа от първия разговор до дипломирането в САЩ.">
+  <title>Общи условия - Успешно Бъдеще</title>
+  <meta name="description" content="The terms governing use of this website and Successful Future's consulting services.">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Успешно Бъдеще - От България до американски университет">
-  <meta property="og:description" content="Образователна консултация за студенти-спортисти. Подкрепа от България до американски университет.">
+  <meta property="og:title" content="Общи условия - Успешно Бъдеще">
+  <meta property="og:description" content="The terms governing use of this website and Successful Future's consulting services.">
   <meta property="og:url" content="https://uspeshno-budeshte.org/terms/">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/base.css">
   <link rel="stylesheet" href="/styles/components.css">
-
-  <style>
-    /* ── Eyebrow override: editorial style with red rule prefix ── */
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--color-navy);
-    }
-    .eyebrow::before {
-      content: "";
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--color-red);
-      flex-shrink: 0;
-    }
-
-    /* ── Hero ── */
-    .hero {
-      padding-top: var(--space-6);
-      padding-bottom: var(--space-7);
-      position: relative;
-      overflow: hidden;
-    }
-    .hero__bg-pattern {
-      position: absolute; inset: 0; pointer-events: none; opacity: 0.55;
-      background-image:
-        radial-gradient(circle at 18% 22%, rgba(74,139,223,0.05) 0 220px, transparent 240px),
-        radial-gradient(circle at 92% 78%, rgba(160,0,109,0.04) 0 260px, transparent 280px);
-    }
-    .hero__journey-tag {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--color-muted);
-      background: rgba(255,255,255,0.6); border: 1px solid var(--color-rule);
-      padding: 6px 12px; border-radius: 99px;
-    }
-    .hero__journey-tag b { color: var(--color-navy); font-weight: 700; }
-    .hero__title { margin: var(--space-3) 0 var(--space-4); }
-    .hero__title em { font-style: italic; color: var(--color-red); font-weight: 400; }
-    .hero__lede { margin-bottom: var(--space-5); }
-    .hero__actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-    .hero__actions .meta {
-      font-size: 13px; color: var(--color-muted);
-      display: inline-flex; align-items: center; gap: 8px; margin-left: 8px;
-    }
-    .hero__actions .meta::before {
-      content: ""; display: inline-block; width: 6px; height: 6px;
-      background: var(--color-green); border-radius: 50%;
-    }
-    .hero__grid {
-      display: grid; grid-template-columns: 1.05fr 1fr;
-      gap: var(--space-6); align-items: center;
-    }
-    @media (max-width: 920px) {
-      .hero__grid { grid-template-columns: 1fr; gap: var(--space-5); }
-    }
-
-    /* Hero card - flags photo */
-    .hero-card {
-      position: relative; aspect-ratio: 4 / 5; max-width: 460px;
-      width: 100%; margin-left: auto; border-radius: 18px; overflow: hidden;
-      box-shadow: 16px 32px 64px -24px rgba(10,34,71,0.28);
-      isolation: isolate;
-    }
-    @media (min-width: 921px) {
-      .hero-card {
-        border-radius: 0 18px 18px 0;
-        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 22%);
-        mask-image: linear-gradient(to right, transparent 0%, black 22%);
-        box-shadow: none;
-      }
-    }
-    @media (max-width: 920px) { .hero-card { margin: 0 auto; max-width: 420px; aspect-ratio: 3 / 2; } }
-    .hero-card__photo {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-    }
-    .hero-card__caption { position: absolute; left: 22px; bottom: 22px; color: #fff; z-index: 2; }
-    .hero-card__caption-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(255,255,255,0.7); margin-bottom: 8px;
-    }
-    .hero-card__caption-eyebrow::before {
-      content: ""; display: inline-block; width: 18px; height: 2px; background: var(--color-red);
-    }
-    .hero-card__caption-place {
-      font-family: var(--font-display); font-size: 30px; font-weight: 500; line-height: 1; letter-spacing: -0.01em;
-    }
-    .hero-card__caption-sub { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 4px; }
-    .hero-card__flag {
-      position: absolute; top: 18px; right: 18px;
-      display: flex; flex-direction: column; width: 30px; height: 20px;
-      border-radius: 3px; overflow: hidden; border: 1px solid rgba(255,255,255,0.2); z-index: 2;
-    }
-    .hero-card__flag span { flex: 1; display: block; }
-    .hero-card__arrow {
-      position: absolute; top: 18px; left: 18px;
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(255,255,255,0.92); color: var(--color-navy);
-      font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 5px 10px; border-radius: 99px; z-index: 2;
-    }
-
-    /* ── Packages (flip cards) ── */
-    .packages-list {
-      display: grid; gap: var(--space-3);
-      grid-template-columns: 1fr; margin-top: var(--space-5); align-items: start;
-    }
-    @media (min-width: 860px) { .packages-list { grid-template-columns: repeat(3, 1fr); } }
-
-    .package-card {
-      min-height: 380px; perspective: 1000px;
-      border-radius: var(--radius-card); cursor: pointer;
-    }
-    .package-card__inner {
-      position: relative; width: 100%; height: 100%; min-height: 380px;
-      transform-style: preserve-3d;
-      transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
-    }
-    @media (hover: hover) {
-      .package-card:not(.package-card--soon):hover .package-card__inner { transform: rotateY(180deg); }
-      .package-card:not(.package-card--soon):hover ~ .package-card__chips { opacity: 1; }
-    }
-    .package-card.is-flipped .package-card__inner { transform: rotateY(180deg); }
-
-    .package-card__front,
-    .package-card__back {
-      position: absolute; inset: 0;
-      backface-visibility: hidden; -webkit-backface-visibility: hidden;
-      border-radius: var(--radius-card); background: var(--color-cream-soft);
-      border: 1px solid var(--color-rule); padding: var(--space-4); box-sizing: border-box;
-    }
-    .package-card__front {
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: var(--space-3);
-    }
-    .package-card__logo {
-      width: 130px; height: 130px; border-radius: 50%;
-      object-fit: cover; display: block; mix-blend-mode: multiply;
-    }
-    .package-card__logo--mystery { filter: blur(6px); opacity: 0.75; }
-    .package-card__back {
-      transform: rotateY(180deg);
-      display: flex; flex-direction: column; gap: var(--space-2);
-    }
-    .package-card__badge {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 3px 10px; border-radius: var(--radius-chip);
-    }
-    .package-card__badge--green { color: var(--color-green); background: rgba(74,139,223,0.10); }
-    .package-card__badge--navy  { color: var(--color-navy);  background: rgba(10,34,71,0.08); }
-    .package-card__badge--red   { color: var(--color-red);   background: rgba(160,0,109,0.10); }
-    .package-card__tagline { font-size: 13px; color: var(--color-muted); line-height: 1.55; }
-    .package-card__features-label {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
-      color: var(--color-muted); margin: 0 0 4px;
-    }
-    .package-card__features {
-      list-style: disc; padding-left: 18px; margin: var(--space-1) 0 0;
-      display: flex; flex-direction: column; gap: 5px; flex: 1;
-    }
-    .package-card__features li { font-size: 13px; color: var(--color-ink); line-height: 1.5; }
-    .package-card__features li::marker { color: var(--color-navy); }
-
-    .package-wrap { display: flex; flex-direction: column; gap: 10px; }
-    .package-card__chips {
-      display: flex; flex-wrap: wrap; gap: 6px;
-      opacity: 0; transition: opacity 0.2s ease 0.35s;
-    }
-    .package-wrap:hover .package-card__chips,
-    .package-card.is-flipped ~ .package-card__chips { opacity: 1; }
-
-    .package-card__chip {
-      font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
-      color: var(--color-green); background: rgba(74,139,223,0.10);
-      padding: 2px 8px; border-radius: var(--radius-chip);
-    }
-    .package-card__chip--navy { color: var(--color-navy-mid); background: rgba(10,34,71,0.08); }
-
-    .package-card--soon { opacity: 0.5; pointer-events: none; cursor: default; }
-    .package-card__coming-soon {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
-      color: var(--color-muted); margin-top: auto;
-    }
-    .package-card__name {
-      font-family: var(--font-display); font-size: 20px; font-weight: 600;
-      color: var(--color-navy); letter-spacing: -0.01em; line-height: 1.2;
-    }
-    @media (max-width: 859px) {
-      .package-card__logo { width: 100px; height: 100px; }
-      .package-card, .package-card__inner { min-height: 320px; }
-    }
-
-    /* ── Who We Are ── */
-    .whous {
-      background: var(--color-cream-soft);
-      border-top: 1px solid var(--color-rule);
-      border-bottom: 1px solid var(--color-rule);
-    }
-    .whous__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); align-items: center; }
-    @media (max-width: 880px) { .whous__grid { grid-template-columns: 1fr; gap: var(--space-4); } }
-    .whous__stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
-    .stat {
-      background: #fff; border: 1px solid var(--color-rule); border-radius: 12px; padding: 18px 20px;
-    }
-    .stat__num {
-      font-family: var(--font-display); font-size: 36px; font-weight: 500;
-      color: var(--color-navy); line-height: 1; letter-spacing: -0.01em;
-    }
-    .stat--green .stat__num { color: var(--color-green); }
-    .stat--red   .stat__num { color: var(--color-red); }
-    .stat__label {
-      display: block; margin-top: 6px; font-size: 12px; font-weight: 600;
-      letter-spacing: 0.06em; color: var(--color-muted); line-height: 1.4;
-    }
-    .stat__label em { font-style: normal; color: var(--color-navy-mid); font-weight: 700; }
-
-    /* ── Compass feature ── */
-    .compass-feature {
-      background: var(--color-navy); color: #fff; position: relative; overflow: hidden;
-    }
-    .compass-feature .container { position: relative; z-index: 2; }
-    .compass-feature__rings {
-      position: absolute; right: -160px; top: 50%; transform: translateY(-50%);
-      width: 700px; height: 700px; pointer-events: none; opacity: 0.65; z-index: 1;
-    }
-    @media (max-width: 920px) { .compass-feature__rings { right: -350px; } }
-    .compass-feature__grid {
-      display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--space-6); align-items: center;
-    }
-    @media (max-width: 920px) { .compass-feature__grid { grid-template-columns: 1fr; gap: var(--space-5); } }
-    .compass-feature .eyebrow { color: rgba(255,255,255,0.7); }
-    .compass-feature .eyebrow::before { background: var(--color-green); }
-    .compass-feature .h2 { color: #fff; margin: var(--space-2) 0 var(--space-3); }
-    .compass-feature .lede { color: rgba(255,255,255,0.75); }
-    .compass-feature__cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: var(--space-4); }
-    .compass-feature__topics { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--space-3); }
-    .compass-feature__topic {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 5px 11px; border-radius: 99px;
-      background: rgba(74,139,223,0.15); color: rgba(255,255,255,0.92);
-    }
-    .compass-preview {
-      background: #1f3358; border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 18px; padding: 22px;
-      box-shadow: 0 30px 60px -25px rgba(0,0,0,0.5);
-      max-width: 460px; margin-left: auto;
-    }
-    .compass-preview__header {
-      display: flex; align-items: center; gap: 12px;
-      padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 16px;
-    }
-    .compass-preview__avatar {
-      width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
-      background: radial-gradient(circle at 30% 30%, #d6e4ff 0%, #9fb6e0 35%, #4a6db0 65%, #2a4470 100%);
-      display: inline-flex; align-items: center; justify-content: center;
-      color: #fff; font-weight: 700; font-size: 16px;
-    }
-    .compass-preview__name { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: #fff; }
-    .compass-preview__status {
-      font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 1px;
-      display: inline-flex; align-items: center; gap: 6px;
-    }
-    .compass-preview__status::before {
-      content: ""; width: 6px; height: 6px; background: var(--color-green); border-radius: 50%;
-    }
-    .compass-bubble {
-      max-width: 86%; padding: 10px 14px; border-radius: 14px;
-      font-size: 13.5px; line-height: 1.55; margin-bottom: 10px;
-    }
-    .compass-bubble--user {
-      background: var(--color-red); color: #fff; margin-left: auto; border-bottom-right-radius: 4px;
-    }
-    .compass-bubble--bot {
-      background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.92); border-bottom-left-radius: 4px;
-    }
-    .compass-bubble--bot b { color: #fff; }
-
-    /* ── Resources teaser ── */
-    .resources-head {
-      display: flex; align-items: flex-end; justify-content: space-between;
-      gap: var(--space-3); margin-bottom: var(--space-5);
-    }
-    @media (max-width: 720px) { .resources-head { flex-direction: column; align-items: flex-start; } }
-    .resources-head__more {
-      font-size: 13px; font-weight: 600; color: var(--color-navy); text-decoration: none;
-      border-bottom: 1.5px solid var(--color-red); padding-bottom: 2px;
-      transition: color 0.15s; white-space: nowrap;
-    }
-    .resources-head__more:hover { color: var(--color-red); }
-    .resources-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
-    @media (max-width: 720px) { .resources-grid { grid-template-columns: 1fr; } }
-    .article-card {
-      display: flex; flex-direction: column; gap: 12px;
-      background: #fff; border: 1px solid var(--color-rule); border-radius: var(--radius-card);
-      padding: var(--space-4); text-decoration: none; color: inherit;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .article-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card-lg); }
-    .article-card__meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
-    .article-card__tag {
-      font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--color-green); background: rgba(74,139,223,0.10); padding: 3px 10px; border-radius: 99px;
-    }
-    .article-card__date { font-size: 11px; color: var(--color-muted); margin-left: auto; }
-    .article-card__title {
-      font-family: var(--font-display); font-size: 20px; font-weight: 600;
-      line-height: 1.3; color: var(--color-navy); margin: 0;
-    }
-    .article-card__excerpt { font-size: 14px; color: var(--color-muted); margin: 0; line-height: 1.55; }
-    .article-card__cta { margin-top: auto; font-size: 13px; font-weight: 600; color: var(--color-red); }
-
-    /* ── Final CTA flip ── */
-    .cta-flip {
-      perspective: 1200px;
-      cursor: pointer;
-    }
-    .cta-flip__inner {
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
-    }
-    @media (hover: hover) {
-      .cta-flip:hover .cta-flip__inner { transform: rotateY(180deg); }
-    }
-    .cta-flip.is-flipped .cta-flip__inner { transform: rotateY(180deg); }
-    .cta-flip__front,
-    .cta-flip__back {
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-    .cta-flip__back {
-      position: absolute;
-      inset: 0;
-      transform: rotateY(180deg);
-    }
-    .cta-flip__front,
-    .cta-flip__back {
-      min-height: 320px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: var(--space-5) var(--space-4) !important;
-    }
-    .cta-back__list {
-      list-style: none;
-      margin: var(--space-3) auto var(--space-4);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      text-align: left;
-      max-width: 420px;
-    }
-    .cta-back__list li {
-      font-size: 14px;
-      color: rgba(255,255,255,0.85);
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      line-height: 1.5;
-    }
-    .cta-back__list li::before {
-      content: '✓';
-      color: var(--color-green);
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-  </style>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Успешно Бъдеще",
-    "alternateName": "Successful Future",
-    "url": "https://toni-sabev.github.io/Business-Website/",
-    "description": "Bulgarian student education advisory - guiding students from Bulgaria to US universities, end-to-end.",
-    "address": { "@type": "PostalAddress", "addressLocality": "Sofia", "addressCountry": "BG" }
-  }
-  </script>
-  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a2d7df3c00bb4b038acf444cf84b2601"}'></script><!-- End Cloudflare Web Analytics -->
+  <link rel="stylesheet" href="/styles/pages/article.css">
 </head>
 <body>
 
 <a href="#main" class="skip-link">Skip to main content</a>
 
-<!-- ═══ HEADER ═══════════════════════════════════════════════════════ -->
 <header class="site-header" role="banner">
   <div class="container">
     <div class="header-inner">
-
       <a href="/" class="wordmark--logo" aria-label="Успешно Бъдеще - начало">
         <img src="/assets/logo.png" alt="" class="logo-img">
         <span class="logo-name" data-en="Successful Future" data-bg="Успешно Бъдеще">Успешно Бъдеще</span>
       </a>
-
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="/" class="active" data-en="Home" data-bg="Начало">Начало</a>
+        <a href="/" data-en="Home" data-bg="Начало">Начало</a>
         <a href="/about/" data-en="About" data-bg="За нас">За нас</a>
         <a href="/resources/" data-en="Resources" data-bg="Ресурси">Ресурси</a>
         <a href="/contact/" data-en="Contact" data-bg="Контакт">Контакт</a>
         <a href="/compass/" data-en="Compass" data-bg="Компас">Компас</a>
       </nav>
-
       <div class="header-actions">
         <div class="lang-toggle" role="group" aria-label="Language">
           <button data-toggle="lang" data-lang="en" aria-pressed="false">EN</button>
@@ -432,10 +44,9 @@
         </div>
         <a href="/contact/" class="btn btn--primary btn--sm" data-en="Book a call" data-bg="Запишете час">Запишете час</a>
         <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
-          <svg width="20" height="15" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1h18M1 7h18M1 13h18"/></svg>
+          <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1h18M1 7h18M1 13h18"/></svg>
         </button>
       </div>
-
     </div>
   </div>
   <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
@@ -447,483 +58,110 @@
   </nav>
 </header>
 
-<!-- ═══ MAIN ═══════════════════════════════════════════════════════ -->
 <main id="main">
-
-  <!-- ░░ WHAT WE OFFER ░░ -->
-  <section class="section" aria-labelledby="offer-heading">
+  <div class="section">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow" data-en="What we offer" data-bg="Какво предлагаме">Какво предлагаме</span>
-        <h2 class="h2" id="offer-heading"
-            data-en="Everything you need, in one place."
-            data-bg="Всичко, от което се нуждаете, на едно място.">
-          Всичко, от което се нуждаете, на едно място.
-        </h2>
+
+      <header class="article-header">
+        <h1 class="article-title" data-en="Terms of Service" data-bg="Общи условия">Общи условия</h1>
+        <div class="article-meta">
+          <span data-en="Last updated: July 9, 2026" data-bg="Последна актуализация: 9 юли 2026 г.">Последна актуализация: 9 юли 2026 г.</span>
+        </div>
+      </header>
+
+      <div class="container--article">
+
+        <!-- ══ ENGLISH CONTENT ══════════════════════════════════ -->
+        <div data-lang-content="en" hidden>
+        <div class="prose">
+
+          <h2>1. Scope</h2>
+          <p>These terms govern your use of this website and any consulting services you engage us to provide. By using the site you accept them.</p>
+
+          <h2>2. What we do</h2>
+          <p>We provide educational consulting and mentorship to student-athletes and their families regarding admission to universities in the United States. Our services are advisory. Decisions on admission, athletic recruitment, financial aid, and visas rest entirely with universities, athletic departments, and government authorities.</p>
+
+          <h2>3. No guarantee of outcome</h2>
+          <p>We do not guarantee admission to any university, any athletic scholarship, any amount of financial aid, or the issuance of any visa. Any discussion of likely outcomes is an informed opinion, not a promise.</p>
+
+          <h2>4. We are not an athlete agent</h2>
+          <p>We do not represent student-athletes to universities or coaches, we do not negotiate on their behalf, and we do not market their athletic ability to any institution. Our role is educational and advisory. Clients remain solely responsible for their own compliance with NCAA, NAIA, NJCAA, and institutional eligibility rules, and should verify their standing directly with the relevant governing body and the NCAA Eligibility Center.</p>
+
+          <h2>5. Not legal, immigration, or financial advice</h2>
+          <p>Nothing we provide, on this website or in consultation, constitutes legal advice, immigration advice, tax advice, or regulated financial advice. For those matters, consult a licensed professional.</p>
+
+          <h2>6. Compass</h2>
+          <p>Compass is an AI assistant. Its responses are generated automatically, may be inaccurate or out of date, and do not constitute advice of any kind. Do not rely on them for decisions. Verify anything material with us directly.</p>
+
+          <h2>7. Information you provide</h2>
+          <p>You are responsible for the accuracy of the information you give us, including academic records, competition results, and personal details. We rely on it. We are not liable for outcomes resulting from information that was inaccurate or incomplete when you provided it.</p>
+
+          <h2>8. Fees</h2>
+          <p>Fees, deliverables, and payment terms are set out in the individual engagement agreement signed before services begin. Nothing on this website constitutes an offer of services at a stated price.</p>
+
+          <h2>9. Intellectual property</h2>
+          <p>The content of this website, including articles, guides, and materials, belongs to us. You may read and share it. You may not republish or resell it without written permission.</p>
+
+          <h2>10. Liability</h2>
+          <p>We are liable for damage caused by our intent or gross negligence, and for damage to life, body, or health, without limitation. Otherwise our aggregate liability is limited to the fees you have paid us under the relevant engagement. Nothing in these terms limits any right you have as a consumer under Bulgarian mandatory law.</p>
+
+          <h2>11. Governing law</h2>
+          <p>These terms are governed by Bulgarian law. Disputes fall to the competent Bulgarian courts. Consumers may also use the European Commission's online dispute resolution platform at <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>.</p>
+
+          <h2>12. Changes</h2>
+          <p>We may amend these terms. The version in force is the one published here on the date you use the site.</p>
+
+        </div><!-- /prose EN -->
+        </div><!-- /lang-content en -->
+
+        <!-- ══ BULGARIAN CONTENT ════════════════════════════════ -->
+        <div data-lang-content="bg">
+        <div class="prose">
+
+          <h2>1. Обхват</h2>
+          <p>Настоящите условия уреждат използването на този уебсайт и всички консултантски услуги, които ни възложите. С използването на сайта вие ги приемате.</p>
+
+          <h2>2. С какво се занимаваме</h2>
+          <p>Предоставяме образователно консултиране и менторство на ученици-спортисти и техните семейства във връзка с прием в университети в САЩ. Услугите ни имат консултативен характер. Решенията за прием, спортно набиране, финансова помощ и визи се вземат изцяло от университетите, спортните департаменти и държавните органи.</p>
+
+          <h2>3. Без гаранция за резултат</h2>
+          <p>Не гарантираме прием в университет, спортна стипендия, размер на финансова помощ или издаване на виза. Всяко обсъждане на вероятни резултати представлява информирано мнение, а не обещание.</p>
+
+          <h2>4. Не сме спортни агенти</h2>
+          <p>Не представляваме ученици-спортисти пред университети или треньори, не преговаряме от тяхно име и не рекламираме спортните им възможности пред институции. Ролята ни е образователна и консултативна. Клиентите носят самостоятелна отговорност за спазването на правилата за допустимост на NCAA, NAIA, NJCAA и на съответните институции и следва да проверят статуса си директно при компетентния орган и в NCAA Eligibility Center.</p>
+
+          <h2>5. Не е правен, имиграционен или финансов съвет</h2>
+          <p>Нищо, което предоставяме — на този сайт или при консултация — не представлява правен съвет, имиграционен съвет, данъчен съвет или регулиран финансов съвет. За тези въпроси се обърнете към лицензиран специалист.</p>
+
+          <h2>6. Compass</h2>
+          <p>Compass е AI асистент. Отговорите му се генерират автоматично, може да са неточни или неактуални и не представляват съвет от какъвто и да е характер. Не се позовавайте на тях при вземане на решения. Проверявайте всичко съществено директно при нас.</p>
+
+          <h2>7. Предоставена от вас информация</h2>
+          <p>Вие носите отговорност за точността на информацията, която ни предоставяте, включително академични документи, състезателни резултати и лични данни. Ние се доверяваме на нея. Не отговаряме за последици, произтичащи от неточна или непълна информация към момента на предоставянето ѝ.</p>
+
+          <h2>8. Възнаграждение</h2>
+          <p>Възнаграждението, обхватът на услугите и условията на плащане се определят в индивидуален договор, подписан преди започване на работа. Нищо на този сайт не представлява оферта за услуги на определена цена.</p>
+
+          <h2>9. Интелектуална собственост</h2>
+          <p>Съдържанието на този уебсайт, включително статии, ръководства и материали, принадлежи на нас. Може да го четете и споделяте. Не може да го препубликувате или препродавате без писмено разрешение.</p>
+
+          <h2>10. Отговорност</h2>
+          <p>Отговаряме неограничено за вреди, причинени умишлено или при груба небрежност, както и за вреди върху живота, тялото или здравето. В останалите случаи общата ни отговорност е ограничена до платеното от вас възнаграждение по съответния договор. Нищо в тези условия не ограничава правата ви на потребител съгласно повелителните норми на българското право.</p>
+
+          <h2>11. Приложимо право</h2>
+          <p>Настоящите условия се уреждат от българското право. Споровете са подсъдни на компетентните български съдилища. Потребителите могат да използват и платформата на Европейската комисия за онлайн решаване на спорове: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>.</p>
+
+          <h2>12. Промени</h2>
+          <p>Можем да изменяме тези условия. Приложима е версията, публикувана тук към датата на използване на сайта.</p>
+
+        </div><!-- /prose BG -->
+        </div><!-- /lang-content bg -->
+
       </div>
-      <div class="offer-grid">
-
-        <div class="offer-item">
-          <h3 class="offer-item__title" data-en="Profile Building" data-bg="Изграждане на профил">Изграждане на профил</h3>
-          <ul class="offer-item__list">
-            <li data-en="Complete academic and athletic profile report for effective university presentation"
-                data-bg="Пълен академичен и спортен профилен доклад за ефективно представяне пред университети">Пълен академичен и спортен профилен доклад за ефективно представяне пред университети</li>
-          </ul>
-        </div>
-
-        <div class="offer-item">
-          <h3 class="offer-item__title" data-en="University Outreach" data-bg="Комуникация с университети">Комуникация с университети</h3>
-          <ul class="offer-item__list">
-            <li data-en="Personalised guidance to identify, prepare, and contact coaches and admissions staff directly"
-                data-bg="Персонализирани насоки за свързване директно с треньори и приемни комисии">Персонализирани насоки за свързване директно с треньори и приемни комисии</li>
-          </ul>
-        </div>
-
-        <div class="offer-item">
-          <h3 class="offer-item__title" data-en="Visa &amp; Documentation" data-bg="Виза и документация">Виза и документация</h3>
-          <ul class="offer-item__list">
-            <li data-en="Step-by-step guidance for F-1 visa, SEVIS, health records, and university enrolment paperwork"
-                data-bg="Стъпка по стъпка насочване за виза F-1, SEVIS, здравни формуляри и документи за записване">Стъпка по стъпка насочване за виза F-1, SEVIS, здравни формуляри и документи за записване</li>
-          </ul>
-        </div>
-
-        <div class="offer-item">
-          <h3 class="offer-item__title" data-en="Budget &amp; Logistics" data-bg="Бюджет и логистика">Бюджет и логистика</h3>
-          <ul class="offer-item__list">
-            <li data-en="Full support for flights, phones, banking, housing, and detailed cost budget reports"
-                data-bg="Пълна подкрепа за полети, телефони, банки, жилище и подробни бюджетни доклади за разходите">Пълна подкрепа за полети, телефони, банки, жилище и подробни бюджетни доклади за разходите</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ░░ HERO ░░ -->
-  <section class="hero" aria-labelledby="hero-heading">
-    <div class="hero__bg-pattern" aria-hidden="true"></div>
-    <div class="container">
-      <div class="hero__grid">
-
-        <div>
-<h1 id="hero-heading" class="hero__title h1"
-              data-en="From Europe to America."
-              data-bg="От Европа до Америка.">
-            От Европа до Америка.
-          </h1>
-
-          <p class="hero__lede lede"
-             data-en="We didn't just study in the USA - we lived through the move, the bureaucracy, the homesickness, and building a career on the other side. Now we'll be the mentors we wished we had - beside you and your family from the first email to graduation day."
-             data-bg="Ние не просто учихме в САЩ - преживяхме преместването, бюрокрацията, носталгията и изграждането на кариера от другата страна. Сега ще бъдем менторите, които мечтаехме да имаме - до вас и вашето семейство от първия имейл до дипломирането.">
-            Ние не просто учихме в САЩ - преживяхме преместването, бюрокрацията, носталгията и изграждането на кариера от другата страна. Сега ще бъдем менторите, които мечтаехме да имаме - до вас и вашето семейство от първия имейл до дипломирането.
-          </p>
-          <p class="hero__lede lede"
-             data-en="US universities are a fully achievable goal when you have the right strategy and a clear, step-by-step plan. That is exactly where we come in. Whether you are aiming for the Ivy League, a Division 1 or 2 athletic programme, or any other institution that fits your goals - we will help you choose the right path and navigate the entire process with confidence."
-             data-bg="Американските университети могат да бъдат напълно постижима цел, когато имате правилна стратегия и ясно подредени стъпки. Именно тук е нашата роля. Независимо дали се стремите към Бръшляновата лига, спортна програма в Дивизия 1 или 2, или друг университет, който отговаря на вашите цели, ние ще ви помогнем да изберете най-подходящия път и да преминете уверено през целия процес.">
-            Американските университети могат да бъдат напълно постижима цел, когато имате правилна стратегия и ясно подредени стъпки. Именно тук е нашата роля. Независимо дали се стремите към Бръшляновата лига, спортна програма в Дивизия 1 или 2, или друг университет, който отговаря на вашите цели, ние ще ви помогнем да изберете най-подходящия път и да преминете уверено през целия процес.
-          </p>
-
-          <div class="hero__actions">
-            <a href="/contact/" class="btn btn--primary btn--lg"
-               data-en="Book a meeting" data-bg="Запазете среща">Запазете среща</a>
-            <a href="#packages" class="btn btn--ghost btn--lg"
-               data-en="See our packages" data-bg="Разгледайте пакетите">Разгледайте пакетите</a>
-            <span class="meta" data-en="45 min · no obligation" data-bg="45 мин · без ангажимент">45 мин · без ангажимент</span>
-          </div>
-        </div>
-
-        <!-- Hero flags photo -->
-        <div class="hero-card" role="img" aria-label="Bulgarian and US flags">
-          <img src="/assets/hero-flags.png" alt="Bulgarian and American flags side by side" class="hero-card__photo">
-
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ░░ TRUST STRIP ░░ -->
-  <div class="trust-strip" aria-label="Track record">
-    <span class="trust-strip__label"
-          data-en="Our path"
-          data-bg="Нашият път">Нашият път</span>
-    <div class="trust-strip__items">
-      <span class="trust-strip__item">University of Delaware</span>
-      <span class="trust-strip__item">Missouri State</span>
-      <span class="trust-strip__item">MSCI</span>
-      <span class="trust-strip__item">Bloomberg</span>
-      <span class="trust-strip__item">Tokyo 2020</span>
-      <span class="trust-strip__item">NCAA</span>
     </div>
   </div>
-
-  <!-- ░░ PACKAGES ░░ -->
-  <section class="section" id="packages" aria-labelledby="packages-heading">
-    <div class="container">
-
-      <div class="section-head">
-        <span class="eyebrow" data-en="What we do" data-bg="Какво правим">Какво правим</span>
-        <h2 class="h2" id="packages-heading"
-            data-en="Three packages. One promise - to be with you from start to finish."
-            data-bg="Три пакета. Едно обещание - да бъдем до вас от началото до края.">
-          Три пакета. Едно обещание - да бъдем до вас от началото до края.
-        </h2>
-        <p class="lede"
-           data-en="Choose the package that matches where you are right now. Each tier builds on the one before it - no hidden terms, no one-off support. We are not just a temporary fix, but a partner you can count on every step of the way."
-           data-bg="Изберете пакета според етапа, на който се намирате. Всеки следващ пакет надгражда предишния, без скрити условия и без еднократно съдействие. Ние не сме просто временна помощ, а партньор, на когото можете да разчитате през целия път.">
-          Изберете пакета според етапа, на който се намирате. Всеки следващ пакет надгражда предишния, без скрити условия и без еднократно съдействие. Ние не сме просто временна помощ, а партньор, на когото можете да разчитате през целия път.
-        </p>
-      </div>
-
-      <div class="packages-list">
-
-        <!-- ── Hope / Надежда ── -->
-        <div class="package-wrap">
-          <div class="package-card">
-            <div class="package-card__inner">
-              <div class="package-card__front">
-                <img src="/assets/package-hope.png" alt="" class="package-card__logo">
-                <p class="package-card__name" data-en="Hope" data-bg="Надежда">Надежда</p>
-              </div>
-              <div class="package-card__back">
-                <span class="package-card__badge package-card__badge--green"
-                      data-en="Hope" data-bg="Надежда">Надежда</span>
-                <p class="package-card__tagline"
-                   data-en="The first step toward a US university. Documents, profile, and a real plan."
-                   data-bg="Първата стъпка към американски университет. Документи, профил и реален план.">
-                  Първата стъпка към американски университет. Документи, профил и реален план.
-                </p>
-                <p class="package-card__features-label"
-                   data-en="What's included" data-bg="Включва">Включва</p>
-                <ul class="package-card__features">
-                  <li data-en="Admissions criteria &amp; the application, step by step"
-                      data-bg="Критерии за прием и кандидатстването, стъпка по стъпка">Критерии за прием и кандидатстването, стъпка по стъпка</li>
-                  <li data-en="University research, profile building, direct outreach"
-                      data-bg="Проучване на университети, изграждане на профил, пряка комуникация">Проучване на университети, изграждане на профил, пряка комуникация</li>
-                  <li data-en="Cost analysis &amp; logistics planning for parents"
-                      data-bg="Анализ на разходите и логистика за родителите">Анализ на разходите и логистика за родителите</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="package-card__chips">
-            <span class="package-card__chip" data-en="Ages 16-18" data-bg="Възраст: 16-18 г.">Възраст: 16-18 г.</span>
-            <span class="package-card__chip" data-en="9-24 month process" data-bg="9-24 месеца процес">9-24 месеца процес</span>
-          </div>
-        </div>
-
-        <!-- ── Direction / Насока ── -->
-        <div class="package-wrap">
-          <div class="package-card">
-            <div class="package-card__inner">
-              <div class="package-card__front">
-                <img src="/assets/package-direction.png" alt="" class="package-card__logo">
-                <p class="package-card__name" data-en="Direction" data-bg="Насока">Насока</p>
-              </div>
-              <div class="package-card__back">
-                <span class="package-card__badge package-card__badge--navy"
-                      data-en="Direction" data-bg="Насока">Насока</span>
-                <p class="package-card__tagline"
-                   data-en="Everything in Hope, plus professional guidance through every semester of your degree."
-                   data-bg="Всичко от Надежда + професионална насока през всеки семестър на следването.">
-                  Всичко от Надежда + професионална насока през всеки семестър на следването.
-                </p>
-                <p class="package-card__features-label"
-                   data-en="What's included" data-bg="Включва">Включва</p>
-                <ul class="package-card__features">
-                  <li data-en="Transport, housing, and on-arrival support"
-                      data-bg="Транспорт, настаняване и адаптация при пристигане">Транспорт, настаняване и адаптация при пристигане</li>
-                  <li data-en="Major selection &amp; professional development advice"
-                      data-bg="Избор на специалност и професионално развитие">Избор на специалност и професионално развитие</li>
-                  <li data-en="Taxes, health insurance, paperwork - handled with you"
-                      data-bg="Данъци, здравни осигуровки, документация - заедно">Данъци, здравни осигуровки, документация - заедно</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="package-card__chips">
-            <span class="package-card__chip package-card__chip--navy" data-en="Ages 16-22" data-bg="Възраст: 16-22 г.">Възраст: 16-22 г.</span>
-            <span class="package-card__chip package-card__chip--navy" data-en="3-5 year process" data-bg="Процес 3-5 години">Процес 3-5 години</span>
-          </div>
-        </div>
-
-        <!-- ── The Success / Успехът (coming soon) ── -->
-        <div class="package-wrap">
-          <div class="package-card package-card--soon">
-            <div class="package-card__inner">
-              <div class="package-card__front">
-                <img src="/assets/package-success.png" alt="" class="package-card__logo package-card__logo--mystery">
-                <p class="package-card__name" data-en="The Success" data-bg="Успехът">Успехът</p>
-                <p class="package-card__coming-soon"
-                   data-en="Coming soon" data-bg="Очаквайте">Очаквайте</p>
-              </div>
-              <div class="package-card__back">
-                <span class="package-card__badge package-card__badge--red"
-                      data-en="The Success" data-bg="Успехът">Успехът</span>
-                <p class="package-card__tagline"
-                   data-en="Everything in Hope and Direction, plus the leap into a real career - internships, interviews, your first salary."
-                   data-bg="Всичко от Надежда и Насока + скока в реалната кариера - стажове, интервюта, първа заплата.">
-                  Всичко от Надежда и Насока + скока в реалната кариера - стажове, интервюта, първа заплата.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ░░ WHO WE ARE ░░ -->
-  <section class="whous section" id="whous" aria-labelledby="whous-heading">
-    <div class="container">
-      <div class="whous__grid">
-
-        <div>
-          <span class="eyebrow" data-en="Who we are" data-bg="Кои сме ние">Кои сме ние</span>
-          <h2 class="h2" id="whous-heading" style="margin: var(--space-2) 0 var(--space-3);"
-              data-en="Three people who made the journey themselves."
-              data-bg="Трима, които сами преминаха по този път.">
-            Трима, които сами преминаха по този път.
-          </h2>
-          <p class="lede"
-             data-en="Three friends who left Bulgaria for the US. Competed at high levels and maintained academic excellence. Every service we offer is a step we walked ourselves."
-             data-bg="Трима приятели, тръгнали от България за САЩ. Състезавали се на високо ниво и поддържали академични постижения. Всяка услуга, която предлагаме, е стъпка, която сами сме извървели.">
-            Трима приятели, тръгнали от България за САЩ. Състезавали се на високо ниво и поддържали академични постижения. Всяка услуга, която предлагаме, е стъпка, която сами сме извървели.
-          </p>
-          <div style="display:flex; gap:12px; margin-top: var(--space-4);">
-            <a href="/about/" class="btn btn--ghost btn--md"
-               data-en="Meet the founders →" data-bg="Запознайте се с екипа →">Запознайте се с екипа →</a>
-          </div>
-        </div>
-
-        <div class="whous__stats" aria-label="Track record">
-          <div class="stat">
-            <span class="stat__num" data-en="100s" data-bg="100-ци">100-ци</span>
-            <span class="stat__label" data-en="Medals, Records, Honors" data-bg="Медали, рекорди, отличия">Медали, рекорди, отличия</span>
-          </div>
-          <div class="stat stat--red">
-            <span class="stat__num">1</span>
-            <span class="stat__label"
-                  data-en="&lt;em&gt;Olympian&lt;/em&gt; on the team (Tokyo 2020)"
-                  data-bg="&lt;em&gt;Олимпиец&lt;/em&gt; в екипа (Токио 2020)"><em>Олимпиец</em> в екипа (Токио 2020)</span>
-          </div>
-          <div class="stat stat--green">
-            <span class="stat__num">3</span>
-            <span class="stat__label"
-                  data-en="&lt;em&gt;National record holders&lt;/em&gt;, all US graduates"
-                  data-bg="&lt;em&gt;Рекордьори на страната&lt;/em&gt;, всички завършили в САЩ"><em>Рекордьори на страната</em>, всички завършили в САЩ</span>
-          </div>
-          <div class="stat">
-            <span class="stat__num">∞</span>
-            <span class="stat__label"
-                  data-en="Forms, registrations, documents - a path already navigated"
-                  data-bg="Формуляри, регистрации, документация - вече изминат път">Формуляри, регистрации, документация - вече изминат път</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ░░ COMPASS FEATURE ░░ -->
-  <section class="compass-feature section" id="compass-section" aria-labelledby="compass-heading">
-    <svg class="compass-feature__rings" viewBox="0 0 600 600" fill="none" aria-hidden="true">
-      <circle cx="300" cy="300" r="80"  stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
-      <circle cx="300" cy="300" r="140" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
-      <circle cx="300" cy="300" r="200" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
-      <circle cx="300" cy="300" r="260" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
-    </svg>
-
-    <div class="container">
-      <div class="compass-feature__grid">
-
-        <div>
-          <span class="eyebrow" data-en="Meet Compass" data-bg="Запознайте се с Компас">Запознайте се с Компас</span>
-          <h2 class="h2" id="compass-heading"
-              data-en="Ask anything. Anytime."
-              data-bg="Питай каквото и да е. По всяко време.">
-            Питай каквото и да е. По всяко време.
-          </h2>
-          <p class="lede"
-             data-en="Compass is our AI assistant, built by our team. It brings together key information on processes we have personally been through - student visa, post-graduation work authorisation, STEM OPT extensions, athletic eligibility requirements for university teams, US Social Security number, and student immigration documents."
-             data-bg="Компас е нашият AI асистент, създаден от нашия екип. Той събира на едно място важна информация за процеси, през които ние самите сме минали - студентска виза, право на работа след завършване, удължаване за STEM специалности, спортни изисквания за университетски отбори, социалноосигурителен номер в САЩ и студентски имиграционни документи.">
-            Компас е нашият AI асистент, създаден от нашия екип. Той събира на едно място важна информация за процеси, през които ние самите сме минали - студентска виза, право на работа след завършване, удължаване за STEM специалности, спортни изисквания за университетски отбори, социалноосигурителен номер в САЩ и студентски имиграционни документи.
-          </p>
-          <p class="lede"
-             data-en="Compass provides general guidance to help you navigate more easily, but does not replace legal advice. Think of it as a good first step before getting in touch with us."
-             data-bg="Компас дава обща насока и помага да се ориентирате по-лесно, но не замества правна консултация. Мислете за него като за добра първа стъпка, преди да се свържете с нас.">
-            Компас дава обща насока и помага да се ориентирате по-лесно, но не замества правна консултация. Мислете за него като за добра първа стъпка, преди да се свържете с нас.
-          </p>
-
-          <div class="compass-feature__topics">
-            <span class="compass-feature__topic">F-1</span>
-            <span class="compass-feature__topic">OPT</span>
-            <span class="compass-feature__topic">STEM OPT</span>
-            <span class="compass-feature__topic">NCAA</span>
-            <span class="compass-feature__topic">SEVIS</span>
-            <span class="compass-feature__topic">SSN</span>
-            <span class="compass-feature__topic" data-en="Scholarships" data-bg="Стипендии">Стипендии</span>
-            <span class="compass-feature__topic" data-en="Admissions" data-bg="Прием">Прием</span>
-          </div>
-
-          <div class="compass-feature__cta-row">
-            <a href="/compass/" class="btn btn--primary btn--lg"
-               data-en="Try Compass" data-bg="Питай Компас">Питай Компас</a>
-          </div>
-        </div>
-
-        <div class="compass-preview" aria-label="Compass chat preview" role="figure">
-          <div class="compass-preview__header">
-            <span class="compass-preview__avatar" aria-hidden="true">
-              <img src="/assets/compass-logo.png" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-            </span>
-            <div>
-              <div class="compass-preview__name" data-en="Compass" data-bg="Компас">Компас</div>
-              <div class="compass-preview__status"
-                   data-en="Online · in Bulgarian or English"
-                   data-bg="Онлайн · на български или английски">Онлайн · на български или английски</div>
-            </div>
-          </div>
-          <div class="compass-bubble compass-bubble--user"
-               data-en="Can I work on an F-1 visa?"
-               data-bg="Мога ли да работя с виза F-1?">
-            Мога ли да работя с виза F-1?
-          </div>
-          <div class="compass-bubble compass-bubble--bot"
-               data-en="Yes - up to &lt;b&gt;20 hours/week on campus&lt;/b&gt; during the term, full-time on breaks. For off-campus you'll need &lt;b&gt;CPT&lt;/b&gt; (during studies) or &lt;b&gt;OPT&lt;/b&gt; (after). Want me to break down the difference?"
-               data-bg="Да - до &lt;b&gt;20 часа седмично в кампуса&lt;/b&gt; по време на семестъра, целодневно през ваканциите. За работа извън кампуса трябва &lt;b&gt;CPT&lt;/b&gt; (по време на следването) или &lt;b&gt;OPT&lt;/b&gt; (след дипломирането). Искаш ли да обясня разликата?">
-            Да - до <b>20 часа седмично в кампуса</b> по време на семестъра, целодневно през ваканциите. За работа извън кампуса трябва <b>CPT</b> (по време на следването) или <b>OPT</b> (след дипломирането). Искаш ли да обясня разликата?
-          </div>
-          <div class="compass-bubble compass-bubble--user"
-               data-en="Yes please, with examples"
-               data-bg="Да, моля, с примери">
-            Да, моля, с примери
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ░░ RESOURCES TEASER ░░ -->
-  <section class="section" id="resources" aria-labelledby="resources-heading">
-    <div class="container">
-
-      <div class="resources-head">
-        <div>
-          <span class="eyebrow" data-en="Resources" data-bg="Ресурси">Ресурси</span>
-          <h2 class="h2" id="resources-heading" style="margin: var(--space-2) 0 var(--space-2); max-width: 560px;"
-              data-en="The articles we wish we'd had as 18-year-olds."
-              data-bg="Статиите, които ни се искаше да четем на 18 години.">
-            Статиите, които ни се искаше да четем на 18 години.
-          </h2>
-        </div>
-        <a href="/resources/" class="resources-head__more"
-           data-en="All resources →" data-bg="Всички ресурси →">Всички ресурси →</a>
-      </div>
-
-      <div class="resources-grid">
-
-        <a class="article-card" href="/articles/employment-international-athlete/">
-          <div class="article-card__meta">
-            <span class="article-card__tag" data-en="Employment" data-bg="Заетост">Заетост</span>
-            <span class="article-card__date" data-en="May 2026" data-bg="Май 2026">Май 2026</span>
-          </div>
-          <h3 class="article-card__title"
-              data-en="Working on and off campus as an international student"
-              data-bg="Работа в кампуса и извън него като международен студент">
-            Работа в кампуса и извън него като международен студент
-          </h3>
-          <p class="article-card__excerpt"
-             data-en="Work authorisation, OPT, CPT, and the real employment options - before and after graduation."
-             data-bg="Разрешение за работа, OPT, CPT и реалните възможности преди и след дипломирането.">
-            Разрешение за работа, OPT, CPT и реалните възможности преди и след дипломирането.
-          </p>
-          <span class="article-card__cta" data-en="Read article →" data-bg="Прочети статията →">Прочети статията →</span>
-        </a>
-
-        <a class="article-card" href="/articles/stem-international-athlete/">
-          <div class="article-card__meta">
-            <span class="article-card__tag">STEM OPT</span>
-            <span class="article-card__date" data-en="May 2026" data-bg="Май 2026">Май 2026</span>
-          </div>
-          <h3 class="article-card__title"
-              data-en="STEM: what it means, and why it matters for international athletes"
-              data-bg="STEM: какво означава и защо е важно за международните спортисти">
-            STEM: какво означава и защо е важно за международните спортисти
-          </h3>
-          <p class="article-card__excerpt"
-             data-en="What STEM means in the US, and how the STEM OPT extension gives international graduates up to 36 months of work authorisation."
-             data-bg="Какво означава STEM в САЩ и как удължаването на STEM OPT дава до 36 месеца разрешение за работа.">
-            Какво означава STEM в САЩ и как удължаването на STEM OPT дава до 36 месеца разрешение за работа.
-          </p>
-          <span class="article-card__cta" data-en="Read article →" data-bg="Прочети статията →">Прочети статията →</span>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ░░ FINAL CTA ░░ -->
-  <section class="section" aria-labelledby="final-cta-heading">
-    <div class="container">
-      <div class="cta-flip" id="cta-flip-block">
-        <div class="cta-flip__inner">
-
-          <!-- FRONT -->
-          <div class="cta-section cta-flip__front">
-            <svg class="cta-ornament" viewBox="0 0 480 480" fill="none" aria-hidden="true">
-              <circle cx="240" cy="240" r="60"  stroke="white" stroke-width="1.5"/>
-              <circle cx="240" cy="240" r="110" stroke="white" stroke-width="1.5"/>
-              <circle cx="240" cy="240" r="160" stroke="white" stroke-width="1.5"/>
-              <circle cx="240" cy="240" r="210" stroke="white" stroke-width="1.5"/>
-            </svg>
-            <h2 class="h2" id="final-cta-heading"
-                data-en="The future is ahead of you!"
-                data-bg="Бъдещето е пред теб!">
-              Бъдещето е пред теб!
-            </h2>
-          </div>
-
-          <!-- BACK -->
-          <div class="cta-section cta-flip__back">
-            <svg class="cta-ornament" viewBox="0 0 480 480" fill="none" aria-hidden="true">
-              <circle cx="240" cy="240" r="60"  stroke="white" stroke-width="1.5"/>
-              <circle cx="240" cy="240" r="110" stroke="white" stroke-width="1.5"/>
-              <circle cx="240" cy="240" r="160" stroke="white" stroke-width="1.5"/>
-              <circle cx="240" cy="240" r="210" stroke="white" stroke-width="1.5"/>
-            </svg>
-            <span class="eyebrow" style="color:rgba(255,255,255,0.45); justify-content:center; margin-bottom:var(--space-3);"
-                  data-en="The free call" data-bg="Безплатната консултация">
-              Безплатната консултация
-            </span>
-            <ul class="cta-back__list">
-              <li data-en="We review your academic and athletic profile"
-                  data-bg="Разглеждаме академичния и спортния ви профил">Разглеждаме академичния и спортния ви профил</li>
-              <li data-en="We map out a realistic timeline together"
-                  data-bg="Изграждаме реалистичен план заедно">Изграждаме реалистичен план заедно</li>
-              <li data-en="You leave with a clear, concrete next step"
-                  data-bg="Излизате с ясна и конкретна следваща стъпка">Излизате с ясна и конкретна следваща стъпка</li>
-              <li data-en="No obligation, no pressure"
-                  data-bg="Без ангажимент, без натиск">Без ангажимент, без натиск</li>
-            </ul>
-            <div class="cta-actions">
-              <a href="/contact/" class="btn btn--primary btn--lg"
-                 data-en="Book my call" data-bg="Запишете час">
-                Запишете час
-              </a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
 </main>
 
-<!-- ═══ FOOTER ═══════════════════════════════════════════════════════ -->
 <footer class="site-footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
@@ -943,6 +181,8 @@
           <li><a href="/resources/" data-en="Resources" data-bg="Ресурси">Ресурси</a></li>
           <li><a href="/compass/" data-en="Compass" data-bg="Компас">Компас</a></li>
           <li><a href="/contact/" data-en="Contact" data-bg="Контакт">Контакт</a></li>
+          <li><a href="/privacy/" data-en="Privacy" data-bg="Поверителност">Поверителност</a></li>
+          <li><a href="/terms/" data-en="Terms" data-bg="Условия">Условия</a></li>
         </ul>
       </div>
 
@@ -971,21 +211,5 @@
 
 <script src="/scripts/i18n.js" defer></script>
 <script src="/scripts/nav.js" defer></script>
-<script>
-  document.querySelectorAll('.package-card:not(.package-card--soon)').forEach(card => {
-    card.addEventListener('click', () => {
-      const isFlipped = card.classList.toggle('is-flipped');
-      document.querySelectorAll('.package-card').forEach(other => {
-        if (other !== card) other.classList.remove('is-flipped');
-      });
-      if (!isFlipped) card.classList.remove('is-flipped');
-    });
-  });
-
-  const ctaFlip = document.getElementById('cta-flip-block');
-  if (ctaFlip) ctaFlip.addEventListener('click', () => ctaFlip.classList.toggle('is-flipped'));
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="/scripts/orbital-bg.js" defer></script>
 </body>
 </html>

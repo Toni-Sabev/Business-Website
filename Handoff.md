@@ -39,8 +39,8 @@ Then open **http://localhost:8000/** in your browser. Clean directory-based URLs
 
 ## 🚦 Git & Deployment State
 - **Production Repository**: `Toni-Sabev/Business-Website`, branch `main`, hosted on GitHub Pages with custom domain **uspeshno-budeshte.org** (Cloudflare DNS, Cloudflare Web Analytics, Compass Cloudflare AI Worker).
-- **Git Commit**: `feat: add floating merged dynamic header, theme contrast switching, and dark theme logo asset` (committed & pushed to remote `main`).
-- **Status**: Complete website prototype redesign and dynamic header contrast system successfully implemented, tested, committed, and pushed.
+- **Git Commit**: `5d01ea4` — "Bulgarian font pass, layout fixes, and real privacy/terms pages" (committed & pushed to remote `main`, 2026-07-09).
+- **Status**: Font cleanup and legal-pages work complete, pushed to `main`. Site considered in good standing for this phase — see the Backlog section below for what's still open and deliberately deferred.
 
 ---
 

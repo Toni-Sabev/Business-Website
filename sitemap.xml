@@ -20,6 +20,16 @@
     <priority>0.7</priority>
     <changefreq>weekly</changefreq>
   </url>
+  <url>
+    <loc>https://uspeshno-budeshte.org/technologies/</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://uspeshno-budeshte.org/technologies/swim-match-engine/</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
   <!-- Compass disabled 2026-07-09, kept for possible future use:
   <url>
     <loc>https://uspeshno-budeshte.org/compass/</loc>

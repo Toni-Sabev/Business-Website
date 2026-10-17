@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Swimming Match Engine (SME) - Успешно Бъдеще</title>
+  <meta name="description" content="How our Swimming Match Engine compares your times with every NCAA D1 and D2 swimming program and ranks every school that suits you by Power Index.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/components.css">
+  <link rel="stylesheet" href="/styles/pages/sme.css">
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a2d7df3c00bb4b038acf444cf84b2601"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="site-header" role="banner">
+  <div class="container">
+    <div class="header-inner">
+      <a href="/" class="wordmark--logo" aria-label="Успешно Бъдеще - начало">
+        <img src="/assets/logo.png" alt="" class="logo-img">
+        <span class="logo-name" data-en="Successful Future" data-bg="Успешно Бъдеще">Успешно Бъдеще</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="/" data-en="Home" data-bg="Начало">Начало</a>
+        <a href="/about/" data-en="About" data-bg="За нас">За нас</a>
+        <a href="/resources/" data-en="Resources" data-bg="Ресурси">Ресурси</a>
+        <a href="/contact/" data-en="Contact" data-bg="Контакт">Контакт</a>
+        <!-- Compass disabled 2026-07-09, kept for possible future use: <a href="/compass/" data-en="Compass" data-bg="Компас">Компас</a> -->
+        <div class="nav-tech">
+          <a href="/technologies/" class="nav-tech__trigger" aria-haspopup="true">
+            <span data-en="Technologies" data-bg="Технологии">Технологии</span>
+            <svg class="nav-tech__chev" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
+          </a>
+          <div class="nav-tech__menu">
+            <a href="/technologies/swim-match-engine/">
+              Swimming Match Engine (SME)
+            </a>
+            <a href="/technologies/" data-en="All technologies →" data-bg="Всички технологии →">Всички технологии →</a>
+          </div>
+        </div>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button data-toggle="lang" data-lang="en" aria-pressed="false">EN</button>
+          <button data-toggle="lang" data-lang="bg" aria-pressed="true">БГ</button>
+        </div>
+        <a href="/contact/" class="btn btn--primary btn--sm" data-en="Book a call" data-bg="Запишете час">Запишете час</a>
+        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1h18M1 7h18M1 13h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
+    <a href="/" data-en="Home" data-bg="Начало">Начало</a>
+    <a href="/about/" data-en="About" data-bg="За нас">За нас</a>
+    <a href="/resources/" data-en="Resources" data-bg="Ресурси">Ресурси</a>
+    <a href="/contact/" data-en="Contact" data-bg="Контакт">Контакт</a>
+    <!-- Compass disabled 2026-07-09, kept for possible future use: <a href="/compass/" data-en="Compass" data-bg="Компас">Компас</a> -->
+    <div class="mobile-nav__group">
+      <button type="button" class="mobile-nav__toggle" aria-expanded="false" aria-controls="mobile-tech-menu">
+        <span data-en="Technologies" data-bg="Технологии">Технологии</span>
+        <svg class="mobile-nav__chev" width="12" height="8" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
+      </button>
+      <div id="mobile-tech-menu" class="mobile-nav__submenu" hidden>
+        <a href="/technologies/swim-match-engine/" class="mobile-nav__sub">Swimming Match Engine (SME)</a>
+        <a href="/technologies/" class="mobile-nav__sub" data-en="All technologies →" data-bg="Всички технологии →">Всички технологии →</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+  <section class="section" aria-labelledby="sme-heading">
+    <div class="container">
+      <div class="pipe">
+
+        <h1 id="sme-heading" class="h1 pipe-title">
+          <span aria-hidden="true">SME</span>
+          <span class="sr-only">Swimming Match Engine (SME)</span>
+        </h1>
+
+        <!-- Step 1 -->
+        <div class="pipe-step">
+          <p class="pipe-step__text pipe-step__intro"
+             data-en="When we started our journey one swimming athlete was manually compared against possible programs that can suit them. This process as you imagine was very slow, prone to error and most importantly not quantitatively correct. That is why we needed to figure out a way to make this faster, better and more precise"
+             data-bg="Когато започнахме пътя си, всеки плувец се сравняваше ръчно с програмите, които биха му подхождали. Както си представяте, този процес беше много бавен, податлив на грешки и най-важното – не беше количествено точен. Затова трябваше да намерим начин да го направим по-бърз, по-добър и по-прецизен.">
+            Когато започнахме пътя си, всеки плувец се сравняваше ръчно с програмите, които биха му подхождали. Както си представяте, този процес беше много бавен, податлив на грешки и най-важното – не беше количествено точен. Затова трябваше да намерим начин да го направим по-бърз, по-добър и по-прецизен.
+          </p>
+          <h2 class="h2 pipe-step__heading"
+              data-en="Database" data-bg="База данни">База данни</h2>
+          <p class="pipe-step__text"
+             data-en="We have built an automated process that continuously collects the latest best times from every college swimming program in the US. That covers over 300 universities across all 50 states for both men’s and women’s teams."
+             data-bg="Изградихме автоматизиран процес, който непрекъснато събира най-новите най-добри времена от всяка университетска плувна програма в САЩ. Това покрива над 300 университета във всичките 50 щата, както за мъжките, така и за женските отбори.">
+            Изградихме автоматизиран процес, който непрекъснато събира най-новите най-добри времена от всяка университетска плувна програма в САЩ. Това покрива над 300 университета във всичките 50 щата, както за мъжките, така и за женските отбори.
+          </p>
+          <p class="pipe-step__text"
+             data-en="Our database currently consists of every single Division 1 and Division 2 swimming program for both men and women, with over <span class='pipe-stat'>31,000</span> recorded times."
+             data-bg="В момента нашата база данни включва всяка една плувна програма в Дивизия 1 и Дивизия 2, както за мъже, така и за жени, с над <span class='pipe-stat'>31 000</span> записани времена.">
+            В момента нашата база данни включва всяка една плувна програма в Дивизия 1 и Дивизия 2, както за мъже, така и за жени, с над <span class="pipe-stat">31 000</span> записани времена.
+          </p>
+          <figure class="shot">
+            <div class="shot__window">
+              <div class="shot__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="db-scroll">
+                <table class="db" aria-label="Example of the SME database">
+                  <thead><tr><th data-en="University" data-bg="Университет">Университет</th><th data-en="Division" data-bg="Дивизия">Дивизия</th><th data-en="Gender" data-bg="Пол">Пол</th><th data-en="Event" data-bg="Дисциплина">Дисциплина</th><th class="num" data-en="Rank" data-bg="Място">Място</th><th data-en="Swimmer" data-bg="Плувец">Плувец</th><th class="num" data-en="Time (SCY)" data-bg="Време (SCY)">Време (SCY)</th></tr></thead>
+                  <tbody>
+                  <tr class="is-top"><td>University of Texas</td><td>D1</td><td data-en="Men" data-bg="Мъже">Мъже</td><td>100 Free</td><td class="num">1</td><td>Marcus Hale</td><td class="num">43.12</td></tr>
+                  <tr><td>University of Texas</td><td>D1</td><td data-en="Men" data-bg="Мъже">Мъже</td><td>100 Free</td><td class="num">2</td><td>Devon Whitt</td><td class="num">43.58</td></tr>
+                  <tr><td>University of Texas</td><td>D1</td><td data-en="Men" data-bg="Мъже">Мъже</td><td>100 Free</td><td class="num">3</td><td>Tomas Reyes</td><td class="num">43.97</td></tr>
+                  <tr><td>University of Texas</td><td>D1</td><td data-en="Men" data-bg="Мъже">Мъже</td><td>100 Free</td><td class="num">4</td><td>Ethan Cole</td><td class="num">44.31</td></tr>
+                  <tr><td>University of Texas</td><td>D1</td><td data-en="Men" data-bg="Мъже">Мъже</td><td>100 Free</td><td class="num">5</td><td>Jonah Pratt</td><td class="num">44.60</td></tr>
+                  <tr class="is-top"><td>Stanford University</td><td>D1</td><td data-en="Women" data-bg="Жени">Жени</td><td>200 Back</td><td class="num">1</td><td>Claire Donovan</td><td class="num">1:52.84</td></tr>
+                  <tr><td>Stanford University</td><td>D1</td><td data-en="Women" data-bg="Жени">Жени</td><td>200 Back</td><td class="num">2</td><td>Mia Larsen</td><td class="num">1:54.07</td></tr>
+                  <tr class="is-top"><td>Adelphi University</td><td>D2</td><td data-en="Women" data-bg="Жени">Жени</td><td>500 Free</td><td class="num">1</td><td>Hannah Voss</td><td class="num">4:51.26</td></tr>
+                  <tr><td>Adelphi University</td><td>D2</td><td data-en="Women" data-bg="Жени">Жени</td><td>500 Free</td><td class="num">2</td><td>Sofia Brandt</td><td class="num">4:55.73</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="db-foot" data-en="Showing 9 of 31,000+ recorded times · sample data for illustration" data-bg="Показани са 9 от над 31 000 записани времена · примерни данни за илюстрация">Показани са 9 от над 31 000 записани времена · примерни данни за илюстрация</div>
+            </div>
+          </figure>
+        </div>
+
+        <div class="pipe-arrow" aria-hidden="true">
+          <svg viewBox="0 0 72 96" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M36 6v78M10 58l26 26 26-26"/></svg>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="pipe-step">
+          <h2 class="h2 pipe-step__heading"
+              data-en="Matching" data-bg="Съпоставяне">Съпоставяне</h2>
+          <p class="pipe-step__text"
+             data-en="The athlete enters their times, and our system automatically converts them to yards (SCY) and compares them against our database to determine exactly which university teams they would fit best."
+             data-bg="Спортистът въвежда своите времена, а системата ни автоматично ги конвертира в ярдове (SCY) и ги сравнява с нашата база данни, за да определи точно в кои университетски отбори той би паснал най-добре.">
+            Спортистът въвежда своите времена, а системата ни автоматично ги конвертира в ярдове (SCY) и ги сравнява с нашата база данни, за да определи точно в кои университетски отбори той би паснал най-добре.
+          </p>
+          <figure class="shot">
+            <div class="shot__window">
+              <div class="shot__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="db-label" data-en="1 · The athlete’s times, converted" data-bg="1 · Времената на спортиста, конвертирани">1 · Времената на спортиста, конвертирани</div>
+              <div class="db-scroll">
+                <table class="db" aria-label="Example of time conversion">
+                  <thead><tr><th data-en="Event" data-bg="Дисциплина">Дисциплина</th><th class="num" data-en="Entered time" data-bg="Въведено време">Въведено време</th><th data-en="Pool" data-bg="Басейн">Басейн</th><th class="num" data-en="Converted (SCY)" data-bg="Конвертирано (SCY)">Конвертирано (SCY)</th></tr></thead>
+                  <tbody>
+                    <tr><td>100 Free</td><td class="num">49.40</td><td data-en="25 m" data-bg="25 м">25 м</td><td class="num is-key">44.26</td></tr>
+                    <tr><td>200 Free</td><td class="num">1:48.90</td><td data-en="25 m" data-bg="25 м">25 м</td><td class="num is-key">1:37.57</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="db-label" data-en="2 · Compared against every university (men’s 100 Free)" data-bg="2 · Сравнение с всеки университет (100 свободен стил, мъже)">2 · Сравнение с всеки университет (100 свободен стил, мъже)</div>
+              <div class="db-scroll">
+                <table class="db db--fit" aria-label="Example of where the athlete fits at each university">
+                  <thead><tr><th data-en="University" data-bg="Университет">Университет</th><th data-en="Division" data-bg="Дивизия">Дивизия</th><th class="num" data-en="Team’s 5th time" data-bg="5-то време на отбора">5-то време на отбора</th><th class="num" data-en="Your time (SCY)" data-bg="Вашето време (SCY)">Вашето време (SCY)</th><th data-en="Where you fit" data-bg="Къде пасвате">Къде пасвате</th></tr></thead>
+                  <tbody>
+                    <tr><td>University of Texas</td><td>D1</td><td class="num">44.60</td><td class="num">44.26</td><td><span class="db-pill db-pill--fit" data-en="Rank 4 on the team" data-bg="Място 4 в отбора">Място 4 в отбора</span></td></tr>
+                    <tr><td>Stanford University</td><td>D1</td><td class="num">44.48</td><td class="num">44.26</td><td><span class="db-pill db-pill--fit" data-en="Rank 5 on the team" data-bg="Място 5 в отбора">Място 5 в отбора</span></td></tr>
+                    <tr><td>University of North Texas</td><td>D1</td><td class="num">45.30</td><td class="num">44.26</td><td><span class="db-pill db-pill--fit" data-en="Rank 1 on the team" data-bg="Място 1 в отбора">Място 1 в отбора</span></td></tr>
+                    <tr><td>Adelphi University</td><td>D2</td><td class="num">46.20</td><td class="num">44.26</td><td><span class="db-pill db-pill--fit" data-en="Rank 1 on the team" data-bg="Място 1 в отбора">Място 1 в отбора</span></td></tr>
+                    <tr class="is-dim"><td>University of Florida</td><td>D1</td><td class="num">43.90</td><td class="num">44.26</td><td><span class="db-pill db-pill--no" data-en="Not a fit" data-bg="Не пасва">Не пасва</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="db-foot" data-en="Sample data for illustration" data-bg="Примерни данни за илюстрация">Примерни данни за илюстрация</div>
+            </div>
+          </figure>
+        </div>
+
+        <div class="pipe-arrow" aria-hidden="true">
+          <svg viewBox="0 0 72 96" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M36 6v78M10 58l26 26 26-26"/></svg>
+        </div>
+
+        <!-- Step 3 (final) -->
+        <div class="pipe-step">
+          <h2 class="h2 pipe-step__heading"
+              data-en="Final ranking" data-bg="Крайна класация">Крайна класация</h2>
+          <p class="pipe-step__text"
+             data-en="Swimmers rarely swim a single event, so we repeat the comparison for every event they swim. Each event is weighted by how strong the swimmer is in it, and the results are combined into one composite score for every university. The final report ranks every university that suits the swimmer, best overall fit first. Next to each score sits the program’s Power Index (0–100), which shows how strong the program is and separates schools with similar scores."
+             data-bg="Плувците рядко плуват само една дисциплина, затова повтаряме сравнението за всяка дисциплина, в която плуват. Всяка дисциплина се претегля според това колко силен е плувецът в нея, а резултатите се обединяват в една обща оценка за всеки университет. Крайният доклад подрежда всеки подходящ за плувеца университет, като най-доброто цялостно съвпадение е първо. До всяка оценка стои Power Index на програмата (0–100), който показва колко силна е тя и разграничава училища с близки оценки.">
+            Плувците рядко плуват само една дисциплина, затова повтаряме сравнението за всяка дисциплина, в която плуват. Всяка дисциплина се претегля според това колко силен е плувецът в нея, а резултатите се обединяват в една обща оценка за всеки университет. Крайният доклад подрежда всеки подходящ за плувеца университет, като най-доброто цялостно съвпадение е първо. До всяка оценка стои Power Index на програмата (0–100), който показва колко силна е тя и разграничава училища с близки оценки.
+          </p>
+          <figure class="shot">
+            <div class="shot__window">
+              <div class="shot__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="db-scroll">
+                <table class="db db--rank" aria-label="Example of the final composite ranking">
+                  <thead><tr><th class="num" data-en="#" data-bg="№">№</th><th data-en="University" data-bg="Университет">Университет</th><th data-en="Division" data-bg="Дивизия">Дивизия</th><th class="num" data-en="100 Free · weight 50%" data-bg="100 Free · тежест 50%">100 Free · тежест 50%</th><th class="num" data-en="200 Free · weight 30%" data-bg="200 Free · тежест 30%">200 Free · тежест 30%</th><th class="num" data-en="100 Fly · weight 20%" data-bg="100 Fly · тежест 20%">100 Fly · тежест 20%</th><th class="num" data-en="Composite score" data-bg="Обща оценка">Обща оценка</th><th class="num" data-en="Power Index" data-bg="Power Index">Power Index</th></tr></thead>
+                  <tbody>
+                    <tr><td class="num is-key">1</td><td>Adelphi University</td><td>D2</td><td class="num">100%</td><td class="num">100%</td><td class="num">80%</td><td class="num is-key">96.0</td><td class="num">31.2</td></tr>
+                    <tr><td class="num is-key">2</td><td>University of North Texas</td><td>D1</td><td class="num">100%</td><td class="num">80%</td><td class="num">60%</td><td class="num is-key">86.0</td><td class="num">54.7</td></tr>
+                    <tr><td class="num is-key">3</td><td>University of Texas</td><td>D1</td><td class="num">40%</td><td class="num">60%</td><td class="num">20%</td><td class="num is-key">42.0</td><td class="num">98.4</td></tr>
+                    <tr><td class="num is-key">4</td><td>Stanford University</td><td>D1</td><td class="num">20%</td><td class="num">40%</td><td class="num">40%</td><td class="num is-key">30.0</td><td class="num">97.1</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="db-foot" data-en="Sample data for illustration" data-bg="Примерни данни за илюстрация">Примерни данни за илюстрация</div>
+            </div>
+          </figure>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <a href="/" class="wordmark" data-en="Successful<span>&nbsp;Future</span>" data-bg="Успешно<span>&nbsp;Бъдеще</span>">Успешно<span>&nbsp;Бъдеще</span></a>
+        <p data-en="We guide athletes.<br>We build futures." data-bg="Насочваме спортисти.<br>Изграждаме бъдеще.">Насочваме спортисти.<br>Изграждаме бъдеще.</p>
+        <div class="footer-flag" aria-label="Bulgaria - United States">
+          <span data-en="EU → United States" data-bg="ЕС → Съединените щати">ЕС → Съединените щати</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 data-en="Pages" data-bg="Страници">Страници</h4>
+        <ul>
+          <li><a href="/about/" data-en="About" data-bg="За нас">За нас</a></li>
+          <li><a href="/resources/" data-en="Resources" data-bg="Ресурси">Ресурси</a></li>
+          <li><a href="/technologies/" data-en="Technologies" data-bg="Технологии">Технологии</a></li>
+          <li><a href="/contact/" data-en="Contact" data-bg="Контакт">Контакт</a></li>
+          <li><a href="/privacy/" data-en="Privacy" data-bg="Поверителност">Поверителност</a></li>
+          <li><a href="/terms/" data-en="Terms" data-bg="Условия">Условия</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 data-en="Contact" data-bg="Контакт">Контакт</h4>
+        <ul>
+          <li><a href="mailto:info@uspeshno-budeshte.com">info@uspeshno-budeshte.com</a></li>
+          <li><span data-en="Sofia, Bulgaria" data-bg="София, България">София, България</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+<div class="footer-legal">
+  <p data-en="Successful Future is an educational advisory. We are not a sports agency, and we do not represent students in contract negotiations with universities. We are not a law firm and do not provide legal or immigration advice. All information provided is for general educational purposes only." data-bg="Успешно Бъдеще е образователна консултация. Ние не сме спортна агенция и не представляваме студенти при преговори за договори с университети. Ние не сме адвокатска кантора и не предоставяме правни или имиграционни съвети. Цялата предоставена информация е само за общи образователни цели.">Успешно Бъдеще е образователна консултация. Ние не сме спортна агенция и не представляваме студенти при преговори за договори с университети. Ние не сме адвокатска кантора и не предоставяме правни или имиграционни съвети. Цялата предоставена информация е само за общи образователни цели.</p>
+</div>
+      <span data-en="© 2026 Successful Future. All rights reserved." data-bg="© 2026 Успешно Бъдеще. Всички права запазени.">© 2026 Успешно Бъдеще. Всички права запазени.</span>
+      <div class="footer-bottom-links">
+        <a href="/privacy/" data-en="Privacy" data-bg="Поверителност">Поверителност</a>
+        <a href="/terms/" data-en="Terms" data-bg="Условия">Условия</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/scripts/i18n.js" defer></script>
+<script src="/scripts/nav.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="/scripts/orbital-bg.js" defer></script>
+</body>
+</html>

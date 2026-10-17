@@ -28,11 +28,13 @@ Clean directory-based URLs (`/about/`, not `/about.html`) — the site was migra
 | `/about/` | The three co-founders, company tenets, comparison matrix |
 | `/resources/` | Article hub with category filters |
 | `/articles/<slug>/` | Individual articles (4 live: `ncaa-international-athlete-guide`, `stem-international-athlete`, `employment-international-athlete`, `sevis-i20-f1-lifecycle`) |
+| `/technologies/` | Hub for our in-house matching engines (Resources-style strips): SME live; Tennis (TME) and Generator marked coming soon |
+| `/technologies/swim-match-engine/` | Swimming Match Engine explainer. Built as a simple pipeline (paragraph + screenshot box, big arrow, next step). Screenshot slots load from `assets/technologies/swim-match-engine/` (`step-1.png`, …) and show a labelled placeholder until each file exists |
 | `/contact/` | Contact form (role, grade, contact method, privacy-consent checkbox) + booking enquiry |
 | `/privacy/`, `/terms/` | Real bilingual legal text (added 2026-07-09 — previously placeholder copies of the homepage) |
 | `/compass/` | AI chat assistant page — **built and functional, but currently unlinked from all navigation** (see "Compass" below) |
 
-Primary nav is **Home · About · Resources · Contact**. `pricing.html` and `team.html` exist in the repo but are **not linked or deployed** — leftover from the original prototype, safe to ignore or delete. `dev/fonts.html` is a dev-only font audit page, also not linked/deployed.
+Primary nav is **Home · About · Resources · Contact · Technologies** — Technologies opens a hover dropdown listing each engine (add new engines inside `.nav-tech__menu` and as a `.mobile-nav__sub` link on every page). `pricing.html` and `team.html` exist in the repo but are **not linked or deployed** — leftover from the original prototype, safe to ignore or delete. `dev/fonts.html` is a dev-only font audit page, also not linked/deployed.
 
 ---
 

@@ -339,6 +339,99 @@ a.wordmark--logo {
 .site-header--light .mobile-nav a { color: var(--color-ink); border-bottom: 1px solid var(--color-rule); }
 .site-header--light .mobile-nav a:hover { color: var(--color-red); }
 
+/* ─── Technologies tab ───────────────────────────────
+   A regular main-nav link that also opens a dropdown on hover/focus,
+   listing every engine. New engines are added as another <a> inside
+   .nav-tech__menu (and as a .mobile-nav__sub link). */
+.nav-tech {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.site-nav a.nav-tech__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.nav-tech__chev {
+  transition: transform 0.2s var(--ease);
+}
+.nav-tech:hover .nav-tech__chev,
+.nav-tech:focus-within .nav-tech__chev { transform: rotate(180deg); }
+
+.nav-tech__menu {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  width: 320px;
+  padding: var(--space-1);
+  background: #ffffff;
+  border: 1px solid var(--color-rule);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card-lg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -4px);
+  transition: opacity 0.18s var(--ease), transform 0.18s var(--ease), visibility 0.18s;
+}
+/* invisible bridge so the menu doesn't close while the pointer crosses the gap */
+.nav-tech__menu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -16px;
+  height: 16px;
+}
+.nav-tech:hover .nav-tech__menu,
+.nav-tech:focus-within .nav-tech__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+.site-header .site-nav .nav-tech__menu a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-navy);
+  text-shadow: none;
+}
+.site-header .site-nav .nav-tech__menu a:hover,
+.site-header .site-nav .nav-tech__menu a.active { background: var(--color-cream); color: var(--color-navy); }
+
+/* Mobile drawer: Technologies is an accordion (tap to open the engines) */
+.mobile-nav__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 0;
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.site-header .mobile-nav__toggle        { color: #ffffff; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+.site-header--light .mobile-nav__toggle { color: var(--color-ink); border-bottom: 1px solid var(--color-rule); }
+.site-header .mobile-nav__toggle:hover        { color: #4A8BDF; }
+.site-header--light .mobile-nav__toggle:hover { color: var(--color-red); }
+.mobile-nav__chev { transition: transform 0.2s var(--ease); }
+.mobile-nav__toggle[aria-expanded="true"] .mobile-nav__chev { transform: rotate(180deg); }
+.mobile-nav__group:last-child .mobile-nav__toggle[aria-expanded="false"] { border-bottom: none; }
+.mobile-nav__submenu { display: flex; flex-direction: column; }
+.mobile-nav__submenu[hidden] { display: none; }
+.mobile-nav a.mobile-nav__sub {
+  padding-left: var(--space-2);
+  font-size: 14px;
+  font-weight: 500;
+}
+
 /* ─── Footer ─────────────────────────────────────── */
 .site-footer {
   background: radial-gradient(120% 90% at 50% 0%, #103A6E 0%, #0A2247 50%, #061327 100%);

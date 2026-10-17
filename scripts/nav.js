@@ -59,6 +59,19 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Technologies accordion in the mobile drawer
+  const techToggle = document.querySelector('.mobile-nav__toggle');
+  const techMenu = document.getElementById('mobile-tech-menu');
+  if (techToggle && techMenu) {
+    const setTech = (open) => {
+      techToggle.setAttribute('aria-expanded', String(open));
+      techMenu.hidden = !open;
+    };
+    techToggle.addEventListener('click', () => {
+      setTech(techToggle.getAttribute('aria-expanded') !== 'true');
+    });
+  }
+
   // Mark active nav link - clean-URL aware (e.g. "/", "/about/")
   const norm = (p) => {
     p = p.replace(/\/index\.html$/, '/'); // tolerate any leftover index.html
@@ -72,4 +85,9 @@ window.addEventListener('DOMContentLoaded', () => {
     if (/^(https?:|mailto:|tel:|#)/.test(href)) return; // skip external/anchor
     if (norm(href) === current) a.classList.add('active');
   });
+
+  // Technologies master tab stays highlighted on every engine page beneath it
+  if (current.startsWith('/technologies')) {
+    document.querySelectorAll('.nav-tech__trigger').forEach(a => a.classList.add('active'));
+  }
 });

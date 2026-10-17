@@ -31,6 +31,18 @@
         <a href="/resources/" data-en="Resources" data-bg="Ресурси">Ресурси</a>
         <a href="/contact/" class="active" data-en="Contact" data-bg="Контакт">Контакт</a>
         <!-- Compass disabled 2026-07-09, kept for possible future use: <a href="/compass/" data-en="Compass" data-bg="Компас">Компас</a> -->
+        <div class="nav-tech">
+          <a href="/technologies/" class="nav-tech__trigger" aria-haspopup="true">
+            <span data-en="Technologies" data-bg="Технологии">Технологии</span>
+            <svg class="nav-tech__chev" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
+          </a>
+          <div class="nav-tech__menu">
+            <a href="/technologies/swim-match-engine/">
+              Swimming Match Engine (SME)
+            </a>
+            <a href="/technologies/" data-en="All technologies →" data-bg="Всички технологии →">Всички технологии →</a>
+          </div>
+        </div>
       </nav>
       <div class="header-actions">
         <div class="lang-toggle" role="group" aria-label="Language">
@@ -50,6 +62,16 @@
     <a href="/resources/" data-en="Resources" data-bg="Ресурси">Ресурси</a>
     <a href="/contact/" data-en="Contact" data-bg="Контакт">Контакт</a>
     <!-- Compass disabled 2026-07-09, kept for possible future use: <a href="/compass/" data-en="Compass" data-bg="Компас">Компас</a> -->
+    <div class="mobile-nav__group">
+      <button type="button" class="mobile-nav__toggle" aria-expanded="false" aria-controls="mobile-tech-menu">
+        <span data-en="Technologies" data-bg="Технологии">Технологии</span>
+        <svg class="mobile-nav__chev" width="12" height="8" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
+      </button>
+      <div id="mobile-tech-menu" class="mobile-nav__submenu" hidden>
+        <a href="/technologies/swim-match-engine/" class="mobile-nav__sub">Swimming Match Engine (SME)</a>
+        <a href="/technologies/" class="mobile-nav__sub" data-en="All technologies →" data-bg="Всички технологии →">Всички технологии →</a>
+      </div>
+    </div>
   </nav>
 </header>
 
@@ -214,6 +236,7 @@
         <ul>
           <li><a href="/about/" data-en="About" data-bg="За нас">За нас</a></li>
           <li><a href="/resources/" data-en="Resources" data-bg="Ресурси">Ресурси</a></li>
+          <li><a href="/technologies/" data-en="Technologies" data-bg="Технологии">Технологии</a></li>
           <li><a href="/contact/" data-en="Contact" data-bg="Контакт">Контакт</a></li>
           <li><a href="/privacy/" data-en="Privacy" data-bg="Поверителност">Поверителност</a></li>
           <li><a href="/terms/" data-en="Terms" data-bg="Условия">Условия</a></li>

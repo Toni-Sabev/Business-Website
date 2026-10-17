@@ -1,0 +1,170 @@
+/* Swimming Match Engine (SME) page — /technologies/swim-match-engine/
+   A simple pipeline: paragraph + screenshot box, big arrow, next step, repeat. */
+
+.pipe { max-width: 880px; margin: 0 auto; }
+
+.pipe-title {
+  color: var(--color-navy);
+  margin: 0 0 var(--space-4);
+}
+.pipe-step__heading {
+  color: var(--color-navy);
+  margin: 0 0 var(--space-3);
+}
+.pipe-step__text {
+  font-size: var(--fs-lede);
+  line-height: 1.75;
+  color: var(--color-ink);
+  margin-bottom: var(--space-3);
+}
+.pipe-stat {
+  font-family: var(--font-display);
+  font-size: 1.2em;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-navy);
+}
+.pipe-step__intro { margin-bottom: var(--space-6); }
+.pipe-step__text + figure { margin-top: var(--space-4); }
+
+/* Big arrow between steps */
+.pipe-arrow {
+  display: flex;
+  justify-content: center;
+  margin: var(--space-5) 0;
+  color: var(--color-red);
+}
+.pipe-arrow svg { width: 72px; height: 96px; }
+@media (max-width: 639px) {
+  .pipe-arrow svg { width: 52px; height: 72px; }
+}
+
+/* ── Screenshot box ────────────────────────────────────────────
+   Each <img> points at a fixed file in /assets/technologies/swim-match-engine/.
+   Until that file exists, onerror swaps in a labelled placeholder, so
+   dropping the screenshot into the folder is all it takes to fill a slot. */
+.shot { margin: 0; }
+.shot__window {
+  background: var(--color-cream-soft);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card-lg);
+  overflow: hidden;
+}
+.shot__bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--color-navy);
+}
+.shot__bar i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+}
+.shot__screen img { display: block; width: 100%; height: auto; }
+.shot__placeholder { display: none; }
+.shot__screen.is-empty {
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 14px, rgba(10, 34, 71, 0.03) 14px 28px),
+    var(--color-cream);
+}
+.shot__screen.is-empty .shot__placeholder {
+  display: block;
+  padding: 8px 14px;
+  border: 1px dashed rgba(10, 34, 71, 0.25);
+  border-radius: var(--radius-btn);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+/* ── Example database table ────────────────────────────────── */
+.db-scroll { overflow-x: auto; }
+.db {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.db th {
+  padding: 12px 14px;
+  background: var(--color-cream);
+  border-bottom: 1px solid var(--color-rule);
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+.db td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--color-rule);
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+.db .num { text-align: right; }
+.db tbody tr:nth-child(5) td,
+.db tbody tr:nth-child(7) td { border-bottom: 2px solid rgba(10, 34, 71, 0.18); }
+.db tr.is-top td:nth-child(5) { font-weight: 700; color: var(--color-red); }
+.db tbody tr:last-child td { border-bottom: none; }
+.db-foot {
+  padding: 10px 14px;
+  background: var(--color-cream);
+  border-top: 1px solid var(--color-rule);
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.db-label {
+  padding: 12px 14px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-navy);
+  border-top: 1px solid var(--color-rule);
+}
+.shot__bar + .db-label { border-top: none; }
+.db .is-key { font-weight: 700; color: var(--color-navy); }
+.db tr.is-dim td { color: var(--color-muted); }
+.db--fit tbody tr:nth-child(5) td,
+.db--fit tbody tr:nth-child(7) td { border-bottom: 1px solid var(--color-rule); }
+.db-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--radius-chip);
+  font-size: 11px;
+  font-weight: 700;
+}
+.db-pill--fit { background: rgba(74, 139, 223, 0.14); color: var(--color-green-soft); }
+.db-pill--no  { background: rgba(14, 33, 56, 0.06); color: var(--color-muted); }
+
+.db--rank { min-width: 760px; }
+.db--rank tbody tr:nth-child(5) td,
+.db--rank tbody tr:nth-child(7) td { border-bottom: 1px solid var(--color-rule); }
+.db--rank tbody tr:first-child td { background: rgba(74, 139, 223, 0.07); }
+.db--rank th { white-space: normal; vertical-align: bottom; }
+.db--rank th.num, .db--rank td.num { padding-left: 10px; padding-right: 10px; }
+
+/* Visually hidden, still read by screen readers and search engines */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

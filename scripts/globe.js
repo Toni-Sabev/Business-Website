@@ -393,7 +393,7 @@
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     var vHalf = Math.tan((camera.fov * Math.PI / 180) / 2);
-    var FIT = 2.0;
+    var FIT = window.innerWidth <= 767 ? 2.3 : 2.0; // larger FIT = smaller globe; phones only
     var BASE_Z = 7.4;
     camera.position.z = Math.max(BASE_Z, FIT / (vHalf * camera.aspect));
     camera.updateProjectionMatrix();

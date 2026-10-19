@@ -75,7 +75,7 @@
       var lineMat = new T.LineBasicMaterial({
         color: cfg.color,
         transparent: true,
-        opacity: 0.25
+        opacity: 0.16
       });
       group.add(new T.Line(lineGeo, lineMat));
 
@@ -86,9 +86,9 @@
           map: dotTexture,
           color: new T.Color(cfg.color),
           transparent: true,
-          opacity: 0.85,
+          opacity: 0.5,
           depthWrite: false,
-          blending: T.AdditiveBlending
+          blending: T.NormalBlending   // normal (not additive): tinted soft dots instead of blown-out glow
         });
         var sprite = new T.Sprite(spriteMat);
         var size = 0.24 + Math.random() * 0.16;
@@ -99,7 +99,7 @@
           sprite: sprite,
           phase: (d / cfg.dots) * Math.PI * 2 + (Math.random() * 0.4),
           speedOffset: 0.9 + Math.random() * 0.2,
-          baseOpacity: 0.7 + Math.random() * 0.3
+          baseOpacity: 0.4 + Math.random() * 0.25
         });
       }
 
@@ -177,9 +177,9 @@
     var ctx = c.getContext('2d');
 
     var g = ctx.createRadialGradient(m, m, 0, m, m, m);
-    g.addColorStop(0.0, 'rgba(255,255,255,1.0)');
-    g.addColorStop(0.20, 'rgba(255,255,255,0.9)');
-    g.addColorStop(0.45, 'rgba(255,255,255,0.3)');
+    g.addColorStop(0.0, 'rgba(255,255,255,0.65)');
+    g.addColorStop(0.20, 'rgba(255,255,255,0.5)');
+    g.addColorStop(0.45, 'rgba(255,255,255,0.14)');
     g.addColorStop(1.0, 'rgba(255,255,255,0)');
     ctx.fillStyle = g;
     ctx.beginPath(); ctx.arc(m, m, m, 0, Math.PI * 2); ctx.fill();

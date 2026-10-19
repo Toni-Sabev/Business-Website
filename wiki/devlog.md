@@ -22,7 +22,7 @@
 - Comparison table: "Team limit" (Лимит на отбора) and "Time (SCY)" headers; fit chips read "1st/4th/5th on the team" (EN) / "№N в отбора" (BG), smaller single-line pills; parenthetical removed from the table label.
 - Final ranking table: rank-number column removed, event weights moved from the headers to a footer row ("Weight / Тежест"), per-university percentages replaced with "-", composite scores written to 2 decimals (weighted average of 50/30/20).
 
-**Global 15% scale** (`styles/base.css`, bottom): the header, every section after the hero, the footer and the hero text layers use `zoom: 0.85` on all screen sizes. The globe stage and the fixed orbital canvas are NOT zoomed (viewport-sized). To resize the whole site, change that one zoom value (1 = original). It started as an opt-in `?scale=85` prototype and was made permanent; the toggle code was removed from `scripts/nav.js`.
+**Global 10% scale** (`styles/base.css`, bottom): the header, every section after the hero, the footer and the hero text layers use `zoom: 0.9` on all screen sizes. The globe stage and the fixed orbital canvas are NOT zoomed (viewport-sized). To resize the whole site, change that one zoom value (1 = original). It started as an opt-in `?scale=85` prototype at 0.85 (15% smaller), was made permanent, then eased to 0.9 (10% smaller); the toggle code was removed from `scripts/nav.js`.
 
 **Small fixes**: phones - the second hero text block's two buttons are now centered under the centered text (`.globe-content-actions` in the mobile block of `styles/globe.css`). Home SME badge: Nina K. converts from LCM (NCAA women's factors), Alex M. and Dan P. from SCM (0.906).
 

@@ -8,6 +8,7 @@
 .globe-hero {
   position: relative;
   height: 340vh;
+  height: 340lvh; /* lvh is fixed; dvh/svh change as iOS toolbars move and make the scroll jump */
   background: radial-gradient(120% 90% at 70% 30%, #103A6E 0%, #0A2247 38%, #061327 78%);
   font-family: var(--font-body);
 }
@@ -16,7 +17,7 @@
   position: sticky;
   top: 0;
   height: 100vh;
-  height: 100dvh;
+  height: 100lvh;
   overflow: hidden;
 }
 

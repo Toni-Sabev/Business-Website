@@ -123,8 +123,12 @@
     }, { passive: true });
 
     // ── Resize ───────────────────────────────────────────────────────────
+    var lastW = window.innerWidth, lastH = window.innerHeight;
     function resize() {
       var w = window.innerWidth, h = window.innerHeight;
+      // iOS fires resize as the toolbars slide; skip small height-only changes.
+      if (renderer.domElement.width && w === lastW && Math.abs(h - lastH) < 150) return;
+      lastW = w; lastH = h;
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();

@@ -30,19 +30,8 @@
   var progress = 0;
   var cachedVH = 0;
 
-  // The stage is sized in lvh (fixed), so measure it instead of the toolbar-dependent viewport.
   function getVH() {
-    var stage = hero.querySelector('.globe-stage');
-    return (stage && stage.offsetHeight) || window.innerHeight;
-  }
-
-  // iOS fires resize as the toolbars slide; ignore height-only changes that small.
-  var lastW = window.innerWidth, lastH = window.innerHeight;
-  function isToolbarResize() {
-    var w = window.innerWidth, h = window.innerHeight;
-    var ignore = w === lastW && Math.abs(h - lastH) < 150;
-    if (!ignore) { lastW = w; lastH = h; }
-    return ignore;
+    return (window.visualViewport ? window.visualViewport.height : 0) || window.innerHeight;
   }
 
   function smooth(x, a, b) {
@@ -324,7 +313,7 @@
     makeArc(globe, { lat: 51.5, lng: -0.12 }, { lat: 39.68, lng: -75.75 }, 0x8fb8e8, 0.38); // London -> Delaware
 
     clock = new T.Clock();
-    onResize(true); // initial sizing must always run (sets camera distance)
+    onResize();
     animate();
   }
 
@@ -384,9 +373,8 @@
     if (cue) cue.style.opacity = 1 - smooth(p, 0, 0.12);
   }
 
-  function onResize(force) {
+  function onResize() {
     if (!renderer) return;
-    if (force !== true && isToolbarResize()) return;
     cachedVH = getVH();
     var canvas = document.getElementById('globe-canvas');
     var w = canvas.clientWidth, h = canvas.clientHeight;

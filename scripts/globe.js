@@ -324,7 +324,7 @@
     makeArc(globe, { lat: 51.5, lng: -0.12 }, { lat: 39.68, lng: -75.75 }, 0x8fb8e8, 0.38); // London -> Delaware
 
     clock = new T.Clock();
-    onResize();
+    onResize(true); // initial sizing must always run (sets camera distance)
     animate();
   }
 
@@ -384,8 +384,9 @@
     if (cue) cue.style.opacity = 1 - smooth(p, 0, 0.12);
   }
 
-  function onResize() {
-    if (!renderer || isToolbarResize()) return;
+  function onResize(force) {
+    if (!renderer) return;
+    if (force !== true && isToolbarResize()) return;
     cachedVH = getVH();
     var canvas = document.getElementById('globe-canvas');
     var w = canvas.clientWidth, h = canvas.clientHeight;

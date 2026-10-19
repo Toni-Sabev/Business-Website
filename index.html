@@ -396,13 +396,28 @@
 
     /* ── SME showcase (replaces the "Our path" trust strip) ── */
     .sme-feature { background: var(--color-navy); color: #fff; position: relative; overflow: hidden; }
+    /* Faint static grid, dissolving toward the edges */
+    .sme-feature::before, .sme-feature::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
+    .sme-feature::before {
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(74,139,223,0.09) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(74,139,223,0.09) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .sme-feature::after {
+      z-index: 1;
+      background: radial-gradient(ellipse at center, transparent 30%, var(--color-navy) 100%);
+    }
+    .sme-feature .container { position: relative; z-index: 2; }
+    .sme-feature__chip { z-index: 2; }
     .sme-feature__grid {
       display: grid; grid-template-columns: 1fr 1.05fr; gap: var(--space-6); align-items: center;
     }
     @media (max-width: 920px) { .sme-feature__grid { grid-template-columns: 1fr; gap: var(--space-5); } }
     .sme-feature__head { text-align: center; margin-bottom: var(--space-6); }
     .sme-feature__chip {
-      position: absolute; top: var(--space-3); right: var(--space-3);
+      position: absolute; top: var(--space-3); right: var(--space-3); /* corner of the full-width section */
       background: rgba(160,0,109,0.28); color: rgba(255,255,255,0.85);
       border: 1px solid rgba(194,30,138,0.45);
       -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
@@ -688,9 +703,9 @@
 
   <!-- ░░ SME SHOWCASE - replaces the "Our path" trust strip (kept commented below, in case we want it back) ░░ -->
   <section class="sme-feature section" id="sme" aria-labelledby="sme-heading">
+    <span class="chip sme-feature__chip" data-en="New" data-bg="Ново">Ново</span>
     <div class="container">
       <div class="sme-feature__head">
-        <span class="chip sme-feature__chip" data-en="New" data-bg="Ново">Ново</span>
         <h2 id="sme-heading" class="h2 sme-feature__title">
           <span aria-hidden="true">SME</span>
           <span class="sr-only">Swimming Match Engine (SME)</span>

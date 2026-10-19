@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const isHome = document.querySelector('.globe-hero');
     const isCompass = document.querySelector('.compass-page');
     const logoImg = header.querySelector('.logo-img');
-    const initialDark = isHome || isCompass;
+    const initialDark = isHome || isCompass || document.body.classList.contains('page-dark');
 
     const updateLogo = () => {
       if (!logoImg) return;

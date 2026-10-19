@@ -204,3 +204,46 @@
     font-size: 13px !important;
   }
 }
+
+/* ── Dark theme (body.contact-page) ───────────────────────────────────────
+   Navy page that flows straight into the footer: the footer is transparent
+   here, so the single body gradient runs behind both with no seam. */
+html:has(body.contact-page) { background: #061327; }
+.contact-page {
+  /* Re-point the tokens the page's inline styles use */
+  --color-forest: #fff;
+  --color-muted:  rgba(255, 255, 255, 0.62);
+  --color-clay:   #E86FC0;
+  background: linear-gradient(180deg, #0A2247 0%, #0A2247 45%, #061327 100%);
+  color: rgba(255, 255, 255, 0.85);
+}
+.contact-page .section-label { color: #8FB8E8; }
+.contact-page .contact-title { color: #fff; }
+.contact-page .contact-form,
+.contact-page .contact-details {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+}
+.contact-page .form-group label,
+.contact-page .radio-group label { color: #fff; }
+.contact-page .form-group input,
+.contact-page .form-group select,
+.contact-page .form-group textarea {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+.contact-page .form-group input::placeholder,
+.contact-page .form-group textarea::placeholder { color: rgba(255, 255, 255, 0.5); opacity: 1; }
+.contact-page .form-group select option { color: #0E2138; background: #fff; }
+.contact-page .form-group input:focus,
+.contact-page .form-group select:focus,
+.contact-page .form-group textarea:focus {
+  border-color: #4A8BDF;
+  box-shadow: 0 0 0 3px rgba(74, 139, 223, 0.25);
+}
+.contact-page .contact-detail-icon { background: rgba(255, 255, 255, 0.10); color: #8FB8E8; }
+.contact-page .contact-form a { color: #8FB8E8; text-decoration: underline; }
+.contact-page .map-placeholder { background: rgba(255, 255, 255, 0.06); }
+.contact-page .site-footer { background: transparent; }

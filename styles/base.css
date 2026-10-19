@@ -205,3 +205,17 @@ main > .about-hero:first-child {
     scroll-behavior: auto;
   }
 }
+
+/* ── Global scale: every component is 15% smaller than the original design ──
+   zoom scales every px/rem length inside the element. The globe stage and the fixed orbital
+   canvas are deliberately NOT zoomed (they are viewport-sized); the hero text layers are.
+   To change the overall size, edit the zoom value below (0.85 = 15% smaller, 1 = original). */
+body > header,
+body > main > :not(.globe-hero),
+body > footer,
+.globe-quote,
+.globe-title,
+.globe-sub,
+.globe-intro-cta,
+.globe-content-inner,
+.globe-cue { zoom: 0.85; }

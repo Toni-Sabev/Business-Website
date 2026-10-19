@@ -215,13 +215,17 @@ Navy band replacing the old "Our path" trust strip (that markup is kept commente
 
 `scripts/globe.js` sets the camera distance from the aspect ratio: `FIT = window.innerWidth <= 767 ? 2.3 : 2.0` (larger = smaller globe). iOS toolbar-resize "fixes" (lvh stage heights, resize filtering) were tried and reverted — see `devlog.md` 2026-10-19 before attempting them again.
 
+### Global 15% scale
+
+The whole site renders at 85% via `zoom: 0.85` on `body > header`, `body > main > :not(.globe-hero)`, `body > footer` and the globe hero's text layers (rules at the end of `styles/base.css`). The globe stage and the orbital canvas are viewport-sized and intentionally not zoomed. Change the single zoom value to resize everything (1 = original design size). Because `zoom` also shrinks `.container`'s max-width, wide screens get slightly larger side margins.
+
 ### Dark pages
 
 A page opts into the dark header by adding `page-dark` to `<body>`; `scripts/nav.js` then starts with the white logo/nav (like the home hero). `contact/index.html` also uses `contact-page`, which re-points `--color-forest/--color-muted/--color-clay` and restyles the form/cards; its footer is transparent so the page gradient continues through it.
 
 ### Swimming Match Engine page (`/technologies/swim-match-engine/`)
 
-Three-step pipeline ("pipe"): Database table, Matching (conversion table Event / Time (SCM) / Time (SCY), then fit table with "Team limit" and ordinal fit chips), Final ranking (University / Division / three event columns / Composite score / Power Index, with a weights footer row; composite = weighted average 50/30/20). Styles in `styles/pages/sme.css`; on phones some columns are hidden via `nth-child` rules, so update those rules whenever a column is added or removed.
+Three-step pipeline ("pipe"): Database table, Matching (conversion table Event / Time (SCM) / Time (SCY), then fit table with "Team limit" and ordinal fit chips), Final ranking (University / Division / three event columns / Composite score / Power Index, with a weights footer row; composite = weighted average 50/30/20). Example times are converted SCM→SCY with the NCAA factor **0.906** (same for men and women; multiply seconds, truncate to hundredths) — the home-page badge and this page must stay consistent (49.40 SCM → 44.75 SCY; fit-table team limits were chosen so each "Nth on the team" chip matches a 44.75). The home-page swimmer Nina K. is an **LCM** swimmer, converted with the official NCAA 2023-24 long-course factors for women (100 Back 0.863, 200 Back 0.867; men's are 0.845 / 0.859). SwimSwam's own converter (Colorado Timing factors) could not be fetched (paywalled), so its output may differ by a few hundredths. Styles in `styles/pages/sme.css`; on phones some columns are hidden via `nth-child` rules, so update those rules whenever a column is added or removed.
 
 ---
 

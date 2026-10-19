@@ -20,9 +20,10 @@ A highly polished, multi-page interactive platform with 3D WebGL visuals, fully 
 
 | Page | Status |
 |---|---|
-| **Home** | Live — Three.js continent-dot globe, Antoine de Saint-Exupéry bilingual quote, "What we offer" grid, 3D CSS flip package cards, who-we-are stats |
+| **Home** | Live — Three.js continent-dot globe (smaller on phones), Antoine de Saint-Exupéry bilingual quote, "What we offer" grid, **Swimming Match Engine (SME) showcase** (replaced the "Our path" strip), who-we-are stats |
+| **Technologies / SME** | Live — hub page and `/technologies/swim-match-engine/` explaining the database, matching and ranking pipeline with sample tables |
 | **About** | Live — Company tenets, comparison matrix, 3 founder cards with dual-photo setups and detailed bios |
-| **Contact** | Live — enquiry form (Formspree client-side fetch), required privacy-policy consent checkbox, age-restriction notice (parents/guardians or 18+), office details, Sofia map embed, site-wide orbital canvas |
+| **Contact** | Live — enquiry form (Formspree client-side fetch), required privacy-policy consent checkbox, age-restriction notice (parents/guardians or 18+), office details, Sofia map embed, site-wide (softened) orbital canvas; dark navy theme with seamless footer |
 | **Resources** | Live — article index with category filtering chips |
 | **Compass** | **Disabled** (2026-07-09) — deemed not useful enough to keep live. Page, script, styles, and Worker proxy all still exist in the repo and work if visited directly, but nothing links to `/compass/` anymore (nav, footer, home page section, and sitemap entry are all commented out). |
 | **Articles** | Live — long-form articles (NCAA guide, STEM benefits, OPT/CPT employment, SEVIS lifecycle) |

@@ -2,6 +2,32 @@
 
 ---
 
+## Session 2026-10-19 — SME showcase, dark contact page, globe/iOS lessons
+
+**Home page**
+- The "Our path" trust strip (University of Delaware, MSCI, Tokyo 2020…) was replaced by an **SME showcase** (`#sme` in `index.html`): navy band, centered "SME" heading, translucent "NEW" chip pinned to the section's top-right corner, bilingual intro copy, stats (300+ / 31 000+ / D1 + D2), two CTAs, and a compact sample report card (5 programs, sample data). The old strip is kept commented out in place.
+- The band has a faint, static, vignetted grid (`.sme-feature::before/::after`). An animated "wave" version was tried and rejected as too busy.
+- Globe: phones (<=767px) now use `FIT = 2.3` in `scripts/globe.js` (globe ~67% of screen width instead of ~78%); desktop stays at 2.0.
+
+**Scroll-jump on iOS (Google app) — attempted fix reverted**
+- Tried `lvh` heights for the sticky globe stage, `visualViewport`-free progress maths, and a resize filter that ignores small height-only changes. The filter also swallowed `init()`'s first `onResize()`, leaving the camera at its desktop distance on phones (oversized globe, then pushed off-screen). Fixing that still left the globe moving with the Google frame, so **everything was reverted to the original sizing/resize behaviour** (only the mobile `FIT` line remains).
+- Still open: the original up/down scroll jitter when the Google toolbars slide. Next idea if revisited: CSS-only (fixed `lvh` stage height, no JS changes), tested on a real iPhone.
+
+**Orbital background** (`scripts/orbital-bg.js`): dots switched from additive to normal blending, dimmer sprite core, lower dot/line opacity — softer, less glowy.
+
+**Contact page**: dark navy theme scoped to `body.page-dark.contact-page` (`styles/pages/contact.css`). Footer is transparent on this page so one body gradient runs behind both. `scripts/nav.js` treats `page-dark` pages as dark-header pages (white logo/nav).
+
+**SME page** (`/technologies/swim-match-engine/`)
+- Conversion table is now Event / Time (SCM) / Time (SCY) (Pool column removed).
+- Comparison table: "Team limit" (Лимит на отбора) and "Time (SCY)" headers; fit chips read "1st/4th/5th on the team" (EN) / "№N в отбора" (BG), smaller single-line pills; parenthetical removed from the table label.
+- Final ranking table: rank-number column removed, event weights moved from the headers to a footer row ("Weight / Тежест"), per-university percentages replaced with "-", composite scores written to 2 decimals (weighted average of 50/30/20).
+
+**Lessons**
+- A static `python3 -m http.server` + the browser's heuristic cache serves stale CSS; use a private tab / `fetch(url, {cache:'reload'})` when previewing.
+- Making `.container` positioned changed what an absolutely positioned child anchored to — keep the positioning context in mind when adding layered backgrounds.
+
+---
+
 ## Current State (2026-05-15)
 
 **Version**: 1.8 — Compass prompt overhaul, home page "What we offer" section, compass chip redesign

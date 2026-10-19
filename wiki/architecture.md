@@ -34,9 +34,10 @@ Every user-facing page follows **clean directory-based routing** (lives as `/slu
 
 ```
 successful-future/
-├── index.html              # Home page (/) — Dot Globe, Saint-Exupéry quote, 3D flip packages, offer cards
+├── index.html              # Home page (/) — Dot Globe, Saint-Exupéry quote, offer cards, SME showcase (#sme)
 ├── about/index.html        # About (/about/) — Who We Do, Services, Founders (dual photo stack)
-├── contact/index.html      # Contact (/contact/) — Glassmorphism form, Sofia map, orbital bg canvas
+├── contact/index.html      # Contact (/contact/) — dark navy page, glass form, Sofia map, orbital bg canvas
+├── technologies/           # Technologies hub (/technologies/) + Swimming Match Engine (/technologies/swim-match-engine/)
 ├── resources/index.html    # Resources (/resources/) — Article index with category chips
 ├── compass/index.html      # DISABLED 2026-07-09, not linked anywhere — Chat UI, 3D spherical logo planet canvas
 ├── privacy/index.html      # Privacy (/privacy/)
@@ -205,6 +206,22 @@ Two areas side-by-side (`.contact-layout`):
 - Email: `info@uspeshno-budeshte.com`
 - Hours: Mon–Fri, 9:00–18:00 EET
 - Google Maps embed: Sofia, Bulgaria pin
+
+### Home page SME showcase (`#sme` in `index.html`)
+
+Navy band replacing the old "Our path" trust strip (that markup is kept commented out in the same spot). Page-local styles live in the inline `<style>` block (`.sme-feature*`, `.sme-card`, `.sme-rank`, `.sme-stat*`). Structure: top-right translucent "NEW" chip (absolutely positioned against the full-width section — keep `.container` as the only positioned child so it stays anchored there), centered "SME" heading (full name kept for screen readers only), centered intro paragraph, then a two-column grid (stats + CTAs / sample report card). Background is a faint static grid with a radial vignette. All sample data is illustrative and labelled as such (Drexel is an invented fifth row).
+
+### Globe hero sizing (mobile)
+
+`scripts/globe.js` sets the camera distance from the aspect ratio: `FIT = window.innerWidth <= 767 ? 2.3 : 2.0` (larger = smaller globe). iOS toolbar-resize "fixes" (lvh stage heights, resize filtering) were tried and reverted — see `devlog.md` 2026-10-19 before attempting them again.
+
+### Dark pages
+
+A page opts into the dark header by adding `page-dark` to `<body>`; `scripts/nav.js` then starts with the white logo/nav (like the home hero). `contact/index.html` also uses `contact-page`, which re-points `--color-forest/--color-muted/--color-clay` and restyles the form/cards; its footer is transparent so the page gradient continues through it.
+
+### Swimming Match Engine page (`/technologies/swim-match-engine/`)
+
+Three-step pipeline ("pipe"): Database table, Matching (conversion table Event / Time (SCM) / Time (SCY), then fit table with "Team limit" and ordinal fit chips), Final ranking (University / Division / three event columns / Composite score / Power Index, with a weights footer row; composite = weighted average 50/30/20). Styles in `styles/pages/sme.css`; on phones some columns are hidden via `nth-child` rules, so update those rules whenever a column is added or removed.
 
 ---
 

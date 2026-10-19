@@ -118,6 +118,13 @@
 .db tbody tr:nth-child(7) td { border-bottom: 2px solid rgba(10, 34, 71, 0.18); }
 .db tr.is-top td:nth-child(5) { font-weight: 700; color: var(--color-red); }
 .db tbody tr:last-child td { border-bottom: none; }
+.db tfoot td {
+  border-top: 2px solid rgba(10, 34, 71, 0.18);
+  border-bottom: none;
+  background: var(--color-cream);
+  color: var(--color-muted);
+  font-weight: 700;
+}
 .db-foot {
   padding: 10px 14px;
   background: var(--color-cream);
@@ -171,7 +178,7 @@
   .db--data th:nth-child(2), .db--data td:nth-child(2),
   .db--data th:nth-child(3), .db--data td:nth-child(3),
   .db--fit  th:nth-child(2), .db--fit  td:nth-child(2),
-  .db--rank th:nth-child(3), .db--rank td:nth-child(3) { display: none; }
+  .db--rank th:nth-child(2), .db--rank td:nth-child(2) { display: none; }
   .db-label { padding: 10px 8px 8px; font-size: 11px; }
   .db-foot { padding: 8px; font-size: 10.5px; }
   .db-pill { padding: 0 5px; }
